@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Dashboard</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #ffffff; --bg2: #f7f7f5; --bg3: #f0f0ec;
+  --text: #1a1a1a; --text2: #6b6b6b; --text3: #aaa;
+  --border: rgba(0,0,0,0.09); --border2: rgba(0,0,0,0.16);
+  --green: #1D9E75; --blue: #378ADD; --purple: #7F77DD; --coral: #D85A30;
+  --amber: #BA7517; --red: #E24B4A;
+  --radius: 12px; --radius-sm: 8px;
+  --sidebar-w: 280px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1c1c; --bg2: #242424; --bg3: #2c2c2c;
+    --text: #efefef; --text2: #999; --text3: #555;
+    --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.16);
+  }
+}
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg3); color: var(--text); min-height: 100vh; }
+
+/* Layout */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: var(--sidebar-w); flex-shrink: 0;
+  background: var(--bg2); border-right: 0.5px solid var(--border2);
+  display: flex; flex-direction: column;
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+}
+.main { flex: 1; min-width: 0; padding: 1.5rem 1.5rem 3rem; }
+.main-inner { max-width: 660px; margin: 0 auto; }
+
+/* Sidebar */
+.sidebar-top { padding: 1.25rem 1rem 0.75rem; border-bottom: 0.5px solid var(--border); }
+.sidebar-logo { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.sidebar-sub { font-size: 11px; color: var(--text2); }
+.sidebar-nav { padding: 0.5rem 0; }
+.nav-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 1rem; font-size: 13px; color: var(--text2);
+  cursor: pointer; border-radius: 0; transition: background 0.1s, color 0.1s;
+  border: none; background: none; width: 100%; text-align: left;
+}
+.nav-item:hover { background: var(--bg3); color: var(--text); }
+.nav-item.active { background: var(--bg3); color: var(--text); font-weight: 500; }
+.nav-icon { font-size: 14px; width: 20px; text-align: center; flex-shrink: 0; }
+.sidebar-section { flex: 1; overflow-y: auto; }
+.sidebar-panel { display: none; padding: 1rem; }
+.sidebar-panel.active { display: block; }
+.sidebar-panel-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 1rem; padding-bottom: 8px; border-bottom: 0.5px solid var(--border); }
+
+/* Monthly tracker in sidebar */
+.month-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.month-nav { background: none; border: 0.5px solid var(--border2); border-radius: 6px; color: var(--text2); cursor: pointer; font-size: 13px; padding: 3px 8px; }
+.month-nav:hover { color: var(--text); background: var(--bg3); }
+.month-name { font-size: 13px; font-weight: 500; color: var(--text); }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; margin-bottom: 12px; }
+.cal-dow { font-size: 10px; color: var(--text3); text-align: center; padding: 2px 0; font-weight: 500; }
+.cal-day {
+  aspect-ratio: 1; border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--text2); cursor: default; position: relative;
+  border: 0.5px solid transparent;
+}
+.cal-day.empty { background: none; }
+.cal-day.today { border-color: var(--green); color: var(--text); font-weight: 600; }
+.cal-day.has-data { cursor: pointer; }
+.cal-day .dot {
+  position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%);
+  width: 4px; height: 4px; border-radius: 50%;
+}
+.cal-day.pct-0 .dot { background: var(--text3); }
+.cal-day.pct-low .dot { background: var(--red); }
+.cal-day.pct-mid .dot { background: var(--amber); }
+.cal-day.pct-high .dot { background: var(--green); }
+.cal-day.pct-full { background: rgba(29,158,117,0.12); }
+.cal-day.pct-full .dot { background: var(--green); }
+.month-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px; }
+.mstat { background: var(--bg3); border-radius: var(--radius-sm); padding: 8px 10px; }
+.mstat-label { font-size: 10px; color: var(--text2); margin-bottom: 2px; }
+.mstat-val { font-size: 17px; font-weight: 600; color: var(--text); }
+.month-prog-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text2); margin-bottom: 5px; }
+.month-prog-track { height: 6px; background: var(--border2); border-radius: 3px; overflow: hidden; }
+.month-prog-fill { height: 100%; border-radius: 3px; background: var(--green); transition: width 0.4s ease; }
+.streak-row { display: flex; align-items: center; gap: 6px; margin-top: 10px; padding-top: 10px; border-top: 0.5px solid var(--border); }
+.streak-icon { font-size: 16px; }
+.streak-label { font-size: 11px; color: var(--text2); }
+.streak-val { font-size: 15px; font-weight: 600; color: var(--amber); margin-left: auto; }
+
+/* Main header */
+.header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 10px; }
+.header-left .day-name { font-size: 24px; font-weight: 600; color: var(--text); }
+.header-left .date-str { font-size: 13px; color: var(--text2); margin-top: 2px; }
+.header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 7px; }
+.day-pills { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+.day-pill { font-size: 12px; padding: 5px 9px; border: 0.5px solid var(--border2); border-radius: 20px; background: var(--bg2); color: var(--text2); cursor: pointer; transition: all 0.15s; }
+.day-pill:hover { background: var(--bg3); color: var(--text); }
+.day-pill.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+.reset-btn { font-size: 11px; color: var(--text3); background: none; border: none; cursor: pointer; padding: 0; }
+.reset-btn:hover { color: var(--text2); }
+
+/* Progress */
+.prog-card { background: var(--bg2); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1rem; border: 0.5px solid var(--border); }
+.prog-header { display: flex; justify-content: space-between; font-size: 12px; color: var(--text2); margin-bottom: 6px; }
+.prog-track { height: 8px; background: var(--border2); border-radius: 4px; overflow: hidden; margin-bottom: 12px; }
+.prog-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; }
+.fill-green { background: var(--green); } .fill-blue { background: var(--blue); } .fill-coral { background: var(--coral); }
+.stat-row { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; }
+.stat { background: var(--bg); border-radius: var(--radius-sm); padding: 10px 12px; border: 0.5px solid var(--border); }
+.stat-label { font-size: 11px; color: var(--text2); margin-bottom: 3px; }
+.stat-val { font-size: 19px; font-weight: 600; color: var(--text); }
+
+/* Blocks */
+.block { background: var(--bg); border-radius: var(--radius); border: 0.5px solid var(--border); margin-bottom: 0.75rem; overflow: hidden; }
+.block-hdr { display: flex; align-items: center; gap: 10px; padding: 11px 16px; cursor: pointer; user-select: none; border-bottom: 0.5px solid transparent; transition: border-color 0.15s; }
+.block-hdr.open { border-bottom-color: var(--border); }
+.block-icon { font-size: 15px; width: 26px; text-align: center; flex-shrink: 0; }
+.block-title { font-size: 14px; font-weight: 500; color: var(--text); flex: 1; }
+.block-badge { font-size: 11px; color: var(--text2); background: var(--bg2); padding: 3px 9px; border-radius: 20px; flex-shrink: 0; }
+.block-chev { font-size: 13px; color: var(--text3); transition: transform 0.2s; flex-shrink: 0; }
+.block-chev.open { transform: rotate(90deg); }
+.block-body { display: none; padding: 8px 16px 12px; }
+.block-body.open { display: block; }
+.task-list { list-style: none; }
+.task-item { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid var(--border); }
+.task-item:last-child { border-bottom: none; }
+.task-cb { width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid var(--border2); cursor: pointer; flex-shrink: 0; margin-top: 2px; appearance: none; -webkit-appearance: none; background: var(--bg); position: relative; transition: background 0.15s, border-color 0.15s; }
+.task-cb:checked { background: var(--green); border-color: var(--green); }
+.task-cb:checked::after { content: ''; position: absolute; left: 4px; top: 1px; width: 6px; height: 10px; border: 2px solid white; border-top: none; border-left: none; transform: rotate(45deg); }
+.task-label { font-size: 13px; color: var(--text); line-height: 1.5; cursor: pointer; }
+.task-label.done { color: var(--text3); text-decoration: line-through; }
+
+/* Book */
+.book-card { background: var(--bg); border-radius: var(--radius); border: 0.5px solid var(--border); padding: 1rem 1.25rem; margin-bottom: 0.75rem; }
+.book-name { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.book-meta { font-size: 12px; color: var(--text2); margin-bottom: 12px; }
+.pages-row { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+.pages-row input { width: 150px; font-size: 13px; padding: 7px 10px; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); background: var(--bg2); color: var(--text); outline: none; }
+.pages-row input:focus { border-color: var(--coral); }
+.pages-row button { font-size: 13px; padding: 7px 14px; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); background: var(--bg2); color: var(--text); cursor: pointer; }
+.pages-row button:hover { background: var(--bg3); }
+
+/* Responsive */
+@media (max-width: 700px) {
+  .sidebar { width: 52px; }
+  .nav-item span:not(.nav-icon) { display: none; }
+  .sidebar-panel { display: none !important; }
+  .sidebar-top .sidebar-logo, .sidebar-top .sidebar-sub { display: none; }
+  .sidebar-top { padding: 0.75rem 0.5rem; }
+  .nav-item { justify-content: center; padding: 10px 0; }
+  .main { padding: 1rem 0.75rem 3rem; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="sidebar-logo">Daily</div>
+      <div class="sidebar-sub">Your everyday dashboard</div>
+    </div>
+    <nav class="sidebar-nav">
+      <button class="nav-item active" onclick="switchPanel('monthly', this)">
+        <span class="nav-icon">📅</span><span>Monthly</span>
+      </button>
+    </nav>
+    <div class="sidebar-section">
+      <div class="sidebar-panel active" id="panel-monthly">
+        <div class="sidebar-panel-title" id="monthPanelTitle">Monthly progress</div>
+
+        <div class="month-header">
+          <button class="month-nav" onclick="shiftMonth(-1)">‹</button>
+          <span class="month-name" id="calMonthLabel"></span>
+          <button class="month-nav" onclick="shiftMonth(1)">›</button>
+        </div>
+
+        <div class="cal-grid" id="calGrid"></div>
+
+        <div class="month-stats">
+          <div class="mstat"><div class="mstat-label">Days tracked</div><div class="mstat-val" id="mDaysTracked">0</div></div>
+          <div class="mstat"><div class="mstat-label">Avg completion</div><div class="mstat-val" id="mAvgPct">—</div></div>
+          <div class="mstat"><div class="mstat-label">Perfect days</div><div class="mstat-val" id="mPerfect">0</div></div>
+          <div class="mstat"><div class="mstat-label">Best day</div><div class="mstat-val" id="mBest">—</div></div>
+        </div>
+
+        <div class="month-prog-label"><span>Month completion</span><span id="mProgPct">0%</span></div>
+        <div class="month-prog-track"><div class="month-prog-fill" id="mProgBar" style="width:0%"></div></div>
+
+        <div class="streak-row">
+          <span class="streak-icon">🔥</span>
+          <span class="streak-label">Current streak</span>
+          <span class="streak-val" id="streakVal">0 days</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="main-inner">
+
+      <div class="header">
+        <div class="header-left">
+          <div class="day-name" id="dayName"></div>
+          <div class="date-str" id="dateStr"></div>
+        </div>
+        <div class="header-right">
+          <div class="day-pills" id="dayPills"></div>
+          <button class="reset-btn" onclick="resetDay()">Reset today's tasks</button>
+        </div>
+      </div>
+
+      <div class="prog-card">
+        <div class="prog-header"><span>Today's progress</span><span id="dailyPct">0%</span></div>
+        <div class="prog-track"><div class="prog-fill fill-green" id="dailyBar" style="width:0%"></div></div>
+        <div class="stat-row">
+          <div class="stat"><div class="stat-label">Done today</div><div class="stat-val" id="doneCount">0 / 0</div></div>
+          <div class="stat"><div class="stat-label">Week avg</div><div class="stat-val" id="weekAvg">—</div></div>
+          <div class="stat"><div class="stat-label">Month avg</div><div class="stat-val" id="monthAvg">—</div></div>
+        </div>
+      </div>
+
+      <div id="blocks"></div>
+
+      <div class="book-card">
+        <div class="book-name" id="bookName"></div>
+        <div class="book-meta" id="bookMeta"></div>
+        <div class="prog-header" style="margin-bottom:6px"><span id="bookPct">0%</span><span id="bookPages"></span></div>
+        <div class="prog-track"><div class="prog-fill fill-coral" id="bookBar" style="width:0%"></div></div>
+        <div class="pages-row">
+          <input type="number" id="pagesInput" placeholder="Pages read tonight" min="0">
+          <button onclick="logPages()">Log pages</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+const DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MONTHS_LONG=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONTHS_SHORT=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+const SCHEDULE={
+  Monday:[
+    {id:'morning',label:'Morning routine',icon:'🌅',tasks:['Get out of bed','Open shades + Make bed','Drink 500ml of water','Wash face (cold water)','Upper body stretch','Wear face mask','Brush teeth','Clean nose (saline)','Eat protein bar','Wear workout clothes','Wim Hof + Box breathing — 5 mins','Mike Holland exercises — 5 mins','Mobility: full body, hips, shoulders — 15 mins']},
+    {id:'cardio',label:'Cardio — Zone 2 jog to gym',icon:'🏃',tasks:['Zone 2 jog to gym']},
+    {id:'gymam',label:'Morning gym — Push (Chest + Triceps)',icon:'🏋️',tasks:['Abs','Dips till failure then Assisted Dip machine','Sauna']},
+    {id:'postgym',label:'Post-gym',icon:'🚿',tasks:['Walk back from gym','Drink water','Cold shower','Skincare','Get ready for work / Start work','Read News dashboard']},
+    {id:'work',label:'Work (9am – 4:30pm)',icon:'💼',tasks:['Office','Coffee + Ryze Coffee','Wordle','Pips (all levels)','Impulse Training','Duolingo','1 chapter of Chess learning','Lunch + Eggs']},
+    {id:'evening',label:'Evening — Push (Chest + Triceps)',icon:'🔱',tasks:['Neck exercises','Light mobility','Dead Hang','Machine Chest Press','Incline Machine Chest Press','Machine Flys','Chest Machine like Dips','Skull Crushers (Seated + Laying)','Bar Push Down','Lower Chest + Tricep Machine']},
+    {id:'dinner',label:'Dinner + wind down',icon:'🍽️',tasks:['Shower','Dinner','Watch something','Build / Learn session']},
+    {id:'night',label:'Night routine',icon:'🌙',tasks:['Make overnight oats + Talk to mum','Take meal prep out from freezer','Wash face','Skincare','Read','Nose strip','Mouth tape','Eye tape','Eye mask','Sleep']}
+  ],
+  Tuesday:[
+    {id:'morning',label:'Morning routine',icon:'🌅',tasks:['Get out of bed','Open shades + Make bed','Drink 500ml of water','Wash face (cold water)','Upper body stretch','Wear face mask','Brush teeth','Clean nose (saline)','Eat protein bar','Wear workout clothes','Wim Hof + Box breathing — 5 mins','Mike Holland exercises — 5 mins','Mobility: full body, hips, shoulders — 15 mins']},
+    {id:'cardio',label:'Cardio — VO2 Max',icon:'🏃',tasks:['VO2 Max session']},
+    {id:'gymam',label:'Morning gym — Pull (Back + Biceps)',icon:'🏋️',tasks:['Hip Thrusts + Planks','Pull ups + Forearms','Sauna']},
+    {id:'postgym',label:'Post-gym',icon:'🚿',tasks:['Walk back from gym','Drink water','Cold shower','Skincare','Get ready for work / Start work','Read News dashboard']},
+    {id:'work',label:'Work (9am – 4:30pm)',icon:'💼',tasks:['Office','Coffee + Ryze Coffee','Wordle','Pips (all levels)','Impulse Training','Duolingo','1 chapter of Chess learning','Lunch + Eggs']},
+    {id:'evening',label:'Evening — Pull (Back + Biceps)',icon:'🔱',tasks:['Neck exercises','Light mobility','Dead Hang','Machine Rows superset with Kelso shrug','Lat Pull Down superset with Close Grip Lat Pull Down','Cable Rows close grip','Hand supported Bicep Curls','Hand supported Hammer Curls','Incline Bench Curls']},
+    {id:'dinner',label:'Dinner + wind down',icon:'🍽️',tasks:['Shower','Dinner','Watch something','Build / Learn session']},
+    {id:'night',label:'Night routine',icon:'🌙',tasks:['Make overnight oats + Talk to mum','Take meal prep out from freezer','Wash face','Skincare','Read','Nose strip','Mouth tape','Eye tape','Eye mask','Sleep']}
+  ],
+  Wednesday:[
+    {id:'morning',label:'Morning routine',icon:'🌅',tasks:['Get out of bed','Open shades + Make bed','Drink 500ml of water','Wash face (cold water)','Upper body stretch','Wear face mask','Brush teeth','Clean nose (saline)','Eat protein bar','Wear workout clothes','Wim Hof + Box breathing — 5 mins','Mike Holland exercises — 5 mins','Mobility: full body, hips, shoulders — 15 mins']},
+    {id:'cardio',label:'Cardio — Zone 2 jog to gym',icon:'🏃',tasks:['Zone 2 jog to gym']},
+    {id:'gymam',label:'Morning gym — Legs + Shoulders',icon:'🏋️',tasks:['Abs','Dips till failure then Assisted Dip machine','Sauna']},
+    {id:'postgym',label:'Post-gym',icon:'🚿',tasks:['Walk back from gym','Drink water','Cold shower','Skincare','Get ready for work / Start work','Read News dashboard']},
+    {id:'work',label:'Work (9am – 4:30pm)',icon:'💼',tasks:['Office','Coffee + Ryze Coffee','Wordle','Pips (all levels)','Impulse Training','Duolingo','1 chapter of Chess learning','Lunch + Eggs']},
+    {id:'evening',label:'Evening — Legs + Shoulders',icon:'🔱',tasks:['Neck exercises','Light mobility','Front Squats','Leg Press — Heavy','Leg Curls','Hamstring Curls','Machine Shoulder Press','Machine single hand rear Delt fly','Seated lateral Raises']},
+    {id:'dinner',label:'Dinner + wind down',icon:'🍽️',tasks:['Shower','Dinner','Watch something','Build / Learn session']},
+    {id:'night',label:'Night routine',icon:'🌙',tasks:['Make overnight oats + Talk to mum','Take meal prep out from freezer','Wash face','Skincare','Read','Nose strip','Mouth tape','Eye tape','Eye mask','Sleep']}
+  ],
+  Thursday:[
+    {id:'morning',label:'Morning routine',icon:'🌅',tasks:['Get out of bed','Open shades + Make bed','Drink 500ml of water','Wash face (cold water)','Upper body stretch','Wear face mask','Brush teeth','Clean nose (saline)','Eat protein bar','Wear workout clothes','Wim Hof + Box breathing — 5 mins','Mike Holland exercises — 5 mins','Mobility: full body, hips, shoulders — 15 mins']},
+    {id:'cardio',label:'Cardio — VO2 Max',icon:'🏃',tasks:['VO2 Max session']},
+    {id:'postgym',label:'Post-gym',icon:'🚿',tasks:['Walk back from gym','Drink water','Cold shower','Skincare','Get ready for work / Start work','Read News dashboard']},
+    {id:'work',label:'Work (9am – 4:30pm)',icon:'💼',tasks:['Office','Coffee + Ryze Coffee','Wordle','Pips (all levels)','Impulse Training','Duolingo','1 chapter of Chess learning','Lunch + Eggs']},
+    {id:'evening',label:'Evening — Recovery (no weights)',icon:'🔱',tasks:['Neck exercises','Light mobility','Foam rolling','Stretch session']},
+    {id:'dinner',label:'Dinner + wind down',icon:'🍽️',tasks:['Shower','Dinner','Watch something','Build / Learn session']},
+    {id:'night',label:'Night routine',icon:'🌙',tasks:['Make overnight oats + Talk to mum','Take meal prep out from freezer','Wash face','Skincare','Read','Nose strip','Mouth tape','Eye tape','Eye mask','Sleep']}
+  ],
+  Friday:[
+    {id:'morning',label:'Morning routine',icon:'🌅',tasks:['Get out of bed','Open shades + Make bed','Drink 500ml of water','Wash face (cold water)','Upper body stretch','Wear face mask','Brush teeth','Clean nose (saline)','Eat protein bar','Wear workout clothes','Wim Hof + Box breathing — 5 mins','Mike Holland exercises — 5 mins','Mobility: full body, hips, shoulders — 15 mins']},
+    {id:'cardio',label:'Cardio — Zone 2 jog to gym',icon:'🏃',tasks:['Zone 2 jog to gym']},
+    {id:'gymam',label:'Morning gym — Full Upper',icon:'🏋️',tasks:['Hip Thrusts + Planks','Pull ups + Forearms','Sauna']},
+    {id:'postgym',label:'Post-gym',icon:'🚿',tasks:['Walk back from gym','Drink water','Cold shower','Skincare','Get ready for work / Start work','Read News dashboard']},
+    {id:'work',label:'Work (9am – 4:30pm)',icon:'💼',tasks:['Office','Coffee + Ryze Coffee','Wordle','Pips (all levels)','Impulse Training','Duolingo','1 chapter of Chess learning','Lunch + Eggs']},
+    {id:'evening',label:'Evening — Full Upper (Chest + Back + Arms + Shoulders)',icon:'🔱',tasks:['Neck exercises','Light mobility','Machine Chest Press','Machine Incline Press','Seated Machine Single Hand Lat Pull Downs','Machine Rows superset with Kelso Row','Skull Crushers + flat bar cable push downs','Seated Bar Curls superset with Dumbbell Hammer Curls','Machine Curls','Machine Shoulder Press + Seated Lateral Raises','Sauna']},
+    {id:'dinner',label:'Dinner + wind down',icon:'🍽️',tasks:['Shower','Dinner','Watch something','Build / Learn session']},
+    {id:'night',label:'Night routine',icon:'🌙',tasks:['Make overnight oats + Talk to mum','Take meal prep out from freezer','Wash face','Skincare','Read','Nose strip','Mouth tape','Eye tape','Eye mask','Sleep']}
+  ],
+  Saturday:[
+    {id:'morning',label:'Morning routine',icon:'🌅',tasks:['Get out of bed','Open shades + Make bed','Drink 500ml of water','Wash face (cold water)','Upper body stretch','Wear face mask','Brush teeth','Clean nose (saline)','Eat protein bar','Wear workout clothes']},
+    {id:'cardio',label:'Cardio — Long Run',icon:'🏃',tasks:['Long Run']},
+    {id:'gymam',label:'Morning gym — Big Saturday',icon:'🏋️',tasks:['Mobility + Blood Flowing warmup + Meditation','Dips + Pull Ups','Abs + Planks + Forearms','Sauna']},
+    {id:'postgym',label:'Post-gym',icon:'🚿',tasks:['Drink water','Cold shower','Skincare','Get ready']},
+    {id:'evening',label:'Evening — Legs',icon:'🔱',tasks:['Deadlifts','Lunge walks','Inner and outer thighs Machine','Calf Raises']},
+    {id:'dinner',label:'Dinner + wind down',icon:'🍽️',tasks:['Shower','Dinner','Watch something','Build / Learn session']},
+    {id:'night',label:'Night routine',icon:'🌙',tasks:['Make overnight oats + Talk to mum','Take meal prep out from freezer','Wash face','Skincare','Read','Nose strip','Mouth tape','Eye tape','Eye mask','Sleep']}
+  ],
+  Sunday:[
+    {id:'morning',label:'Morning routine',icon:'🌅',tasks:['Get out of bed','Open shades + Make bed','Drink 500ml of water','Wash face (cold water)','Upper body stretch','Wear face mask','Brush teeth','Clean nose (saline)']},
+    {id:'cardio',label:'Rest — Golf + Recovery',icon:'⛳',tasks:['Golf or active recovery','Foam rolling','Stretching']},
+    {id:'work',label:'Personal time',icon:'💼',tasks:['Personal admin','Meal prep review','Plan the week ahead']},
+    {id:'dinner',label:'Dinner + wind down',icon:'🍽️',tasks:['Shower','Dinner','Watch something','Build / Learn session']},
+    {id:'night',label:'Night routine',icon:'🌙',tasks:['Make overnight oats + Talk to mum','Take meal prep out from freezer','Wash face','Skincare','Read','Nose strip','Mouth tape','Eye tape','Eye mask','Sleep']}
+  ]
+};
+
+const BOOKS=[
+  {title:"Man's Search for Meaning",phase:1,num:1,total:7,pages:165},
+  {title:"Rework",phase:1,num:2,total:7,pages:288},
+  {title:"Zero to One",phase:1,num:3,total:7,pages:224},
+  {title:"Range",phase:1,num:4,total:7,pages:352},
+  {title:"Nonviolent Communication",phase:1,num:5,total:7,pages:264},
+  {title:"The 5 Types of Wealth",phase:1,num:6,total:7,pages:272},
+  {title:"The Score Takes Care of Itself",phase:1,num:7,total:7,pages:288},
+  {title:"The Millionaire Next Door",phase:2,num:1,total:10,pages:258},
+  {title:"High Output Management",phase:2,num:2,total:10,pages:272},
+  {title:"Measure What Matters",phase:2,num:3,total:10,pages:320},
+  {title:"The Hard Thing About Hard Things",phase:2,num:4,total:10,pages:304},
+  {title:"Only the Paranoid Survive",phase:2,num:5,total:10,pages:224},
+  {title:"The Outsiders",phase:2,num:6,total:10,pages:272},
+  {title:"Secrets of Sand Hill Road",phase:2,num:7,total:10,pages:368},
+  {title:"Blitzscaling",phase:2,num:8,total:10,pages:336},
+  {title:"Scale",phase:2,num:9,total:10,pages:479},
+  {title:"Winning",phase:2,num:10,total:10,pages:384},
+  {title:"Berkshire Hathaway Letters to Shareholders",phase:3,num:1,total:4,pages:828},
+  {title:"Poor Charlie's Almanack",phase:3,num:2,total:4,pages:544},
+  {title:"Principles – Ray Dalio",phase:3,num:3,total:4,pages:592},
+  {title:"Read Write Own",phase:3,num:4,total:4,pages:336},
+  {title:"Thinking, Fast and Slow",phase:4,num:1,total:4,pages:499},
+  {title:"Alchemy",phase:4,num:2,total:4,pages:304},
+  {title:"Complexity",phase:4,num:3,total:4,pages:520},
+  {title:"The Beginning of Infinity",phase:4,num:4,total:4,pages:496},
+  {title:"The Sovereign Individual",phase:5,num:1,total:2,pages:464},
+  {title:"Superintelligence",phase:5,num:2,total:2,pages:352},
+  {title:"Brave New World",phase:6,num:1,total:5,pages:311},
+  {title:"The Fountainhead",phase:6,num:2,total:5,pages:753},
+  {title:"Tao Te Ching",phase:6,num:3,total:5,pages:112},
+  {title:"The Master Key System",phase:6,num:4,total:5,pages:200},
+  {title:"Meditations",phase:6,num:5,total:5,pages:254}
+];
+
+const realNow=new Date();
+const realDayIdx=realNow.getDay();
+let viewDayIdx=realDayIdx;
+let calYear=realNow.getFullYear();
+let calMonth=realNow.getMonth();
+
+/* ── storage helpers ── */
+function dateKey(d){return d.toISOString().split('T')[0];}
+function dayKey(idx){const d=new Date(realNow);d.setDate(d.getDate()+(idx-realDayIdx));return dateKey(d);}
+function getDayState(idx){try{const r=localStorage.getItem('daily_v2_'+dayKey(idx));return r?JSON.parse(r):{}}catch(e){return {};}}
+function setDayState(idx,s){try{localStorage.setItem('daily_v2_'+dayKey(idx),JSON.stringify(s));}catch(e){}}
+function getHistAll(){
+  const out={};
+  for(let i=0;i<localStorage.length;i++){
+    const k=localStorage.key(i);
+    if(k&&k.startsWith('daily_v2_')){
+      const dk=k.replace('daily_v2_','');
+      try{const v=JSON.parse(localStorage.getItem(k));if(v&&typeof v==='object')out[dk]=v;}catch(e){}
+    }
+  }
+  return out;
+}
+function getBookState(){try{const r=localStorage.getItem('daily_books_v2');return r?JSON.parse(r):{idx:0,pagesRead:0};}catch(e){return {idx:0,pagesRead:0};}}
+function setBookState(s){try{localStorage.setItem('daily_books_v2',JSON.stringify(s));}catch(e){}}
+
+function getWeekNum(d){const jan1=new Date(d.getFullYear(),0,1);return Math.ceil(((d-jan1)/86400000+jan1.getDay()+1)/7);}
+
+/* ── sidebar panel switching ── */
+function switchPanel(id, btn){
+  document.querySelectorAll('.sidebar-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ── day pills ── */
+function buildPills(){
+  const el=document.getElementById('dayPills');
+  el.innerHTML='';
+  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach((lbl,i)=>{
+    const btn=document.createElement('button');
+    btn.className='day-pill'+(i===viewDayIdx?' active':'');
+    btn.textContent=i===realDayIdx?lbl+' •':lbl;
+    btn.onclick=()=>{viewDayIdx=i;render();};
+    el.appendChild(btn);
+  });
+}
+
+/* ── main render ── */
+function render(){
+  buildPills();
+  const dayName=DAYS[viewDayIdx];
+  const d=new Date(realNow);d.setDate(d.getDate()+(viewDayIdx-realDayIdx));
+  const isToday=viewDayIdx===realDayIdx;
+  document.getElementById('dayName').textContent=dayName+(isToday?' — Today':'');
+  document.getElementById('dateStr').textContent=MONTHS_LONG[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();
+
+  const schedule=SCHEDULE[dayName]||SCHEDULE['Sunday'];
+  const state=getDayState(viewDayIdx);
+  const blocksEl=document.getElementById('blocks');
+  blocksEl.innerHTML='';
+  let total=0,done=0;
+
+  schedule.forEach((blk,bi)=>{
+    total+=blk.tasks.length;
+    const blkDone=blk.tasks.filter((_,ti)=>!!state[bi+'_'+ti]).length;
+    done+=blkDone;
+    const wrap=document.createElement('div');wrap.className='block';
+    const hdr=document.createElement('div');
+    hdr.className='block-hdr'+(bi===0?' open':'');
+    hdr.innerHTML=`<span class="block-icon">${blk.icon}</span><span class="block-title">${blk.label}</span><span class="block-badge" id="badge${bi}">${blkDone}/${blk.tasks.length}</span><span class="block-chev${bi===0?' open':''}" id="chev${bi}">›</span>`;
+    hdr.onclick=()=>{
+      const body=document.getElementById('body'+bi);const chev=document.getElementById('chev'+bi);
+      const open=body.classList.toggle('open');chev.classList.toggle('open',open);hdr.classList.toggle('open',open);
+    };
+    const body=document.createElement('div');body.className='block-body'+(bi===0?' open':'');body.id='body'+bi;
+    const ul=document.createElement('ul');ul.className='task-list';
+    blk.tasks.forEach((t,ti)=>{
+      const key=bi+'_'+ti;const checked=!!state[key];
+      const li=document.createElement('li');li.className='task-item';
+      const cb=document.createElement('input');cb.type='checkbox';cb.className='task-cb';cb.checked=checked;cb.id='cb'+bi+'_'+ti;
+      const lbl=document.createElement('label');lbl.htmlFor=cb.id;lbl.className='task-label'+(checked?' done':'');lbl.textContent=t;
+      cb.onchange=()=>{
+        const s=getDayState(viewDayIdx);s[key]=cb.checked;setDayState(viewDayIdx,s);
+        lbl.className='task-label'+(cb.checked?' done':'');
+        recalc();
+      };
+      li.appendChild(cb);li.appendChild(lbl);ul.appendChild(li);
+    });
+    body.appendChild(ul);wrap.appendChild(hdr);wrap.appendChild(body);blocksEl.appendChild(wrap);
+  });
+
+  recalcWith(total,done);
+  updateWeekMonth(d);
+  renderBook();
+  renderCalendar();
+}
+
+function recalc(){
+  const dayName=DAYS[viewDayIdx];
+  const schedule=SCHEDULE[dayName]||SCHEDULE['Sunday'];
+  const state=getDayState(viewDayIdx);
+  let total=0,done=0;
+  schedule.forEach((blk,bi)=>{
+    blk.tasks.forEach((_,ti)=>{total++;if(state[bi+'_'+ti])done++;});
+    const bd=blk.tasks.filter((_,ti)=>state[bi+'_'+ti]).length;
+    const badge=document.getElementById('badge'+bi);if(badge)badge.textContent=bd+'/'+blk.tasks.length;
+  });
+  recalcWith(total,done);
+  const d=new Date(realNow);d.setDate(d.getDate()+(viewDayIdx-realDayIdx));
+  updateWeekMonth(d);
+  renderCalendar();
+}
+
+function recalcWith(total,done){
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById('dailyBar').style.width=pct+'%';
+  document.getElementById('dailyPct').textContent=pct+'%';
+  document.getElementById('doneCount').textContent=done+' / '+total;
+}
+
+function updateWeekMonth(d){
+  const hist=getHistAll();
+  const wNum=getWeekNum(d);const yr=d.getFullYear();
+  const wDays=Object.entries(hist).filter(([dk])=>{
+    const dd=new Date(dk);return dd.getFullYear()===yr&&getWeekNum(dd)===wNum;
+  });
+  if(wDays.length){
+    const wD=wDays.reduce((a,[,v])=>a+countDone(v),0);
+    const wT=wDays.reduce((a,[,v])=>a+countTotal(DAYS[new Date(v._day||wDays[0][0]).getDay()]||'Monday'),0);
+    document.getElementById('weekAvg').textContent=wT?Math.round(wD/wT*100)+'%':'—';
+  }
+  const mDays=Object.entries(hist).filter(([dk])=>{const dd=new Date(dk);return dd.getFullYear()===yr&&dd.getMonth()===d.getMonth();});
+  if(mDays.length){
+    const mD=mDays.reduce((a,[,v])=>a+countDone(v),0);
+    const mT=mDays.length*30;
+    document.getElementById('monthAvg').textContent=Math.round(mD/mT*100)+'%';
+  }
+}
+
+function countDone(state){return Object.values(state).filter(Boolean).length;}
+function countTotal(dayName){const s=SCHEDULE[dayName]||SCHEDULE['Sunday'];return s.reduce((a,b)=>a+b.tasks.length,0);}
+
+/* ── calendar ── */
+function shiftMonth(dir){calMonth+=dir;if(calMonth>11){calMonth=0;calYear++;}if(calMonth<0){calMonth=11;calYear--;}renderCalendar();}
+
+function renderCalendar(){
+  const hist=getHistAll();
+  document.getElementById('calMonthLabel').textContent=MONTHS_SHORT[calMonth]+' '+calYear;
+  document.getElementById('monthPanelTitle').textContent=MONTHS_LONG[calMonth]+' progress';
+
+  const grid=document.getElementById('calGrid');
+  grid.innerHTML='';
+  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d=>{
+    const el=document.createElement('div');el.className='cal-dow';el.textContent=d;grid.appendChild(el);
+  });
+
+  const firstDay=new Date(calYear,calMonth,1).getDay();
+  const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+  const todayStr=dateKey(realNow);
+
+  for(let i=0;i<firstDay;i++){const el=document.createElement('div');el.className='cal-day empty';grid.appendChild(el);}
+
+  let trackedCount=0,totalPct=0,perfectDays=0,bestPct=0,bestDay='—';
+
+  for(let day=1;day<=daysInMonth;day++){
+    const d=new Date(calYear,calMonth,day);
+    const dk=dateKey(d);
+    const el=document.createElement('div');
+    el.className='cal-day';
+    el.textContent=day;
+    if(dk===todayStr) el.classList.add('today');
+
+    const state=hist[dk];
+    if(state){
+      const done=countDone(state);
+      const dayName=DAYS[d.getDay()];
+      const tot=countTotal(dayName);
+      const pct=tot?Math.round(done/tot*100):0;
+      trackedCount++;totalPct+=pct;
+      if(pct===100)perfectDays++;
+      if(pct>bestPct){bestPct=pct;bestDay=day+' '+MONTHS_SHORT[calMonth];}
+      el.classList.add('has-data');
+      const dot=document.createElement('div');dot.className='dot';el.appendChild(dot);
+      if(pct===100) el.classList.add('pct-full');
+      else if(pct>=70) el.classList.add('pct-high');
+      else if(pct>=40) el.classList.add('pct-mid');
+      else el.classList.add('pct-low');
+    }
+    grid.appendChild(el);
+  }
+
+  const avgPct=trackedCount?Math.round(totalPct/trackedCount):0;
+  document.getElementById('mDaysTracked').textContent=trackedCount;
+  document.getElementById('mAvgPct').textContent=trackedCount?avgPct+'%':'—';
+  document.getElementById('mPerfect').textContent=perfectDays;
+  document.getElementById('mBest').textContent=bestDay==='—'?'—':bestDay;
+  document.getElementById('mProgPct').textContent=avgPct+'%';
+  document.getElementById('mProgBar').style.width=avgPct+'%';
+
+  // streak
+  let streak=0;const today=new Date(realNow);
+  for(let i=0;i<365;i++){
+    const d=new Date(today);d.setDate(d.getDate()-i);
+    const dk=dateKey(d);const state=hist[dk];
+    if(!state){if(i===0)continue;break;}
+    const done=countDone(state);const dayName=DAYS[d.getDay()];
+    const tot=countTotal(dayName);
+    if(tot&&done/tot>=0.8) streak++;
+    else if(i>0) break;
+  }
+  document.getElementById('streakVal').textContent=streak+' day'+(streak===1?'':'s');
+}
+
+/* ── book ── */
+function renderBook(){
+  const bs=getBookState();const book=BOOKS[Math.min(bs.idx,BOOKS.length-1)];
+  const pct=book.pages?Math.round(bs.pagesRead/book.pages*100):0;
+  document.getElementById('bookName').textContent=book.title;
+  document.getElementById('bookMeta').textContent='Phase '+book.phase+' — Book '+book.num+' of '+book.total;
+  document.getElementById('bookPct').textContent=pct+'%';
+  document.getElementById('bookPages').textContent=bs.pagesRead+' / '+book.pages+' pages';
+  document.getElementById('bookBar').style.width=Math.min(pct,100)+'%';
+}
+
+function logPages(){
+  const inp=document.getElementById('pagesInput');const n=parseInt(inp.value)||0;if(n<=0)return;
+  const bs=getBookState();const book=BOOKS[Math.min(bs.idx,BOOKS.length-1)];
+  bs.pagesRead+=n;
+  if(bs.pagesRead>=book.pages){
+    const next=BOOKS[bs.idx+1];
+    alert('You finished "'+book.title+'"!\n'+(next?'Starting: '+next.title:'You\'ve completed all books!'));
+    bs.pagesRead=0;bs.idx=Math.min(bs.idx+1,BOOKS.length-1);
+  }
+  setBookState(bs);inp.value='';renderBook();
+}
+
+function resetDay(){
+  if(!confirm('Reset all tasks for '+DAYS[viewDayIdx]+'?'))return;
+  try{localStorage.removeItem('daily_v2_'+dayKey(viewDayIdx));}catch(e){}
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
