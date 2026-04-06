@@ -10,10 +10,9 @@
   --bg: #ffffff; --bg2: #f7f7f5; --bg3: #f0f0ec;
   --text: #1a1a1a; --text2: #6b6b6b; --text3: #aaa;
   --border: rgba(0,0,0,0.09); --border2: rgba(0,0,0,0.16);
-  --green: #1D9E75; --blue: #378ADD; --purple: #7F77DD; --coral: #D85A30;
-  --amber: #BA7517; --red: #E24B4A;
-  --radius: 12px; --radius-sm: 8px;
-  --sidebar-w: 280px;
+  --green: #1D9E75; --coral: #D85A30; --amber: #BA7517;
+  --red: #E24B4A; --teal: #0F6E56; --purple: #534AB7;
+  --radius: 12px; --radius-sm: 8px; --sidebar-w: 272px;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -23,29 +22,15 @@
   }
 }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg3); color: var(--text); min-height: 100vh; }
-
-/* Layout */
 .layout { display: flex; min-height: 100vh; }
-.sidebar {
-  width: var(--sidebar-w); flex-shrink: 0;
-  background: var(--bg2); border-right: 0.5px solid var(--border2);
-  display: flex; flex-direction: column;
-  position: sticky; top: 0; height: 100vh; overflow-y: auto;
-}
+.sidebar { width: var(--sidebar-w); flex-shrink: 0; background: var(--bg2); border-right: 0.5px solid var(--border2); display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
 .main { flex: 1; min-width: 0; padding: 1.5rem 1.5rem 3rem; }
 .main-inner { max-width: 660px; margin: 0 auto; }
-
-/* Sidebar */
 .sidebar-top { padding: 1.25rem 1rem 0.75rem; border-bottom: 0.5px solid var(--border); }
 .sidebar-logo { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
 .sidebar-sub { font-size: 11px; color: var(--text2); }
-.sidebar-nav { padding: 0.5rem 0; }
-.nav-item {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px 1rem; font-size: 13px; color: var(--text2);
-  cursor: pointer; border-radius: 0; transition: background 0.1s, color 0.1s;
-  border: none; background: none; width: 100%; text-align: left;
-}
+.sidebar-nav { padding: 0.5rem 0; border-bottom: 0.5px solid var(--border); }
+.nav-item { display: flex; align-items: center; gap: 8px; padding: 8px 1rem; font-size: 13px; color: var(--text2); cursor: pointer; border: none; background: none; width: 100%; text-align: left; transition: background 0.1s, color 0.1s; }
 .nav-item:hover { background: var(--bg3); color: var(--text); }
 .nav-item.active { background: var(--bg3); color: var(--text); font-weight: 500; }
 .nav-icon { font-size: 14px; width: 20px; text-align: center; flex-shrink: 0; }
@@ -53,27 +38,15 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .sidebar-panel { display: none; padding: 1rem; }
 .sidebar-panel.active { display: block; }
 .sidebar-panel-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 1rem; padding-bottom: 8px; border-bottom: 0.5px solid var(--border); }
-
-/* Monthly tracker in sidebar */
 .month-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
 .month-nav { background: none; border: 0.5px solid var(--border2); border-radius: 6px; color: var(--text2); cursor: pointer; font-size: 13px; padding: 3px 8px; }
 .month-nav:hover { color: var(--text); background: var(--bg3); }
 .month-name { font-size: 13px; font-weight: 500; color: var(--text); }
 .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; margin-bottom: 12px; }
 .cal-dow { font-size: 10px; color: var(--text3); text-align: center; padding: 2px 0; font-weight: 500; }
-.cal-day {
-  aspect-ratio: 1; border-radius: 6px; display: flex; align-items: center; justify-content: center;
-  font-size: 11px; color: var(--text2); cursor: default; position: relative;
-  border: 0.5px solid transparent;
-}
-.cal-day.empty { background: none; }
+.cal-day { aspect-ratio: 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--text2); position: relative; border: 0.5px solid transparent; }
 .cal-day.today { border-color: var(--green); color: var(--text); font-weight: 600; }
-.cal-day.has-data { cursor: pointer; }
-.cal-day .dot {
-  position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%);
-  width: 4px; height: 4px; border-radius: 50%;
-}
-.cal-day.pct-0 .dot { background: var(--text3); }
+.cal-day .dot { position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; }
 .cal-day.pct-low .dot { background: var(--red); }
 .cal-day.pct-mid .dot { background: var(--amber); }
 .cal-day.pct-high .dot { background: var(--green); }
@@ -87,11 +60,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .month-prog-track { height: 6px; background: var(--border2); border-radius: 3px; overflow: hidden; }
 .month-prog-fill { height: 100%; border-radius: 3px; background: var(--green); transition: width 0.4s ease; }
 .streak-row { display: flex; align-items: center; gap: 6px; margin-top: 10px; padding-top: 10px; border-top: 0.5px solid var(--border); }
-.streak-icon { font-size: 16px; }
 .streak-label { font-size: 11px; color: var(--text2); }
 .streak-val { font-size: 15px; font-weight: 600; color: var(--amber); margin-left: auto; }
-
-/* Main header */
 .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 10px; }
 .header-left .day-name { font-size: 24px; font-weight: 600; color: var(--text); }
 .header-left .date-str { font-size: 13px; color: var(--text2); margin-top: 2px; }
@@ -100,41 +70,42 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .day-pill { font-size: 12px; padding: 5px 9px; border: 0.5px solid var(--border2); border-radius: 20px; background: var(--bg2); color: var(--text2); cursor: pointer; transition: all 0.15s; }
 .day-pill:hover { background: var(--bg3); color: var(--text); }
 .day-pill.active { background: var(--text); color: var(--bg); border-color: var(--text); }
-.reset-btn { font-size: 11px; color: var(--text3); background: none; border: none; cursor: pointer; padding: 0; }
+.reset-btn { font-size: 11px; color: var(--text3); background: none; border: none; cursor: pointer; }
 .reset-btn:hover { color: var(--text2); }
-
-/* Progress */
 .prog-card { background: var(--bg2); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1rem; border: 0.5px solid var(--border); }
 .prog-header { display: flex; justify-content: space-between; font-size: 12px; color: var(--text2); margin-bottom: 6px; }
 .prog-track { height: 8px; background: var(--border2); border-radius: 4px; overflow: hidden; margin-bottom: 12px; }
 .prog-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; }
-.fill-green { background: var(--green); } .fill-blue { background: var(--blue); } .fill-coral { background: var(--coral); }
+.fill-green { background: var(--green); }
+.fill-coral { background: var(--coral); }
 .stat-row { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; }
 .stat { background: var(--bg); border-radius: var(--radius-sm); padding: 10px 12px; border: 0.5px solid var(--border); }
 .stat-label { font-size: 11px; color: var(--text2); margin-bottom: 3px; }
 .stat-val { font-size: 19px; font-weight: 600; color: var(--text); }
-
-/* Blocks */
 .block { background: var(--bg); border-radius: var(--radius); border: 0.5px solid var(--border); margin-bottom: 0.75rem; overflow: hidden; }
 .block-hdr { display: flex; align-items: center; gap: 10px; padding: 11px 16px; cursor: pointer; user-select: none; border-bottom: 0.5px solid transparent; transition: border-color 0.15s; }
 .block-hdr.open { border-bottom-color: var(--border); }
 .block-icon { font-size: 15px; width: 26px; text-align: center; flex-shrink: 0; }
 .block-title { font-size: 14px; font-weight: 500; color: var(--text); flex: 1; }
+.block-time { font-size: 11px; color: var(--text3); flex-shrink: 0; margin-right: 4px; }
 .block-badge { font-size: 11px; color: var(--text2); background: var(--bg2); padding: 3px 9px; border-radius: 20px; flex-shrink: 0; }
 .block-chev { font-size: 13px; color: var(--text3); transition: transform 0.2s; flex-shrink: 0; }
 .block-chev.open { transform: rotate(90deg); }
 .block-body { display: none; padding: 8px 16px 12px; }
 .block-body.open { display: block; }
 .task-list { list-style: none; }
-.task-item { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid var(--border); }
+.task-item { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid var(--border); }
 .task-item:last-child { border-bottom: none; }
-.task-cb { width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid var(--border2); cursor: pointer; flex-shrink: 0; margin-top: 2px; appearance: none; -webkit-appearance: none; background: var(--bg); position: relative; transition: background 0.15s, border-color 0.15s; }
+.task-cb { width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid var(--border2); cursor: pointer; flex-shrink: 0; appearance: none; -webkit-appearance: none; background: var(--bg); position: relative; transition: background 0.15s, border-color 0.15s; }
 .task-cb:checked { background: var(--green); border-color: var(--green); }
 .task-cb:checked::after { content: ''; position: absolute; left: 4px; top: 1px; width: 6px; height: 10px; border: 2px solid white; border-top: none; border-left: none; transform: rotate(45deg); }
-.task-label { font-size: 13px; color: var(--text); line-height: 1.5; cursor: pointer; }
+.task-label { font-size: 13px; color: var(--text); line-height: 1.5; cursor: pointer; flex: 1; }
 .task-label.done { color: var(--text3); text-decoration: line-through; }
-
-/* Book */
+.task-time { font-size: 11px; color: var(--text3); flex-shrink: 0; min-width: 36px; text-align: right; }
+.tag { display: inline-block; font-size: 10px; font-weight: 500; border-radius: 4px; padding: 1px 6px; margin-left: 6px; vertical-align: middle; }
+.tag-supp { background: rgba(186,117,23,0.13); color: #854F0B; }
+.tag-sauna { background: rgba(15,110,86,0.12); color: #0F6E56; }
+.tag-mindset { background: rgba(83,74,183,0.12); color: #534AB7; }
 .book-card { background: var(--bg); border-radius: var(--radius); border: 0.5px solid var(--border); padding: 1rem 1.25rem; margin-bottom: 0.75rem; }
 .book-name { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
 .book-meta { font-size: 12px; color: var(--text2); margin-bottom: 12px; }
@@ -143,8 +114,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .pages-row input:focus { border-color: var(--coral); }
 .pages-row button { font-size: 13px; padding: 7px 14px; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); background: var(--bg2); color: var(--text); cursor: pointer; }
 .pages-row button:hover { background: var(--bg3); }
-
-/* Responsive */
 @media (max-width: 700px) {
   .sidebar { width: 52px; }
   .nav-item span:not(.nav-icon) { display: none; }
@@ -158,42 +127,35 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 </head>
 <body>
 <div class="layout">
-
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-top">
       <div class="sidebar-logo">Daily</div>
       <div class="sidebar-sub">Your everyday dashboard</div>
     </div>
     <nav class="sidebar-nav">
-      <button class="nav-item active" onclick="switchPanel('monthly', this)">
+      <button class="nav-item active" onclick="switchPanel('monthly',this)">
         <span class="nav-icon">📅</span><span>Monthly</span>
       </button>
     </nav>
     <div class="sidebar-section">
       <div class="sidebar-panel active" id="panel-monthly">
         <div class="sidebar-panel-title" id="monthPanelTitle">Monthly progress</div>
-
         <div class="month-header">
           <button class="month-nav" onclick="shiftMonth(-1)">‹</button>
           <span class="month-name" id="calMonthLabel"></span>
           <button class="month-nav" onclick="shiftMonth(1)">›</button>
         </div>
-
         <div class="cal-grid" id="calGrid"></div>
-
         <div class="month-stats">
           <div class="mstat"><div class="mstat-label">Days tracked</div><div class="mstat-val" id="mDaysTracked">0</div></div>
           <div class="mstat"><div class="mstat-label">Avg completion</div><div class="mstat-val" id="mAvgPct">—</div></div>
           <div class="mstat"><div class="mstat-label">Perfect days</div><div class="mstat-val" id="mPerfect">0</div></div>
           <div class="mstat"><div class="mstat-label">Best day</div><div class="mstat-val" id="mBest">—</div></div>
         </div>
-
         <div class="month-prog-label"><span>Month completion</span><span id="mProgPct">0%</span></div>
         <div class="month-prog-track"><div class="month-prog-fill" id="mProgBar" style="width:0%"></div></div>
-
         <div class="streak-row">
-          <span class="streak-icon">🔥</span>
+          <span style="font-size:16px">🔥</span>
           <span class="streak-label">Current streak</span>
           <span class="streak-val" id="streakVal">0 days</span>
         </div>
@@ -201,10 +163,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
     </div>
   </aside>
 
-  <!-- MAIN -->
   <main class="main">
     <div class="main-inner">
-
       <div class="header">
         <div class="header-left">
           <div class="day-name" id="dayName"></div>
@@ -215,7 +175,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
           <button class="reset-btn" onclick="resetDay()">Reset today's tasks</button>
         </div>
       </div>
-
       <div class="prog-card">
         <div class="prog-header"><span>Today's progress</span><span id="dailyPct">0%</span></div>
         <div class="prog-track"><div class="prog-fill fill-green" id="dailyBar" style="width:0%"></div></div>
@@ -225,9 +184,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
           <div class="stat"><div class="stat-label">Month avg</div><div class="stat-val" id="monthAvg">—</div></div>
         </div>
       </div>
-
       <div id="blocks"></div>
-
       <div class="book-card">
         <div class="book-name" id="bookName"></div>
         <div class="book-meta" id="bookMeta"></div>
@@ -238,7 +195,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
           <button onclick="logPages()">Log pages</button>
         </div>
       </div>
-
     </div>
   </main>
 </div>
@@ -248,71 +204,197 @@ const DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturda
 const MONTHS_LONG=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const MONTHS_SHORT=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-const SCHEDULE={
+// tag types: 'supp' | 'sauna' | 'mindset'
+// shared reusable blocks
+const BLK_WAKE = {id:'wake',icon:'🌅',title:'Wake up',time:'6:00 – 6:15am',tasks:[
+  {l:'Get out of bed',t:'6:00'},
+  {l:'Open shades + Make bed',t:'6:00'},
+  {l:'Drink 500ml of water',t:'6:02'},
+  {l:'Wash face (cold water)',t:'6:05'},
+  {l:'Upper body stretch',t:'6:08'},
+  {l:'Wear face mask',t:'6:10'},
+  {l:'Brush teeth',t:'6:11'},
+  {l:'Clean nose (saline)',t:'6:13'},
+  {l:'Electrolytes',t:'6:15',tag:'supp'},
+  {l:'NMN',t:'6:15',tag:'supp'},
+  {l:'Trans-Resveratrol',t:'6:15',tag:'supp'},
+  {l:'Shilajit (x2)',t:'6:15',tag:'supp'},
+]};
+const BLK_PREP = {id:'prep',icon:'🧘',title:'Breathwork + Mobility',time:'6:15 – 6:40am',tasks:[
+  {l:'Eat protein bar',t:'6:15'},
+  {l:'Wear workout clothes',t:'6:18'},
+  {l:'Wim Hof + Box breathing — 5 mins',t:'6:20',tag:'mindset'},
+  {l:'Mike Holland exercises — 5 mins',t:'6:25',tag:'mindset'},
+  {l:'Mobility: full body, hips, shoulders — 15 mins',t:'6:30',tag:'mindset'},
+]};
+const BLK_POSTGYM = {id:'postgym',icon:'🚿',title:'Post-gym',time:'8:05 – 8:45am',tasks:[
+  {l:'Walk back from gym',t:'8:05'},
+  {l:'Drink water',t:'8:20'},
+  {l:'Cold shower',t:'8:22'},
+  {l:'Skincare',t:'8:35'},
+  {l:'Get ready for work / Start work',t:'8:40'},
+  {l:'Read News dashboard',t:'8:45'},
+]};
+const BLK_BSUPPS = {id:'bsupps',icon:'💊',title:'Breakfast supplements',time:'8:45am',tasks:[
+  {l:'Vitamin D3',t:'8:45',tag:'supp'},
+  {l:'Omega 3',t:'8:45',tag:'supp'},
+  {l:'Tostero (x2)',t:'8:45',tag:'supp'},
+  {l:'Longevit',t:'8:45',tag:'supp'},
+  {l:'Collagen in coffee',t:'8:45',tag:'supp'},
+  {l:'Quercetin & Bromelain (x2)',t:'8:45',tag:'supp'},
+]};
+const BLK_WORK = {id:'work',icon:'💼',title:'Work',time:'9:00am – 4:30pm',tasks:[
+  {l:'Office',t:'9:00'},
+  {l:'Coffee + Ryze Coffee',t:'9:15'},
+  {l:'Wordle',t:'9:30'},
+  {l:'Pips (all levels)',t:'9:35'},
+  {l:'Impulse Training',t:'9:45'},
+  {l:'Duolingo',t:'9:55'},
+  {l:'1 chapter of Chess learning',t:'10:05'},
+  {l:'Lunch + Eggs',t:'12:30'},
+]};
+const BLK_DINNER = {id:'dinner',icon:'🍽️',title:'Dinner + wind down',time:'6:30 – 7:30pm',tasks:[
+  {l:'Shower',t:'6:30'},
+  {l:'Dinner',t:'7:00'},
+  {l:'Creatine (x4)',t:'7:00',tag:'supp'},
+  {l:'Watch something',t:'7:30'},
+]};
+const BLK_BUILD = {id:'build',icon:'🧠',title:'Build / Learn',time:'7:30 – 10:00pm',tasks:[
+  {l:'Build / Learn session',t:'7:30'},
+]};
+const BLK_NIGHT = {id:'night',icon:'🌙',title:'Night routine',time:'10:30 – 11:30pm',tasks:[
+  {l:'Make overnight oats + Talk to mum',t:'10:30'},
+  {l:'Take meal prep out from freezer',t:'10:45'},
+  {l:'Wash face',t:'10:50'},
+  {l:'Skincare',t:'10:55'},
+  {l:'Magnesium',t:'11:00',tag:'supp'},
+  {l:'Read',t:'11:00'},
+  {l:'Nose strip',t:'11:20'},
+  {l:'Mouth tape',t:'11:25'},
+  {l:'Eye tape',t:'11:27'},
+  {l:'Eye mask',t:'11:28'},
+  {l:'Sleep',t:'11:30'},
+]};
+
+// Evening blocks per day
+const EVE_MON = {id:'eve',icon:'🔱',title:'Evening — Push (Chest + Triceps)',time:'4:30 – 6:30pm',tasks:[
+  {l:'Neck exercises',t:'4:30',tag:'mindset'},
+  {l:'Light mobility',t:'4:45',tag:'mindset'},
+  {l:'Dead Hang',t:'5:00'},
+  {l:'Machine Chest Press',t:'5:05'},
+  {l:'Incline Machine Chest Press',t:'5:15'},
+  {l:"Machine Fly's",t:'5:25'},
+  {l:'Chest Machine like Dips',t:'5:35'},
+  {l:'Skull Crushers (Seated + Laying)',t:'5:45'},
+  {l:'Bar Push Down',t:'5:55'},
+  {l:'Lower Chest + Tricep Machine',t:'6:05'},
+]};
+const EVE_TUE = {id:'eve',icon:'🔱',title:'Evening — Pull (Back + Biceps)',time:'4:30 – 6:30pm',tasks:[
+  {l:'Neck exercises',t:'4:30',tag:'mindset'},
+  {l:'Light mobility',t:'4:45',tag:'mindset'},
+  {l:'Dead Hang',t:'5:00'},
+  {l:'Machine Rows superset with Kelso shrug',t:'5:05'},
+  {l:'Lat Pull Down superset with Close Grip Lat Pull Down',t:'5:18'},
+  {l:'Cable Rows close grip',t:'5:30'},
+  {l:'Hand supported Bicep Curls',t:'5:42'},
+  {l:'Hand supported Hammer Curls',t:'5:52'},
+  {l:'Incline Bench Curls',t:'6:02'},
+]};
+const EVE_WED = {id:'eve',icon:'🔱',title:'Evening — Legs + Shoulders',time:'4:30 – 6:30pm',tasks:[
+  {l:'Neck exercises',t:'4:30',tag:'mindset'},
+  {l:'Light mobility',t:'4:45',tag:'mindset'},
+  {l:'Front Squats',t:'5:00'},
+  {l:'Leg Press — Heavy',t:'5:12'},
+  {l:'Leg Curls',t:'5:22'},
+  {l:'Hamstring Curls',t:'5:32'},
+  {l:'Machine Shoulder Press',t:'5:42'},
+  {l:'Machine single hand rear Delt fly',t:'5:52'},
+  {l:'Seated lateral Raises',t:'6:02'},
+]};
+const EVE_THU = {id:'eve',icon:'🔱',title:'Evening — Recovery (no weights)',time:'4:30 – 6:30pm',tasks:[
+  {l:'Neck exercises',t:'4:30',tag:'mindset'},
+  {l:'Light mobility',t:'4:45',tag:'mindset'},
+  {l:'Foam rolling',t:'5:00'},
+  {l:'Stretch session',t:'5:20'},
+]};
+const EVE_FRI = {id:'eve',icon:'🔱',title:'Evening — Full Upper (Chest + Back + Arms + Shoulders)',time:'4:30 – 6:30pm',tasks:[
+  {l:'Neck exercises',t:'4:30',tag:'mindset'},
+  {l:'Light mobility',t:'4:45',tag:'mindset'},
+  {l:'Machine Chest Press',t:'5:00'},
+  {l:'Machine Incline Press',t:'5:10'},
+  {l:'Seated Machine Single Hand Lat Pull Downs',t:'5:20'},
+  {l:'Machine Rows superset with Kelso Row',t:'5:30'},
+  {l:'Skull Crushers + flat bar cable push downs',t:'5:42'},
+  {l:'Seated Bar Curls superset with Dumbbell Hammer Curls',t:'5:52'},
+  {l:'Machine Curls',t:'6:02'},
+  {l:'Machine Shoulder Press + Seated Lateral Raises',t:'6:10'},
+  {l:'Sauna',t:'6:22',tag:'sauna'},
+]};
+const EVE_SAT = {id:'eve',icon:'🔱',title:'Evening — Legs',time:'4:30 – 6:30pm',tasks:[
+  {l:'Deadlifts',t:'4:30'},
+  {l:'Lunge walks',t:'4:50'},
+  {l:'Inner and outer thighs Machine',t:'5:05'},
+  {l:'Calf Raises',t:'5:20'},
+]};
+
+const SCHEDULE = {
   Monday:[
-    {id:'morning',label:'Morning routine',icon:'🌅',tasks:['Get out of bed','Open shades + Make bed','Drink 500ml of water','Wash face (cold water)','Upper body stretch','Wear face mask','Brush teeth','Clean nose (saline)','Eat protein bar','Wear workout clothes','Wim Hof + Box breathing — 5 mins','Mike Holland exercises — 5 mins','Mobility: full body, hips, shoulders — 15 mins']},
-    {id:'cardio',label:'Cardio — Zone 2 jog to gym',icon:'🏃',tasks:['Zone 2 jog to gym']},
-    {id:'gymam',label:'Morning gym — Push (Chest + Triceps)',icon:'🏋️',tasks:['Abs','Dips till failure then Assisted Dip machine','Sauna']},
-    {id:'postgym',label:'Post-gym',icon:'🚿',tasks:['Walk back from gym','Drink water','Cold shower','Skincare','Get ready for work / Start work','Read News dashboard']},
-    {id:'work',label:'Work (9am – 4:30pm)',icon:'💼',tasks:['Office','Coffee + Ryze Coffee','Wordle','Pips (all levels)','Impulse Training','Duolingo','1 chapter of Chess learning','Lunch + Eggs']},
-    {id:'evening',label:'Evening — Push (Chest + Triceps)',icon:'🔱',tasks:['Neck exercises','Light mobility','Dead Hang','Machine Chest Press','Incline Machine Chest Press','Machine Flys','Chest Machine like Dips','Skull Crushers (Seated + Laying)','Bar Push Down','Lower Chest + Tricep Machine']},
-    {id:'dinner',label:'Dinner + wind down',icon:'🍽️',tasks:['Shower','Dinner','Watch something','Build / Learn session']},
-    {id:'night',label:'Night routine',icon:'🌙',tasks:['Make overnight oats + Talk to mum','Take meal prep out from freezer','Wash face','Skincare','Read','Nose strip','Mouth tape','Eye tape','Eye mask','Sleep']}
+    BLK_WAKE, BLK_PREP,
+    {id:'cardio',icon:'🏃',title:'Cardio — Zone 2 jog to gym',time:'6:40 – 7:05am',tasks:[{l:'Zone 2 jog to gym',t:'6:40'}]},
+    {id:'gymam',icon:'🏋️',title:'Morning gym — Push (Chest + Triceps)',time:'7:05 – 8:05am',tasks:[
+      {l:'Abs',t:'7:05'},{l:'Dips till failure then Assisted Dip machine',t:'7:20'},{l:'Sauna',t:'7:45',tag:'sauna'}
+    ]},
+    BLK_POSTGYM, BLK_BSUPPS, BLK_WORK, EVE_MON, BLK_DINNER, BLK_BUILD, BLK_NIGHT
   ],
   Tuesday:[
-    {id:'morning',label:'Morning routine',icon:'🌅',tasks:['Get out of bed','Open shades + Make bed','Drink 500ml of water','Wash face (cold water)','Upper body stretch','Wear face mask','Brush teeth','Clean nose (saline)','Eat protein bar','Wear workout clothes','Wim Hof + Box breathing — 5 mins','Mike Holland exercises — 5 mins','Mobility: full body, hips, shoulders — 15 mins']},
-    {id:'cardio',label:'Cardio — VO2 Max',icon:'🏃',tasks:['VO2 Max session']},
-    {id:'gymam',label:'Morning gym — Pull (Back + Biceps)',icon:'🏋️',tasks:['Hip Thrusts + Planks','Pull ups + Forearms','Sauna']},
-    {id:'postgym',label:'Post-gym',icon:'🚿',tasks:['Walk back from gym','Drink water','Cold shower','Skincare','Get ready for work / Start work','Read News dashboard']},
-    {id:'work',label:'Work (9am – 4:30pm)',icon:'💼',tasks:['Office','Coffee + Ryze Coffee','Wordle','Pips (all levels)','Impulse Training','Duolingo','1 chapter of Chess learning','Lunch + Eggs']},
-    {id:'evening',label:'Evening — Pull (Back + Biceps)',icon:'🔱',tasks:['Neck exercises','Light mobility','Dead Hang','Machine Rows superset with Kelso shrug','Lat Pull Down superset with Close Grip Lat Pull Down','Cable Rows close grip','Hand supported Bicep Curls','Hand supported Hammer Curls','Incline Bench Curls']},
-    {id:'dinner',label:'Dinner + wind down',icon:'🍽️',tasks:['Shower','Dinner','Watch something','Build / Learn session']},
-    {id:'night',label:'Night routine',icon:'🌙',tasks:['Make overnight oats + Talk to mum','Take meal prep out from freezer','Wash face','Skincare','Read','Nose strip','Mouth tape','Eye tape','Eye mask','Sleep']}
+    BLK_WAKE, BLK_PREP,
+    {id:'cardio',icon:'🏃',title:'Cardio — VO2 Max',time:'6:40 – 7:05am',tasks:[{l:'VO2 Max session',t:'6:40'}]},
+    {id:'gymam',icon:'🏋️',title:'Morning gym — Pull (Back + Biceps)',time:'7:05 – 8:05am',tasks:[
+      {l:'Hip Thrusts + Planks',t:'7:05'},{l:'Pull ups + Forearms',t:'7:25'},{l:'Sauna',t:'7:45',tag:'sauna'}
+    ]},
+    BLK_POSTGYM, BLK_BSUPPS, BLK_WORK, EVE_TUE, BLK_DINNER, BLK_BUILD, BLK_NIGHT
   ],
   Wednesday:[
-    {id:'morning',label:'Morning routine',icon:'🌅',tasks:['Get out of bed','Open shades + Make bed','Drink 500ml of water','Wash face (cold water)','Upper body stretch','Wear face mask','Brush teeth','Clean nose (saline)','Eat protein bar','Wear workout clothes','Wim Hof + Box breathing — 5 mins','Mike Holland exercises — 5 mins','Mobility: full body, hips, shoulders — 15 mins']},
-    {id:'cardio',label:'Cardio — Zone 2 jog to gym',icon:'🏃',tasks:['Zone 2 jog to gym']},
-    {id:'gymam',label:'Morning gym — Legs + Shoulders',icon:'🏋️',tasks:['Abs','Dips till failure then Assisted Dip machine','Sauna']},
-    {id:'postgym',label:'Post-gym',icon:'🚿',tasks:['Walk back from gym','Drink water','Cold shower','Skincare','Get ready for work / Start work','Read News dashboard']},
-    {id:'work',label:'Work (9am – 4:30pm)',icon:'💼',tasks:['Office','Coffee + Ryze Coffee','Wordle','Pips (all levels)','Impulse Training','Duolingo','1 chapter of Chess learning','Lunch + Eggs']},
-    {id:'evening',label:'Evening — Legs + Shoulders',icon:'🔱',tasks:['Neck exercises','Light mobility','Front Squats','Leg Press — Heavy','Leg Curls','Hamstring Curls','Machine Shoulder Press','Machine single hand rear Delt fly','Seated lateral Raises']},
-    {id:'dinner',label:'Dinner + wind down',icon:'🍽️',tasks:['Shower','Dinner','Watch something','Build / Learn session']},
-    {id:'night',label:'Night routine',icon:'🌙',tasks:['Make overnight oats + Talk to mum','Take meal prep out from freezer','Wash face','Skincare','Read','Nose strip','Mouth tape','Eye tape','Eye mask','Sleep']}
+    BLK_WAKE, BLK_PREP,
+    {id:'cardio',icon:'🏃',title:'Cardio — Zone 2 jog to gym',time:'6:40 – 7:05am',tasks:[{l:'Zone 2 jog to gym',t:'6:40'}]},
+    {id:'gymam',icon:'🏋️',title:'Morning gym — Legs + Shoulders',time:'7:05 – 8:05am',tasks:[
+      {l:'Abs',t:'7:05'},{l:'Dips till failure then Assisted Dip machine',t:'7:20'},{l:'Sauna',t:'7:45',tag:'sauna'}
+    ]},
+    BLK_POSTGYM, BLK_BSUPPS, BLK_WORK, EVE_WED, BLK_DINNER, BLK_BUILD, BLK_NIGHT
   ],
   Thursday:[
-    {id:'morning',label:'Morning routine',icon:'🌅',tasks:['Get out of bed','Open shades + Make bed','Drink 500ml of water','Wash face (cold water)','Upper body stretch','Wear face mask','Brush teeth','Clean nose (saline)','Eat protein bar','Wear workout clothes','Wim Hof + Box breathing — 5 mins','Mike Holland exercises — 5 mins','Mobility: full body, hips, shoulders — 15 mins']},
-    {id:'cardio',label:'Cardio — VO2 Max',icon:'🏃',tasks:['VO2 Max session']},
-    {id:'postgym',label:'Post-gym',icon:'🚿',tasks:['Walk back from gym','Drink water','Cold shower','Skincare','Get ready for work / Start work','Read News dashboard']},
-    {id:'work',label:'Work (9am – 4:30pm)',icon:'💼',tasks:['Office','Coffee + Ryze Coffee','Wordle','Pips (all levels)','Impulse Training','Duolingo','1 chapter of Chess learning','Lunch + Eggs']},
-    {id:'evening',label:'Evening — Recovery (no weights)',icon:'🔱',tasks:['Neck exercises','Light mobility','Foam rolling','Stretch session']},
-    {id:'dinner',label:'Dinner + wind down',icon:'🍽️',tasks:['Shower','Dinner','Watch something','Build / Learn session']},
-    {id:'night',label:'Night routine',icon:'🌙',tasks:['Make overnight oats + Talk to mum','Take meal prep out from freezer','Wash face','Skincare','Read','Nose strip','Mouth tape','Eye tape','Eye mask','Sleep']}
+    BLK_WAKE, BLK_PREP,
+    {id:'cardio',icon:'🏃',title:'Cardio — VO2 Max',time:'6:40 – 7:05am',tasks:[{l:'VO2 Max session',t:'6:40'}]},
+    BLK_POSTGYM, BLK_BSUPPS, BLK_WORK, EVE_THU, BLK_DINNER, BLK_BUILD, BLK_NIGHT
   ],
   Friday:[
-    {id:'morning',label:'Morning routine',icon:'🌅',tasks:['Get out of bed','Open shades + Make bed','Drink 500ml of water','Wash face (cold water)','Upper body stretch','Wear face mask','Brush teeth','Clean nose (saline)','Eat protein bar','Wear workout clothes','Wim Hof + Box breathing — 5 mins','Mike Holland exercises — 5 mins','Mobility: full body, hips, shoulders — 15 mins']},
-    {id:'cardio',label:'Cardio — Zone 2 jog to gym',icon:'🏃',tasks:['Zone 2 jog to gym']},
-    {id:'gymam',label:'Morning gym — Full Upper',icon:'🏋️',tasks:['Hip Thrusts + Planks','Pull ups + Forearms','Sauna']},
-    {id:'postgym',label:'Post-gym',icon:'🚿',tasks:['Walk back from gym','Drink water','Cold shower','Skincare','Get ready for work / Start work','Read News dashboard']},
-    {id:'work',label:'Work (9am – 4:30pm)',icon:'💼',tasks:['Office','Coffee + Ryze Coffee','Wordle','Pips (all levels)','Impulse Training','Duolingo','1 chapter of Chess learning','Lunch + Eggs']},
-    {id:'evening',label:'Evening — Full Upper (Chest + Back + Arms + Shoulders)',icon:'🔱',tasks:['Neck exercises','Light mobility','Machine Chest Press','Machine Incline Press','Seated Machine Single Hand Lat Pull Downs','Machine Rows superset with Kelso Row','Skull Crushers + flat bar cable push downs','Seated Bar Curls superset with Dumbbell Hammer Curls','Machine Curls','Machine Shoulder Press + Seated Lateral Raises','Sauna']},
-    {id:'dinner',label:'Dinner + wind down',icon:'🍽️',tasks:['Shower','Dinner','Watch something','Build / Learn session']},
-    {id:'night',label:'Night routine',icon:'🌙',tasks:['Make overnight oats + Talk to mum','Take meal prep out from freezer','Wash face','Skincare','Read','Nose strip','Mouth tape','Eye tape','Eye mask','Sleep']}
+    BLK_WAKE, BLK_PREP,
+    {id:'cardio',icon:'🏃',title:'Cardio — Zone 2 jog to gym',time:'6:40 – 7:05am',tasks:[{l:'Zone 2 jog to gym',t:'6:40'}]},
+    {id:'gymam',icon:'🏋️',title:'Morning gym — Full Upper',time:'7:05 – 8:05am',tasks:[
+      {l:'Hip Thrusts + Planks',t:'7:05'},{l:'Pull ups + Forearms',t:'7:25'},{l:'Sauna',t:'7:45',tag:'sauna'}
+    ]},
+    BLK_POSTGYM, BLK_BSUPPS, BLK_WORK, EVE_FRI, BLK_DINNER, BLK_BUILD, BLK_NIGHT
   ],
   Saturday:[
-    {id:'morning',label:'Morning routine',icon:'🌅',tasks:['Get out of bed','Open shades + Make bed','Drink 500ml of water','Wash face (cold water)','Upper body stretch','Wear face mask','Brush teeth','Clean nose (saline)','Eat protein bar','Wear workout clothes']},
-    {id:'cardio',label:'Cardio — Long Run',icon:'🏃',tasks:['Long Run']},
-    {id:'gymam',label:'Morning gym — Big Saturday',icon:'🏋️',tasks:['Mobility + Blood Flowing warmup + Meditation','Dips + Pull Ups','Abs + Planks + Forearms','Sauna']},
-    {id:'postgym',label:'Post-gym',icon:'🚿',tasks:['Drink water','Cold shower','Skincare','Get ready']},
-    {id:'evening',label:'Evening — Legs',icon:'🔱',tasks:['Deadlifts','Lunge walks','Inner and outer thighs Machine','Calf Raises']},
-    {id:'dinner',label:'Dinner + wind down',icon:'🍽️',tasks:['Shower','Dinner','Watch something','Build / Learn session']},
-    {id:'night',label:'Night routine',icon:'🌙',tasks:['Make overnight oats + Talk to mum','Take meal prep out from freezer','Wash face','Skincare','Read','Nose strip','Mouth tape','Eye tape','Eye mask','Sleep']}
+    BLK_WAKE,
+    {id:'cardio',icon:'🏃',title:'Cardio — Long Run',time:'6:15 – 7:15am',tasks:[{l:'Long Run',t:'6:15'}]},
+    {id:'gymam',icon:'🏋️',title:'Morning gym — Big Saturday',time:'7:15 – 8:30am',tasks:[
+      {l:'Mobility + Blood Flowing warmup + Meditation',t:'7:15',tag:'mindset'},
+      {l:'Dips + Pull Ups',t:'7:30'},
+      {l:'Abs + Planks + Forearms',t:'7:45'},
+      {l:'Sauna — 30 mins',t:'8:00',tag:'sauna'},
+    ]},
+    BLK_POSTGYM, BLK_BSUPPS, EVE_SAT, BLK_DINNER, BLK_BUILD, BLK_NIGHT
   ],
   Sunday:[
-    {id:'morning',label:'Morning routine',icon:'🌅',tasks:['Get out of bed','Open shades + Make bed','Drink 500ml of water','Wash face (cold water)','Upper body stretch','Wear face mask','Brush teeth','Clean nose (saline)']},
-    {id:'cardio',label:'Rest — Golf + Recovery',icon:'⛳',tasks:['Golf or active recovery','Foam rolling','Stretching']},
-    {id:'work',label:'Personal time',icon:'💼',tasks:['Personal admin','Meal prep review','Plan the week ahead']},
-    {id:'dinner',label:'Dinner + wind down',icon:'🍽️',tasks:['Shower','Dinner','Watch something','Build / Learn session']},
-    {id:'night',label:'Night routine',icon:'🌙',tasks:['Make overnight oats + Talk to mum','Take meal prep out from freezer','Wash face','Skincare','Read','Nose strip','Mouth tape','Eye tape','Eye mask','Sleep']}
+    BLK_WAKE,
+    {id:'recovery',icon:'⛳',title:'Golf + Recovery',time:'9:00am – 12:00pm',tasks:[
+      {l:'Golf or active recovery',t:'9:00'},{l:'Foam rolling',t:'11:30'},{l:'Stretching',t:'11:45',tag:'mindset'}
+    ]},
+    {id:'personal',icon:'📋',title:'Personal time',time:'12:00 – 4:00pm',tasks:[
+      {l:'Personal admin',t:'12:00'},{l:'Meal prep review',t:'1:00'},{l:'Plan the week ahead',t:'2:00'}
+    ]},
+    BLK_BSUPPS, BLK_DINNER, BLK_BUILD, BLK_NIGHT
   ]
 };
 
@@ -357,39 +439,40 @@ let viewDayIdx=realDayIdx;
 let calYear=realNow.getFullYear();
 let calMonth=realNow.getMonth();
 
-/* ── storage helpers ── */
 function dateKey(d){return d.toISOString().split('T')[0];}
-function dayKey(idx){const d=new Date(realNow);d.setDate(d.getDate()+(idx-realDayIdx));return dateKey(d);}
-function getDayState(idx){try{const r=localStorage.getItem('daily_v2_'+dayKey(idx));return r?JSON.parse(r):{}}catch(e){return {};}}
-function setDayState(idx,s){try{localStorage.setItem('daily_v2_'+dayKey(idx),JSON.stringify(s));}catch(e){}}
+function viewDate(){const d=new Date(realNow);d.setDate(d.getDate()+(viewDayIdx-realDayIdx));return d;}
+function getDayState(idx){
+  const d=new Date(realNow);d.setDate(d.getDate()+(idx-realDayIdx));
+  try{const r=localStorage.getItem('daily_v4_'+dateKey(d));return r?JSON.parse(r):{}}catch(e){return {};}
+}
+function setDayState(idx,s){
+  const d=new Date(realNow);d.setDate(d.getDate()+(idx-realDayIdx));
+  try{localStorage.setItem('daily_v4_'+dateKey(d),JSON.stringify(s));}catch(e){}
+}
 function getHistAll(){
   const out={};
   for(let i=0;i<localStorage.length;i++){
     const k=localStorage.key(i);
-    if(k&&k.startsWith('daily_v2_')){
-      const dk=k.replace('daily_v2_','');
-      try{const v=JSON.parse(localStorage.getItem(k));if(v&&typeof v==='object')out[dk]=v;}catch(e){}
+    if(k&&k.startsWith('daily_v4_')){
+      const dk=k.replace('daily_v4_','');
+      try{const v=JSON.parse(localStorage.getItem(k));if(v)out[dk]=v;}catch(e){}
     }
   }
   return out;
 }
-function getBookState(){try{const r=localStorage.getItem('daily_books_v2');return r?JSON.parse(r):{idx:0,pagesRead:0};}catch(e){return {idx:0,pagesRead:0};}}
-function setBookState(s){try{localStorage.setItem('daily_books_v2',JSON.stringify(s));}catch(e){}}
+function getBookState(){try{const r=localStorage.getItem('daily_books_v4');return r?JSON.parse(r):{idx:0,pagesRead:0};}catch(e){return {idx:0,pagesRead:0};}}
+function setBookState(s){try{localStorage.setItem('daily_books_v4',JSON.stringify(s));}catch(e){};}
+function getWeekNum(d){const j=new Date(d.getFullYear(),0,1);return Math.ceil(((d-j)/86400000+j.getDay()+1)/7);}
 
-function getWeekNum(d){const jan1=new Date(d.getFullYear(),0,1);return Math.ceil(((d-jan1)/86400000+jan1.getDay()+1)/7);}
-
-/* ── sidebar panel switching ── */
-function switchPanel(id, btn){
+function switchPanel(id,btn){
   document.querySelectorAll('.sidebar-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   document.getElementById('panel-'+id).classList.add('active');
   btn.classList.add('active');
 }
 
-/* ── day pills ── */
 function buildPills(){
-  const el=document.getElementById('dayPills');
-  el.innerHTML='';
+  const el=document.getElementById('dayPills');el.innerHTML='';
   ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach((lbl,i)=>{
     const btn=document.createElement('button');
     btn.className='day-pill'+(i===viewDayIdx?' active':'');
@@ -399,52 +482,57 @@ function buildPills(){
   });
 }
 
-/* ── main render ── */
+function tagHTML(tag){
+  if(!tag) return '';
+  return `<span class="tag tag-${tag}">${tag}</span>`;
+}
+
 function render(){
   buildPills();
   const dayName=DAYS[viewDayIdx];
-  const d=new Date(realNow);d.setDate(d.getDate()+(viewDayIdx-realDayIdx));
+  const d=viewDate();
   const isToday=viewDayIdx===realDayIdx;
   document.getElementById('dayName').textContent=dayName+(isToday?' — Today':'');
   document.getElementById('dateStr').textContent=MONTHS_LONG[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();
-
   const schedule=SCHEDULE[dayName]||SCHEDULE['Sunday'];
   const state=getDayState(viewDayIdx);
-  const blocksEl=document.getElementById('blocks');
-  blocksEl.innerHTML='';
+  const blocksEl=document.getElementById('blocks');blocksEl.innerHTML='';
   let total=0,done=0;
-
   schedule.forEach((blk,bi)=>{
     total+=blk.tasks.length;
     const blkDone=blk.tasks.filter((_,ti)=>!!state[bi+'_'+ti]).length;
     done+=blkDone;
     const wrap=document.createElement('div');wrap.className='block';
+    const firstOpen=bi===0;
     const hdr=document.createElement('div');
-    hdr.className='block-hdr'+(bi===0?' open':'');
-    hdr.innerHTML=`<span class="block-icon">${blk.icon}</span><span class="block-title">${blk.label}</span><span class="block-badge" id="badge${bi}">${blkDone}/${blk.tasks.length}</span><span class="block-chev${bi===0?' open':''}" id="chev${bi}">›</span>`;
+    hdr.className='block-hdr'+(firstOpen?' open':'');
+    hdr.innerHTML=`<span class="block-icon">${blk.icon}</span><span class="block-title">${blk.title}</span><span class="block-time">${blk.time}</span><span class="block-badge" id="badge${bi}">${blkDone}/${blk.tasks.length}</span><span class="block-chev${firstOpen?' open':''}" id="chev${bi}">›</span>`;
     hdr.onclick=()=>{
       const body=document.getElementById('body'+bi);const chev=document.getElementById('chev'+bi);
       const open=body.classList.toggle('open');chev.classList.toggle('open',open);hdr.classList.toggle('open',open);
     };
-    const body=document.createElement('div');body.className='block-body'+(bi===0?' open':'');body.id='body'+bi;
+    const body=document.createElement('div');
+    body.className='block-body'+(firstOpen?' open':'');body.id='body'+bi;
     const ul=document.createElement('ul');ul.className='task-list';
-    blk.tasks.forEach((t,ti)=>{
+    blk.tasks.forEach((task,ti)=>{
       const key=bi+'_'+ti;const checked=!!state[key];
       const li=document.createElement('li');li.className='task-item';
       const cb=document.createElement('input');cb.type='checkbox';cb.className='task-cb';cb.checked=checked;cb.id='cb'+bi+'_'+ti;
-      const lbl=document.createElement('label');lbl.htmlFor=cb.id;lbl.className='task-label'+(checked?' done':'');lbl.textContent=t;
+      const lbl=document.createElement('label');lbl.htmlFor=cb.id;
+      lbl.className='task-label'+(checked?' done':'');
+      lbl.innerHTML=task.l+tagHTML(task.tag);
+      const timeEl=document.createElement('span');timeEl.className='task-time';timeEl.textContent=task.t||'';
       cb.onchange=()=>{
         const s=getDayState(viewDayIdx);s[key]=cb.checked;setDayState(viewDayIdx,s);
         lbl.className='task-label'+(cb.checked?' done':'');
         recalc();
       };
-      li.appendChild(cb);li.appendChild(lbl);ul.appendChild(li);
+      li.appendChild(cb);li.appendChild(lbl);li.appendChild(timeEl);ul.appendChild(li);
     });
     body.appendChild(ul);wrap.appendChild(hdr);wrap.appendChild(body);blocksEl.appendChild(wrap);
   });
-
   recalcWith(total,done);
-  updateWeekMonth(d);
+  updateWeekMonth();
   renderBook();
   renderCalendar();
 }
@@ -460,8 +548,8 @@ function recalc(){
     const badge=document.getElementById('badge'+bi);if(badge)badge.textContent=bd+'/'+blk.tasks.length;
   });
   recalcWith(total,done);
-  const d=new Date(realNow);d.setDate(d.getDate()+(viewDayIdx-realDayIdx));
-  updateWeekMonth(d);
+  saveHistory(done,total);
+  updateWeekMonth();
   renderCalendar();
 }
 
@@ -472,100 +560,78 @@ function recalcWith(total,done){
   document.getElementById('doneCount').textContent=done+' / '+total;
 }
 
-function updateWeekMonth(d){
-  const hist=getHistAll();
-  const wNum=getWeekNum(d);const yr=d.getFullYear();
-  const wDays=Object.entries(hist).filter(([dk])=>{
-    const dd=new Date(dk);return dd.getFullYear()===yr&&getWeekNum(dd)===wNum;
-  });
-  if(wDays.length){
-    const wD=wDays.reduce((a,[,v])=>a+countDone(v),0);
-    const wT=wDays.reduce((a,[,v])=>a+countTotal(DAYS[new Date(v._day||wDays[0][0]).getDay()]||'Monday'),0);
-    document.getElementById('weekAvg').textContent=wT?Math.round(wD/wT*100)+'%':'—';
-  }
-  const mDays=Object.entries(hist).filter(([dk])=>{const dd=new Date(dk);return dd.getFullYear()===yr&&dd.getMonth()===d.getMonth();});
-  if(mDays.length){
-    const mD=mDays.reduce((a,[,v])=>a+countDone(v),0);
-    const mT=mDays.length*30;
-    document.getElementById('monthAvg').textContent=Math.round(mD/mT*100)+'%';
-  }
+function saveHistory(done,total){
+  const d=viewDate();const dk=dateKey(d);
+  const wk='daily_week_'+d.getFullYear()+'_'+getWeekNum(d);
+  const mk='daily_month_'+d.getFullYear()+'_'+d.getMonth();
+  try{
+    const wh=JSON.parse(localStorage.getItem(wk)||'{}');wh[dk]={done,total};localStorage.setItem(wk,JSON.stringify(wh));
+    const mh=JSON.parse(localStorage.getItem(mk)||'{}');mh[dk]={done,total};localStorage.setItem(mk,JSON.stringify(mh));
+  }catch(e){}
 }
 
-function countDone(state){return Object.values(state).filter(Boolean).length;}
+function updateWeekMonth(){
+  const d=viewDate();
+  const wk='daily_week_'+d.getFullYear()+'_'+getWeekNum(d);
+  const mk='daily_month_'+d.getFullYear()+'_'+d.getMonth();
+  try{
+    const wdays=Object.values(JSON.parse(localStorage.getItem(wk)||'{}'));
+    if(wdays.length){const p=Math.round(wdays.reduce((a,x)=>a+x.done,0)/wdays.reduce((a,x)=>a+x.total,0)*100);document.getElementById('weekAvg').textContent=p+'%';}
+    const mdays=Object.values(JSON.parse(localStorage.getItem(mk)||'{}'));
+    if(mdays.length){const p=Math.round(mdays.reduce((a,x)=>a+x.done,0)/mdays.reduce((a,x)=>a+x.total,0)*100);document.getElementById('monthAvg').textContent=p+'%';}
+  }catch(e){}
+}
+
+function countDone(s){return Object.values(s).filter(Boolean).length;}
 function countTotal(dayName){const s=SCHEDULE[dayName]||SCHEDULE['Sunday'];return s.reduce((a,b)=>a+b.tasks.length,0);}
 
-/* ── calendar ── */
 function shiftMonth(dir){calMonth+=dir;if(calMonth>11){calMonth=0;calYear++;}if(calMonth<0){calMonth=11;calYear--;}renderCalendar();}
 
 function renderCalendar(){
   const hist=getHistAll();
   document.getElementById('calMonthLabel').textContent=MONTHS_SHORT[calMonth]+' '+calYear;
   document.getElementById('monthPanelTitle').textContent=MONTHS_LONG[calMonth]+' progress';
-
-  const grid=document.getElementById('calGrid');
-  grid.innerHTML='';
-  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d=>{
-    const el=document.createElement('div');el.className='cal-dow';el.textContent=d;grid.appendChild(el);
-  });
-
+  const grid=document.getElementById('calGrid');grid.innerHTML='';
+  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d=>{const el=document.createElement('div');el.className='cal-dow';el.textContent=d;grid.appendChild(el);});
   const firstDay=new Date(calYear,calMonth,1).getDay();
   const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
   const todayStr=dateKey(realNow);
-
-  for(let i=0;i<firstDay;i++){const el=document.createElement('div');el.className='cal-day empty';grid.appendChild(el);}
-
-  let trackedCount=0,totalPct=0,perfectDays=0,bestPct=0,bestDay='—';
-
+  for(let i=0;i<firstDay;i++){const el=document.createElement('div');el.className='cal-day';grid.appendChild(el);}
+  let tracked=0,totalPct=0,perfect=0,bestPct=0,bestDay='—';
   for(let day=1;day<=daysInMonth;day++){
-    const d=new Date(calYear,calMonth,day);
-    const dk=dateKey(d);
-    const el=document.createElement('div');
-    el.className='cal-day';
-    el.textContent=day;
-    if(dk===todayStr) el.classList.add('today');
-
-    const state=hist[dk];
-    if(state){
-      const done=countDone(state);
-      const dayName=DAYS[d.getDay()];
-      const tot=countTotal(dayName);
+    const d=new Date(calYear,calMonth,day);const dk=dateKey(d);
+    const el=document.createElement('div');el.className='cal-day';el.textContent=day;
+    if(dk===todayStr)el.classList.add('today');
+    const st=hist[dk];
+    if(st){
+      const done=countDone(st);const tot=countTotal(DAYS[d.getDay()]);
       const pct=tot?Math.round(done/tot*100):0;
-      trackedCount++;totalPct+=pct;
-      if(pct===100)perfectDays++;
-      if(pct>bestPct){bestPct=pct;bestDay=day+' '+MONTHS_SHORT[calMonth];}
-      el.classList.add('has-data');
+      tracked++;totalPct+=pct;if(pct===100)perfect++;if(pct>bestPct){bestPct=pct;bestDay=day+' '+MONTHS_SHORT[calMonth];}
       const dot=document.createElement('div');dot.className='dot';el.appendChild(dot);
-      if(pct===100) el.classList.add('pct-full');
-      else if(pct>=70) el.classList.add('pct-high');
-      else if(pct>=40) el.classList.add('pct-mid');
+      if(pct===100)el.classList.add('pct-full');
+      else if(pct>=70)el.classList.add('pct-high');
+      else if(pct>=40)el.classList.add('pct-mid');
       else el.classList.add('pct-low');
     }
     grid.appendChild(el);
   }
-
-  const avgPct=trackedCount?Math.round(totalPct/trackedCount):0;
-  document.getElementById('mDaysTracked').textContent=trackedCount;
-  document.getElementById('mAvgPct').textContent=trackedCount?avgPct+'%':'—';
-  document.getElementById('mPerfect').textContent=perfectDays;
-  document.getElementById('mBest').textContent=bestDay==='—'?'—':bestDay;
-  document.getElementById('mProgPct').textContent=avgPct+'%';
-  document.getElementById('mProgBar').style.width=avgPct+'%';
-
-  // streak
-  let streak=0;const today=new Date(realNow);
+  const avg=tracked?Math.round(totalPct/tracked):0;
+  document.getElementById('mDaysTracked').textContent=tracked;
+  document.getElementById('mAvgPct').textContent=tracked?avg+'%':'—';
+  document.getElementById('mPerfect').textContent=perfect;
+  document.getElementById('mBest').textContent=bestDay;
+  document.getElementById('mProgPct').textContent=avg+'%';
+  document.getElementById('mProgBar').style.width=avg+'%';
+  let streak=0;
   for(let i=0;i<365;i++){
-    const d=new Date(today);d.setDate(d.getDate()-i);
-    const dk=dateKey(d);const state=hist[dk];
-    if(!state){if(i===0)continue;break;}
-    const done=countDone(state);const dayName=DAYS[d.getDay()];
-    const tot=countTotal(dayName);
-    if(tot&&done/tot>=0.8) streak++;
-    else if(i>0) break;
+    const d=new Date(realNow);d.setDate(d.getDate()-i);const dk=dateKey(d);const st=hist[dk];
+    if(!st){if(i===0)continue;break;}
+    const done=countDone(st);const tot=countTotal(DAYS[d.getDay()]);
+    if(tot&&done/tot>=0.8)streak++;else if(i>0)break;
   }
   document.getElementById('streakVal').textContent=streak+' day'+(streak===1?'':'s');
 }
 
-/* ── book ── */
 function renderBook(){
   const bs=getBookState();const book=BOOKS[Math.min(bs.idx,BOOKS.length-1)];
   const pct=book.pages?Math.round(bs.pagesRead/book.pages*100):0;
@@ -582,7 +648,7 @@ function logPages(){
   bs.pagesRead+=n;
   if(bs.pagesRead>=book.pages){
     const next=BOOKS[bs.idx+1];
-    alert('You finished "'+book.title+'"!\n'+(next?'Starting: '+next.title:'You\'ve completed all books!'));
+    alert('You finished "'+book.title+'"!\n'+(next?'Starting: '+next.title:'All books complete!'));
     bs.pagesRead=0;bs.idx=Math.min(bs.idx+1,BOOKS.length-1);
   }
   setBookState(bs);inp.value='';renderBook();
@@ -590,7 +656,8 @@ function logPages(){
 
 function resetDay(){
   if(!confirm('Reset all tasks for '+DAYS[viewDayIdx]+'?'))return;
-  try{localStorage.removeItem('daily_v2_'+dayKey(viewDayIdx));}catch(e){}
+  const d=new Date(realNow);d.setDate(d.getDate()+(viewDayIdx-realDayIdx));
+  try{localStorage.removeItem('daily_v4_'+dateKey(d));}catch(e){}
   render();
 }
 
