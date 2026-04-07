@@ -94,7 +94,27 @@
   .sidebar-brand h1 {
     font-family: var(--font-display);
     font-size: 18px; font-weight: 700; letter-spacing: -.4px;
+    flex: 1;
   }
+  .sync-indicator {
+    display: flex; align-items: center; gap: 6px;
+    padding: 4px 10px; border-radius: 20px;
+    background: var(--bg3); font-size: 11px;
+    font-family: var(--font-display); font-weight: 600;
+    color: var(--text3); transition: all .3s;
+    white-space: nowrap;
+  }
+  .sync-indicator.synced { color: var(--green); background: var(--green-dim); }
+  .sync-indicator.syncing { color: var(--amber); background: var(--amber-dim); }
+  .sync-indicator.error { color: var(--red); background: var(--red-dim); }
+  .sync-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--text3); transition: background .3s;
+  }
+  .sync-indicator.synced .sync-dot { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .sync-indicator.syncing .sync-dot { background: var(--amber); animation: pulse 1s infinite; }
+  .sync-indicator.error .sync-dot { background: var(--red); }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
 
   .theme-toggle {
     display: flex; align-items: center; gap: 10px;
@@ -425,6 +445,10 @@
     <div class="sidebar-brand">
       <div class="logo">D</div>
       <h1>Daily</h1>
+      <div class="sync-indicator" id="sync-indicator">
+        <div class="sync-dot" id="sync-dot"></div>
+        <span id="sync-label">Connecting…</span>
+      </div>
     </div>
 
     <div class="theme-toggle" onclick="toggleTheme()">
@@ -474,7 +498,7 @@
 
 <script>
 const SUPABASE_URL = 'https://xclkjrnkpejjgeoktihb.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhjbGtqcm5rcGVqamdlb2t0aWhiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM4NjMyMjQsImV4cCI6MjA1OTQzOTIyNH0.z3CVyCsW7gVkMtOoL_GjxfcpUMZ46CLOSqpfITzJuAk';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhjbGtqcm5rcGVqamdlb2t0aWhiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU1MzE4MTUsImV4cCI6MjA5MTEwNzgxNX0.7MK6KERxfVySzKTzN1H4wV4yGhRkfTpkr1zWunwznco';
 const CONFIG_URL = 'config.json';
 const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const DAY_SHORT = ['Su','Mo','Tu','We','Th','Fr','Sa'];
@@ -500,18 +524,35 @@ function dateForWeekday(targetDay) {
   return localDateStr(new Date(now.getFullYear(), now.getMonth(), now.getDate() - diff));
 }
 
+function setSyncStatus(status, label) {
+  const el = document.getElementById('sync-indicator');
+  const lbl = document.getElementById('sync-label');
+  if (!el) return;
+  el.className = 'sync-indicator ' + status;
+  if (lbl) lbl.textContent = label;
+}
+
 function sbHeaders() {
   return { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' };
 }
 async function sbGet(table, query) {
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${query}`, { headers: sbHeaders() });
-  if (!r.ok) { console.error('sbGet error', r.status); return []; } return r.json();
+  try {
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${query}`, { headers: sbHeaders() });
+    if (!r.ok) { console.error('sbGet error', r.status); setSyncStatus('error', 'Sync error'); return []; }
+    setSyncStatus('synced', 'Synced');
+    return r.json();
+  } catch(e) { console.error('sbGet network error', e); setSyncStatus('error', 'Offline'); return []; }
 }
 async function sbUpsert(table, data) {
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
-    method: 'POST', headers: { ...sbHeaders(), 'Prefer': 'resolution=merge-duplicates,return=representation' },
-    body: JSON.stringify(data)
-  }); if (!r.ok) console.error('sbUpsert error', r.status, await r.text());
+  setSyncStatus('syncing', 'Saving…');
+  try {
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+      method: 'POST', headers: { ...sbHeaders(), 'Prefer': 'resolution=merge-duplicates,return=representation' },
+      body: JSON.stringify(data)
+    });
+    if (!r.ok) { console.error('sbUpsert error', r.status, await r.text()); setSyncStatus('error', 'Save failed'); return; }
+    setSyncStatus('synced', 'Synced');
+  } catch(e) { console.error('sbUpsert network error', e); setSyncStatus('error', 'Offline'); }
 }
 
 async function loadConfig() { const r = await fetch(`${CONFIG_URL}?v=${Date.now()}`); config = await r.json(); books = config.books || []; }
