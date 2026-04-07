@@ -4,459 +4,446 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Daily Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ── CSS Variables ── */
   :root {
-    --bg: #0f1117;
-    --bg2: #181a23;
-    --bg3: #222430;
-    --card: #1c1e2a;
-    --border: #2a2d3a;
-    --text: #e4e6ef;
-    --text2: #9a9cb5;
-    --accent: #6c8cff;
-    --accent2: #5a7bff;
-    --green: #34d399;
-    --green-dim: rgba(52,211,153,.15);
-    --amber: #fbbf24;
-    --amber-dim: rgba(251,191,36,.15);
-    --teal: #2dd4bf;
-    --teal-dim: rgba(45,212,191,.15);
+    --bg: #0a0a0c;
+    --bg2: #111115;
+    --bg3: #1a1a20;
+    --card: #141418;
+    --card-hover: #1c1c22;
+    --border: #232329;
+    --border2: #2e2e36;
+    --text: #f0f0f5;
+    --text2: #8a8a9a;
+    --text3: #5a5a6a;
+    --accent: #fc5f2b;
+    --accent2: #e84e1c;
+    --accent-dim: rgba(252,95,43,.1);
+    --green: #2dd881;
+    --green-dim: rgba(45,216,129,.1);
+    --amber: #ffb020;
+    --amber-dim: rgba(255,176,32,.1);
+    --teal: #20d5c4;
+    --teal-dim: rgba(32,213,196,.1);
     --purple: #a78bfa;
-    --purple-dim: rgba(167,139,250,.15);
-    --red: #f87171;
-    --red-dim: rgba(248,113,113,.15);
-    --check: #34d399;
-    --radius: 10px;
-    --shadow: 0 2px 12px rgba(0,0,0,.3);
+    --purple-dim: rgba(167,139,250,.1);
+    --red: #ff5a5a;
+    --red-dim: rgba(255,90,90,.1);
+    --check: #2dd881;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 24px rgba(0,0,0,.4);
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --transition: .2s cubic-bezier(.4,0,.2,1);
   }
   .light {
-    --bg: #f5f6fa;
-    --bg2: #ebedf5;
-    --bg3: #dfe1ec;
+    --bg: #f7f7fa;
+    --bg2: #efeff5;
+    --bg3: #e5e5ee;
     --card: #ffffff;
-    --border: #d4d6e1;
-    --text: #1a1c2e;
-    --text2: #5a5c75;
-    --accent: #4a6cf7;
-    --accent2: #3a5ce7;
-    --shadow: 0 2px 12px rgba(0,0,0,.08);
-    --green-dim: rgba(52,211,153,.12);
-    --amber-dim: rgba(251,191,36,.12);
-    --teal-dim: rgba(45,212,191,.12);
-    --purple-dim: rgba(167,139,250,.12);
-    --red-dim: rgba(248,113,113,.12);
+    --card-hover: #f8f8fc;
+    --border: #dddde5;
+    --border2: #ccccd5;
+    --text: #111118;
+    --text2: #6a6a7a;
+    --text3: #9a9aaa;
+    --shadow: 0 4px 24px rgba(0,0,0,.06);
+    --accent-dim: rgba(252,95,43,.08);
+    --green-dim: rgba(45,216,129,.08);
+    --amber-dim: rgba(255,176,32,.08);
+    --teal-dim: rgba(32,213,196,.08);
+    --purple-dim: rgba(167,139,250,.08);
+    --red-dim: rgba(255,90,90,.08);
   }
 
-  /* ── Reset & Base ── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-body);
     background: var(--bg);
     color: var(--text);
-    line-height: 1.5;
+    line-height: 1.6;
     min-height: 100vh;
-    transition: background .3s, color .3s;
+    transition: background var(--transition), color var(--transition);
+    -webkit-font-smoothing: antialiased;
   }
-  a { color: var(--accent); text-decoration: none; }
+  ::selection { background: var(--accent); color: #fff; }
 
-  /* ── Layout ── */
   .shell { display: flex; min-height: 100vh; }
+
   .sidebar {
-    width: 280px;
-    min-width: 280px;
+    width: 300px; min-width: 300px;
     background: var(--bg2);
     border-right: 1px solid var(--border);
-    padding: 20px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    padding: 28px 20px;
+    display: flex; flex-direction: column; gap: 24px;
     overflow-y: auto;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-  }
-  .main {
-    flex: 1;
-    padding: 24px 32px;
-    overflow-y: auto;
-    max-width: 860px;
+    position: sticky; top: 0; height: 100vh;
   }
 
-  /* ── Sidebar: Logo / Title ── */
-  .sidebar-title {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -.3px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .sidebar-title .icon { font-size: 22px; }
-
-  /* ── Theme Toggle ── */
-  .theme-toggle {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    font-size: 13px;
-    color: var(--text2);
-    padding: 6px 0;
-    user-select: none;
-  }
-  .theme-toggle:hover { color: var(--text); }
-  .toggle-track {
-    width: 36px; height: 20px;
-    background: var(--border);
+  .sidebar-brand { display: flex; align-items: center; gap: 10px; }
+  .sidebar-brand .logo {
+    width: 36px; height: 36px;
+    background: var(--accent);
     border-radius: 10px;
-    position: relative;
-    transition: background .3s;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: #fff; font-weight: 700;
+    font-family: var(--font-display);
+  }
+  .sidebar-brand h1 {
+    font-family: var(--font-display);
+    font-size: 18px; font-weight: 700; letter-spacing: -.4px;
+  }
+
+  .theme-toggle {
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer; font-size: 13px; color: var(--text2);
+    user-select: none; padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    transition: background var(--transition);
+  }
+  .theme-toggle:hover { background: var(--bg3); }
+  .toggle-track {
+    width: 40px; height: 22px;
+    background: var(--border2); border-radius: 11px;
+    position: relative; transition: background var(--transition); flex-shrink: 0;
   }
   .toggle-track::after {
-    content: '';
-    width: 16px; height: 16px;
-    background: var(--text);
-    border-radius: 50%;
-    position: absolute;
-    top: 2px; left: 2px;
-    transition: transform .3s;
+    content: ''; width: 18px; height: 18px;
+    background: #fff; border-radius: 50%;
+    position: absolute; top: 2px; left: 2px;
+    transition: transform var(--transition);
+    box-shadow: 0 1px 4px rgba(0,0,0,.2);
   }
   .light .toggle-track { background: var(--accent); }
-  .light .toggle-track::after { transform: translateX(16px); }
+  .light .toggle-track::after { transform: translateX(18px); }
 
-  /* ── Calendar ── */
   .cal-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 8px;
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;
   }
-  .cal-header span { font-size: 14px; font-weight: 600; }
+  .cal-header span { font-family: var(--font-display); font-size: 14px; font-weight: 600; }
   .cal-nav {
-    background: none;
-    border: none;
-    color: var(--text2);
-    cursor: pointer;
-    font-size: 16px;
-    padding: 4px 8px;
-    border-radius: 6px;
-    transition: background .2s;
+    background: none; border: 1px solid var(--border);
+    color: var(--text2); cursor: pointer; font-size: 14px;
+    width: 30px; height: 30px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--transition);
   }
-  .cal-nav:hover { background: var(--bg3); color: var(--text); }
+  .cal-nav:hover { background: var(--bg3); color: var(--text); border-color: var(--border2); }
   .cal-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 2px;
-    text-align: center;
-    font-size: 12px;
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    gap: 2px; text-align: center;
   }
-  .cal-dow { color: var(--text2); font-weight: 600; padding: 4px 0; font-size: 10px; text-transform: uppercase; }
+  .cal-dow {
+    color: var(--text3); font-weight: 600; padding: 6px 0;
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+  }
   .cal-day {
     aspect-ratio: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    font-size: 12px;
-    cursor: default;
-    position: relative;
-    color: var(--text2);
-    transition: background .15s;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    border-radius: 8px; font-size: 12px; cursor: default;
+    position: relative; color: var(--text3);
+    transition: all var(--transition); font-weight: 500;
   }
-  .cal-day.cur-month { color: var(--text); }
-  .cal-day.today { background: var(--accent); color: #fff; font-weight: 700; }
+  .cal-day.cur-month { color: var(--text2); }
+  .cal-day.today {
+    background: var(--accent); color: #fff; font-weight: 700;
+    box-shadow: 0 2px 12px rgba(252,95,43,.3);
+  }
   .cal-day.has-data { cursor: pointer; }
   .cal-day.has-data:hover { background: var(--bg3); }
   .cal-day.today:hover { background: var(--accent2); }
+  .cal-day.selected:not(.today) {
+    background: var(--accent-dim); color: var(--accent); font-weight: 700;
+  }
   .cal-dot {
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    position: absolute;
-    bottom: 3px;
+    width: 4px; height: 4px; border-radius: 50%; position: absolute; bottom: 2px;
   }
   .cal-dot.green { background: var(--green); }
   .cal-dot.amber { background: var(--amber); }
   .cal-dot.red { background: var(--red); }
-  .cal-dot.perfect { background: var(--green); width: 6px; height: 6px; box-shadow: 0 0 4px var(--green); }
+  .cal-dot.perfect { background: var(--green); width: 5px; height: 5px; box-shadow: 0 0 6px var(--green); }
 
-  /* ── Streak ── */
+  .date-picker-section {
+    background: var(--bg3); border-radius: var(--radius); padding: 14px;
+  }
+  .date-picker-section label {
+    display: block; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .8px;
+    color: var(--text3); margin-bottom: 8px;
+    font-family: var(--font-display);
+  }
+  .date-picker-input {
+    width: 100%; background: var(--bg); border: 1px solid var(--border);
+    color: var(--text); border-radius: var(--radius-sm);
+    padding: 8px 12px; font-size: 14px; font-family: var(--font-body);
+    outline: none; transition: border-color var(--transition); cursor: pointer;
+  }
+  .date-picker-input:focus { border-color: var(--accent); }
+
   .streak-box {
-    background: var(--bg3);
-    border-radius: var(--radius);
-    padding: 12px 14px;
-    text-align: center;
+    background: linear-gradient(135deg, var(--accent-dim), transparent);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 16px; text-align: center;
   }
-  .streak-num { font-size: 28px; font-weight: 800; color: var(--accent); }
-  .streak-label { font-size: 12px; color: var(--text2); }
+  .streak-num {
+    font-family: var(--font-display); font-size: 36px; font-weight: 800;
+    color: var(--accent); line-height: 1;
+  }
+  .streak-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
 
-  /* ── Book Progress ── */
   .book-box {
-    background: var(--bg3);
-    border-radius: var(--radius);
-    padding: 14px;
+    background: var(--bg3); border-radius: var(--radius);
+    padding: 16px; border: 1px solid var(--border);
   }
-  .book-box h3 { font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--text2); text-transform: uppercase; letter-spacing: .5px; }
-  .book-title { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
-  .book-phase { font-size: 11px; color: var(--text2); margin-bottom: 8px; }
+  .book-box h3 {
+    font-family: var(--font-display); font-size: 11px; font-weight: 600;
+    margin-bottom: 10px; color: var(--text3);
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .book-title {
+    font-family: var(--font-display); font-size: 15px; font-weight: 700; margin-bottom: 2px;
+  }
+  .book-phase { font-size: 12px; color: var(--text2); margin-bottom: 10px; }
   .book-bar-track {
-    height: 6px;
-    background: var(--border);
-    border-radius: 3px;
-    overflow: hidden;
-    margin-bottom: 6px;
+    height: 5px; background: var(--border); border-radius: 3px;
+    overflow: hidden; margin-bottom: 8px;
   }
   .book-bar-fill {
     height: 100%;
-    background: var(--accent);
-    border-radius: 3px;
-    transition: width .4s;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 3px; transition: width .5s cubic-bezier(.4,0,.2,1);
   }
-  .book-pages {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    color: var(--text2);
-  }
+  .book-pages { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); }
   .book-pages input {
-    width: 60px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    color: var(--text);
-    border-radius: 6px;
-    padding: 4px 8px;
-    font-size: 13px;
-    text-align: center;
-    outline: none;
-    transition: border-color .2s;
+    width: 56px; background: var(--bg); border: 1px solid var(--border);
+    color: var(--text); border-radius: 6px; padding: 4px 8px;
+    font-size: 13px; font-family: var(--font-body); text-align: center;
+    outline: none; transition: border-color var(--transition);
   }
   .book-pages input:focus { border-color: var(--accent); }
 
-  /* ── Day Pills ── */
+  .main {
+    flex: 1; padding: 32px 40px; overflow-y: auto;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .main-inner { width: 100%; max-width: 720px; }
+
+  .search-wrap { position: relative; margin-bottom: 20px; width: 100%; }
+  .search-icon {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    color: var(--text3); font-size: 15px; pointer-events: none;
+  }
+  .search-input {
+    width: 100%; background: var(--card); border: 1px solid var(--border);
+    color: var(--text); border-radius: 12px; padding: 12px 44px 12px 42px;
+    font-size: 14px; font-family: var(--font-body); outline: none;
+    transition: all var(--transition);
+  }
+  .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+  .search-input::placeholder { color: var(--text3); }
+  .search-clear {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    background: var(--bg3); border: none; color: var(--text2);
+    width: 22px; height: 22px; border-radius: 50%; cursor: pointer;
+    font-size: 11px; display: none; align-items: center; justify-content: center;
+    transition: all var(--transition);
+  }
+  .search-clear:hover { background: var(--border2); color: var(--text); }
+  .search-clear.visible { display: flex; }
+
+  .search-info {
+    font-size: 13px; color: var(--text2); margin-bottom: 16px;
+    padding: 8px 14px; background: var(--accent-dim);
+    border-radius: var(--radius-sm); display: none;
+  }
+  .search-info.visible { display: block; }
+  .search-info strong { color: var(--accent); font-weight: 700; }
+
   .day-pills {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
+    display: flex; gap: 6px; margin-bottom: 20px; justify-content: center;
   }
   .day-pill {
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    border: 1px solid var(--border);
-    background: var(--card);
-    color: var(--text2);
-    transition: all .2s;
-    user-select: none;
+    padding: 8px 16px; border-radius: 24px;
+    font-family: var(--font-display); font-size: 13px; font-weight: 600;
+    cursor: pointer; border: 1px solid var(--border);
+    background: var(--card); color: var(--text2);
+    transition: all var(--transition); user-select: none;
   }
-  .day-pill:hover { border-color: var(--accent); color: var(--text); }
-  .day-pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .day-pill:hover { border-color: var(--accent); color: var(--text); background: var(--card-hover); }
+  .day-pill.active {
+    background: var(--accent); color: #fff; border-color: var(--accent);
+    box-shadow: 0 2px 12px rgba(252,95,43,.3);
+  }
 
-  /* ── Progress Header ── */
   .progress-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-    gap: 8px;
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 24px; flex-wrap: wrap; gap: 10px;
   }
-  .progress-date { font-size: 14px; color: var(--text2); }
-  .progress-stats {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+  .progress-date {
+    font-family: var(--font-display); font-size: 22px; font-weight: 700;
+    letter-spacing: -.3px; line-height: 1.2;
   }
-  .progress-count { font-size: 14px; font-weight: 600; }
-  .progress-bar-track {
-    width: 200px;
-    height: 8px;
-    background: var(--border);
-    border-radius: 4px;
-    overflow: hidden;
+  .progress-subtitle { font-size: 13px; color: var(--text2); margin-top: 2px; }
+  .progress-right { display: flex; align-items: center; gap: 16px; }
+  .progress-ring-wrap { position: relative; width: 56px; height: 56px; }
+  .progress-ring-wrap svg { transform: rotate(-90deg); }
+  .progress-ring-bg { stroke: var(--border); }
+  .progress-ring-fill {
+    stroke: var(--green);
+    transition: stroke-dashoffset .6s cubic-bezier(.4,0,.2,1);
   }
-  .progress-bar-fill {
-    height: 100%;
-    background: var(--green);
-    border-radius: 4px;
-    transition: width .4s;
+  .progress-ring-text {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 14px; font-weight: 700;
+    color: var(--green);
   }
-  .progress-pct { font-size: 14px; font-weight: 700; color: var(--green); }
 
-  /* ── Read-Only Banner ── */
   .readonly-banner {
-    background: var(--amber-dim);
-    border: 1px solid var(--amber);
-    color: var(--amber);
-    padding: 10px 16px;
-    border-radius: var(--radius);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 14px;
-    font-weight: 600;
+    background: var(--accent-dim); border: 1px solid var(--accent);
+    color: var(--accent); padding: 12px 20px; border-radius: var(--radius);
+    margin-bottom: 20px; display: flex; align-items: center;
+    justify-content: space-between; font-size: 14px; font-weight: 600;
   }
   .readonly-banner button {
-    background: var(--amber);
-    color: #000;
-    border: none;
-    padding: 5px 14px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: opacity .2s;
+    background: var(--accent); color: #fff; border: none;
+    padding: 6px 16px; border-radius: 8px; font-size: 12px;
+    font-weight: 700; font-family: var(--font-display);
+    cursor: pointer; transition: all var(--transition);
   }
-  .readonly-banner button:hover { opacity: .85; }
+  .readonly-banner button:hover { background: var(--accent2); }
 
-  /* ── Blocks ── */
   .block {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    margin-bottom: 12px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); margin-bottom: 14px; overflow: hidden;
+    transition: border-color var(--transition), box-shadow var(--transition);
   }
+  .block:hover { border-color: var(--border2); }
+  .block.search-highlight { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-dim); }
   .block-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 16px;
-    background: var(--bg2);
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 20px; background: var(--bg2);
     border-bottom: 1px solid var(--border);
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    user-select: none;
-    transition: background .15s;
+    cursor: pointer; user-select: none;
+    transition: background var(--transition);
   }
   .block-header:hover { background: var(--bg3); }
-  .block-icon { font-size: 16px; }
-  .block-time { font-weight: 700; color: var(--text2); margin-left: auto; font-size: 12px; }
+  .block-icon { font-size: 18px; }
+  .block-title {
+    font-family: var(--font-display); font-size: 15px; font-weight: 700; flex: 1;
+  }
+  .block-time {
+    font-family: var(--font-display); font-weight: 800;
+    color: var(--accent); font-size: 13px; letter-spacing: -.2px;
+  }
   .block-chevron {
-    font-size: 12px;
-    color: var(--text2);
-    transition: transform .25s;
-    margin-left: 4px;
+    font-size: 14px; color: var(--text3);
+    transition: transform .25s ease; margin-left: 4px;
   }
   .block-header.collapsed .block-chevron { transform: rotate(-90deg); }
   .block-body { padding: 4px 0; }
   .block-body.hidden { display: none; }
 
-  /* ── Task Rows ── */
   .task {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 16px;
-    font-size: 14px;
-    transition: background .1s;
-    cursor: pointer;
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 20px; font-size: 14px;
+    transition: background var(--transition);
+    cursor: pointer; position: relative;
   }
-  .task:hover { background: var(--bg2); }
-  .task.checked { opacity: .55; }
+  .task:hover { background: var(--card-hover); }
+  .task.checked { opacity: .5; }
   .task.checked .task-label { text-decoration: line-through; }
+  .task.search-match { background: var(--accent-dim); }
+  .task.search-match::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: var(--accent); border-radius: 0 2px 2px 0;
+  }
   .task-check {
-    width: 20px; height: 20px;
-    border: 2px solid var(--border);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: all .2s;
-    font-size: 12px;
-    color: transparent;
+    width: 22px; height: 22px; border: 2px solid var(--border2);
+    border-radius: 7px; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0;
+    transition: all var(--transition); font-size: 12px; color: transparent;
   }
   .task.checked .task-check {
-    background: var(--check);
-    border-color: var(--check);
-    color: #fff;
+    background: var(--check); border-color: var(--check); color: #fff;
   }
-  .task.readonly .task-check { cursor: default; }
-  .task-label { flex: 1; }
-  .task-time { font-weight: 700; color: var(--text2); font-size: 12px; }
+  .task.readonly { cursor: default; }
+  .task.readonly .task-check { opacity: .4; }
+  .task-label { flex: 1; font-weight: 400; }
+  .task-time {
+    font-family: var(--font-display); font-weight: 800;
+    color: var(--accent); font-size: 13px; letter-spacing: -.2px; white-space: nowrap;
+  }
   .tag {
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    letter-spacing: .5px;
+    font-family: var(--font-display); font-size: 9px; font-weight: 700;
+    padding: 3px 8px; border-radius: 4px;
+    text-transform: uppercase; letter-spacing: .8px;
   }
   .tag-supp { background: var(--amber-dim); color: var(--amber); }
   .tag-sauna { background: var(--teal-dim); color: var(--teal); }
   .tag-mindset { background: var(--purple-dim); color: var(--purple); }
 
-  /* ── Loading ── */
   .loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 60vh;
-    font-size: 16px;
-    color: var(--text2);
+    display: flex; align-items: center; justify-content: center;
+    height: 60vh; font-size: 16px; color: var(--text2); gap: 12px;
   }
   .spinner {
-    width: 24px; height: 24px;
-    border: 3px solid var(--border);
-    border-top-color: var(--accent);
-    border-radius: 50%;
+    width: 28px; height: 28px; border: 3px solid var(--border);
+    border-top-color: var(--accent); border-radius: 50%;
     animation: spin .7s linear infinite;
-    margin-right: 12px;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* ── Mobile ── */
-  @media (max-width: 768px) {
+  .no-results {
+    text-align: center; padding: 40px 20px; color: var(--text2); font-size: 14px;
+  }
+  .no-results .big { font-size: 32px; margin-bottom: 8px; }
+
+  @media (max-width: 860px) {
     .shell { flex-direction: column; }
     .sidebar {
-      width: 100%;
-      min-width: 100%;
-      height: auto;
-      position: relative;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 12px;
-      padding: 14px;
-      border-right: none;
-      border-bottom: 1px solid var(--border);
+      width: 100%; min-width: 100%; height: auto; position: relative;
+      border-right: none; border-bottom: 1px solid var(--border);
+      padding: 18px 16px; gap: 14px;
     }
-    .sidebar > * { flex-shrink: 0; }
-    .sidebar-title { width: 100%; }
+    .sidebar-brand { width: 100%; }
     .cal-section { width: 100%; }
-    .streak-box { flex: 1; min-width: 100px; }
-    .book-box { width: 100%; }
+    .streak-box, .book-box, .date-picker-section { width: 100%; }
     .theme-toggle { width: 100%; }
-    .main { padding: 16px; }
-    .progress-bar-track { width: 120px; }
+    .main { padding: 20px 16px; }
+    .main-inner { max-width: 100%; }
+    .day-pills { flex-wrap: wrap; }
+    .progress-date { font-size: 18px; }
   }
 </style>
 </head>
 <body>
 <div class="shell">
-  <!-- Sidebar -->
   <aside class="sidebar">
-    <div class="sidebar-title"><span class="icon">📋</span> Daily Dashboard</div>
+    <div class="sidebar-brand">
+      <div class="logo">D</div>
+      <h1>Daily</h1>
+    </div>
 
     <div class="theme-toggle" onclick="toggleTheme()">
       <div class="toggle-track"></div>
-      <span id="theme-label">Dark mode</span>
+      <span id="theme-label">Dark</span>
     </div>
 
     <div class="cal-section">
       <div class="cal-header">
-        <button class="cal-nav" onclick="calNav(-1)">◀</button>
+        <button class="cal-nav" onclick="calNav(-1)">&#8249;</button>
         <span id="cal-month-label"></span>
-        <button class="cal-nav" onclick="calNav(1)">▶</button>
+        <button class="cal-nav" onclick="calNav(1)">&#8250;</button>
       </div>
       <div class="cal-grid" id="cal-grid"></div>
+    </div>
+
+    <div class="date-picker-section">
+      <label>Jump to date</label>
+      <input type="date" class="date-picker-input" id="date-picker" />
     </div>
 
     <div class="streak-box">
@@ -465,487 +452,297 @@
     </div>
 
     <div class="book-box" id="book-box">
-      <h3>📚 Currently Reading</h3>
-      <div class="book-title" id="book-title">—</div>
+      <h3>Currently Reading</h3>
+      <div class="book-title" id="book-title">&mdash;</div>
       <div class="book-phase" id="book-phase"></div>
       <div class="book-bar-track"><div class="book-bar-fill" id="book-bar"></div></div>
       <div class="book-pages">
         <span id="book-pct">0%</span>
-        <span>·</span>
+        <span>&middot;</span>
         <input type="number" id="book-input" min="0" placeholder="pg" />
         <span id="book-total-label">/ 0 pages</span>
       </div>
     </div>
   </aside>
 
-  <!-- Main Content -->
-  <div class="main" id="main-content">
-    <div class="loading"><div class="spinner"></div>Loading dashboard…</div>
+  <div class="main">
+    <div class="main-inner" id="main-content">
+      <div class="loading"><div class="spinner"></div>Loading dashboard&hellip;</div>
+    </div>
   </div>
 </div>
 
 <script>
-/* ═══════════════════════════════════════════
-   CONFIG & CONSTANTS
-   ═══════════════════════════════════════════ */
 const SUPABASE_URL = 'https://xclkjrnkpejjgeoktihb.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhjbGtqcm5rcGVqamdlb2t0aWhiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM4NjMyMjQsImV4cCI6MjA1OTQzOTIyNH0.z3CVyCsW7gVkMtOoL_GjxfcpUMZ46CLOSqpfITzJuAk';
 const CONFIG_URL = 'config.json';
 const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const DAY_SHORT = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-let config = null;        // loaded config.json
-let viewDate = '';         // YYYY-MM-DD currently viewing
-let todayStr = '';         // YYYY-MM-DD today
-let dayState = {};         // { taskId: true/false }
-let isReadonly = false;
-let saveTimer = null;
-let calYear = 0;
-let calMonth = 0;          // 0-indexed
-let calData = {};           // { 'YYYY-MM-DD': {done, total} }
-let bookData = { idx: 0, pages_read: 0 };
-let books = [];
+let config = null, viewDate = '', todayStr = '', dayState = {}, isReadonly = false;
+let saveTimer = null, calYear = 0, calMonth = 0, calData = {};
+let bookData = { idx: 0, pages_read: 0 }, books = [], searchQuery = '';
 
-/* ═══════════════════════════════════════════
-   DATE UTILITIES — LOCAL ONLY, NEVER UTC
-   ═══════════════════════════════════════════ */
 function localDateStr(d) {
   d = d || new Date();
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, '0');
-  const day = String(d.getDate()).padStart(2, '0');
-  return `${y}-${m}-${day}`;
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
+function parseLocalDate(s) { const [y,m,d] = s.split('-').map(Number); return new Date(y,m-1,d); }
+function dayOfWeekName(ds) { return DAY_NAMES[parseLocalDate(ds).getDay()]; }
+function formatDateNice(ds) { const d = parseLocalDate(ds); return `${DAY_NAMES[d.getDay()]}, ${MONTHS_SHORT[d.getMonth()]} ${d.getDate()}`; }
+function formatDateFull(ds) { const d = parseLocalDate(ds); return `${DAY_NAMES[d.getDay()]}, ${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`; }
 
-function parseLocalDate(str) {
-  const [y, m, d] = str.split('-').map(Number);
-  return new Date(y, m - 1, d);
-}
-
-function dayOfWeekName(dateStr) {
-  return DAY_NAMES[parseLocalDate(dateStr).getDay()];
-}
-
-function formatDateNice(dateStr) {
-  const d = parseLocalDate(dateStr);
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  return `${DAY_NAMES[d.getDay()]} ${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
-}
-
-// Get the YYYY-MM-DD for the most recent occurrence of a given weekday index (0=Sun)
 function dateForWeekday(targetDay) {
-  const now = new Date();
-  const today = now.getDay();
-  let diff = today - targetDay;
-  if (diff < 0) diff += 7;
-  const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() - diff);
-  return localDateStr(d);
+  const now = new Date(), today = now.getDay();
+  let diff = today - targetDay; if (diff < 0) diff += 7;
+  return localDateStr(new Date(now.getFullYear(), now.getMonth(), now.getDate() - diff));
 }
 
-/* ═══════════════════════════════════════════
-   SUPABASE HELPERS
-   ═══════════════════════════════════════════ */
 function sbHeaders() {
-  return {
-    'apikey': SUPABASE_KEY,
-    'Authorization': `Bearer ${SUPABASE_KEY}`,
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
-  };
+  return { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' };
 }
-
 async function sbGet(table, query) {
   const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${query}`, { headers: sbHeaders() });
-  if (!r.ok) { console.error('sbGet error', r.status); return []; }
-  return r.json();
+  if (!r.ok) { console.error('sbGet error', r.status); return []; } return r.json();
 }
-
 async function sbUpsert(table, data) {
   const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
-    method: 'POST',
-    headers: { ...sbHeaders(), 'Prefer': 'resolution=merge-duplicates,return=representation' },
+    method: 'POST', headers: { ...sbHeaders(), 'Prefer': 'resolution=merge-duplicates,return=representation' },
     body: JSON.stringify(data)
-  });
-  if (!r.ok) console.error('sbUpsert error', r.status, await r.text());
+  }); if (!r.ok) console.error('sbUpsert error', r.status, await r.text());
 }
 
-/* ═══════════════════════════════════════════
-   LOAD CONFIG
-   ═══════════════════════════════════════════ */
-async function loadConfig() {
-  const r = await fetch(`${CONFIG_URL}?v=${Date.now()}`);
-  config = await r.json();
-  books = config.books || [];
-}
+async function loadConfig() { const r = await fetch(`${CONFIG_URL}?v=${Date.now()}`); config = await r.json(); books = config.books || []; }
 
-/* ═══════════════════════════════════════════
-   LOAD DAY DATA
-   ═══════════════════════════════════════════ */
 async function loadDay(dateStr) {
   const rows = await sbGet('daily_logs', `date=eq.${dateStr}`);
-  if (rows.length > 0) {
-    dayState = rows[0].state || {};
-  } else {
-    dayState = {};
-  }
-  viewDate = dateStr;
-  todayStr = localDateStr();
-  isReadonly = (viewDate !== todayStr);
+  dayState = rows.length > 0 ? (rows[0].state || {}) : {};
+  viewDate = dateStr; todayStr = localDateStr(); isReadonly = (viewDate !== todayStr);
+  document.getElementById('date-picker').value = viewDate;
   render();
 }
 
-/* ═══════════════════════════════════════════
-   SAVE DAY DATA (debounced)
-   ═══════════════════════════════════════════ */
-function scheduleSave() {
-  if (isReadonly) return;
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(saveNow, 300);
-}
-
+function scheduleSave() { if (isReadonly) return; clearTimeout(saveTimer); saveTimer = setTimeout(saveNow, 300); }
 async function saveNow() {
   if (isReadonly) return;
   const { done, total } = countTasks();
-  await sbUpsert('daily_logs', {
-    date: viewDate,
-    state: dayState,
-    done: done,
-    total: total,
-    updated_at: new Date().toISOString()
-  });
-  // refresh calendar dot for today
-  calData[viewDate] = { done, total };
-  renderCalendar();
+  await sbUpsert('daily_logs', { date: viewDate, state: dayState, done, total, updated_at: new Date().toISOString() });
+  calData[viewDate] = { done, total }; renderCalendar();
 }
 
 function countTasks() {
-  const dayName = dayOfWeekName(viewDate);
-  const blocks = (config.schedule && config.schedule[dayName]) || [];
+  const blocks = (config.schedule && config.schedule[dayOfWeekName(viewDate)]) || [];
   let total = 0, done = 0;
-  blocks.forEach(b => {
-    b.tasks.forEach(t => {
-      const id = b.id + '::' + t.l;
-      total++;
-      if (dayState[id]) done++;
-    });
-  });
+  blocks.forEach(b => { b.tasks.forEach(t => { total++; if (dayState[b.id+'::'+t.l]) done++; }); });
   return { done, total };
 }
 
-/* ═══════════════════════════════════════════
-   BOOK PROGRESS
-   ═══════════════════════════════════════════ */
 async function loadBook() {
   const rows = await sbGet('book_progress', 'id=eq.singleton');
-  if (rows.length > 0) {
-    bookData = { idx: rows[0].idx || 0, pages_read: rows[0].pages_read || 0 };
-  }
+  if (rows.length > 0) bookData = { idx: rows[0].idx || 0, pages_read: rows[0].pages_read || 0 };
   renderBook();
 }
-
 async function saveBook() {
-  await sbUpsert('book_progress', {
-    id: 'singleton',
-    idx: bookData.idx,
-    pages_read: bookData.pages_read,
-    updated_at: new Date().toISOString()
-  });
+  await sbUpsert('book_progress', { id: 'singleton', idx: bookData.idx, pages_read: bookData.pages_read, updated_at: new Date().toISOString() });
 }
-
 function renderBook() {
   if (!books.length) return;
   if (bookData.idx >= books.length) bookData.idx = books.length - 1;
   const bk = books[bookData.idx];
   document.getElementById('book-title').textContent = bk.title;
-  document.getElementById('book-phase').textContent = `Phase ${bk.phase} · Book ${bk.num} of ${bk.total}`;
+  document.getElementById('book-phase').textContent = `Phase ${bk.phase} \u00b7 Book ${bk.num} of ${bk.total}`;
   const pct = bk.pages > 0 ? Math.min(100, Math.round((bookData.pages_read / bk.pages) * 100)) : 0;
   document.getElementById('book-bar').style.width = pct + '%';
   document.getElementById('book-pct').textContent = pct + '%';
   document.getElementById('book-total-label').textContent = `/ ${bk.pages} pages`;
-  const inp = document.getElementById('book-input');
-  inp.value = bookData.pages_read || '';
-  inp.max = bk.pages;
+  const inp = document.getElementById('book-input'); inp.value = bookData.pages_read || ''; inp.max = bk.pages;
 }
-
 function onBookInput(val) {
-  const bk = books[bookData.idx];
-  let pg = parseInt(val) || 0;
-  if (pg < 0) pg = 0;
-  if (pg > bk.pages) pg = bk.pages;
+  const bk = books[bookData.idx]; let pg = parseInt(val) || 0;
+  if (pg < 0) pg = 0; if (pg > bk.pages) pg = bk.pages;
   bookData.pages_read = pg;
-
-  // auto-advance
-  if (pg >= bk.pages && bookData.idx < books.length - 1) {
-    bookData.idx++;
-    bookData.pages_read = 0;
-  }
-  renderBook();
-  saveBook();
+  if (pg >= bk.pages && bookData.idx < books.length - 1) { bookData.idx++; bookData.pages_read = 0; }
+  renderBook(); saveBook();
 }
 
-/* ═══════════════════════════════════════════
-   CALENDAR
-   ═══════════════════════════════════════════ */
 async function loadCalMonth() {
-  const prefix = `${calYear}-${String(calMonth + 1).padStart(2, '0')}`;
+  const prefix = `${calYear}-${String(calMonth+1).padStart(2,'0')}`;
   const rows = await sbGet('daily_logs', `date=like.${prefix}*&select=date,done,total`);
-  // reset calData for this month
   rows.forEach(r => { calData[r.date] = { done: r.done, total: r.total }; });
   renderCalendar();
 }
 
 function renderCalendar() {
-  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  document.getElementById('cal-month-label').textContent = `${months[calMonth]} ${calYear}`;
-
-  const grid = document.getElementById('cal-grid');
-  grid.innerHTML = '';
-
-  // day-of-week headers
+  document.getElementById('cal-month-label').textContent = `${MONTHS[calMonth]} ${calYear}`;
+  const grid = document.getElementById('cal-grid'); grid.innerHTML = '';
   ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d => {
-    const el = document.createElement('div');
-    el.className = 'cal-dow';
-    el.textContent = d;
-    grid.appendChild(el);
+    const el = document.createElement('div'); el.className = 'cal-dow'; el.textContent = d; grid.appendChild(el);
   });
-
   const firstDay = new Date(calYear, calMonth, 1).getDay();
-  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
   const todayLocal = localDateStr();
-
-  // leading blanks
-  for (let i = 0; i < firstDay; i++) {
-    const el = document.createElement('div');
-    el.className = 'cal-day';
-    grid.appendChild(el);
-  }
-
+  for (let i = 0; i < firstDay; i++) { const el = document.createElement('div'); el.className = 'cal-day'; grid.appendChild(el); }
   for (let d = 1; d <= daysInMonth; d++) {
-    const ds = `${calYear}-${String(calMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-    const el = document.createElement('div');
-    el.className = 'cal-day cur-month';
+    const ds = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const el = document.createElement('div'); el.className = 'cal-day cur-month';
     if (ds === todayLocal) el.classList.add('today');
-
+    if (ds === viewDate && ds !== todayLocal) el.classList.add('selected');
     el.textContent = d;
-
+    const clickDate = parseLocalDate(ds), todayDate = parseLocalDate(todayLocal);
+    if (clickDate <= todayDate) { el.classList.add('has-data'); el.onclick = () => loadDay(ds); }
     const cd = calData[ds];
     if (cd && cd.total > 0) {
-      el.classList.add('has-data');
-      const pct = cd.done / cd.total;
-      const dot = document.createElement('div');
-      dot.className = 'cal-dot';
-      if (pct >= 1) dot.classList.add('perfect');
-      else if (pct >= 0.7) dot.classList.add('green');
-      else if (pct >= 0.4) dot.classList.add('amber');
-      else dot.classList.add('red');
+      const pct = cd.done / cd.total, dot = document.createElement('div'); dot.className = 'cal-dot';
+      if (pct >= 1) dot.classList.add('perfect'); else if (pct >= .7) dot.classList.add('green');
+      else if (pct >= .4) dot.classList.add('amber'); else dot.classList.add('red');
       el.appendChild(dot);
-
-      el.onclick = () => loadDay(ds);
     }
-
     grid.appendChild(el);
   }
 }
-
 function calNav(dir) {
   calMonth += dir;
-  if (calMonth < 0) { calMonth = 11; calYear--; }
-  if (calMonth > 11) { calMonth = 0; calYear++; }
+  if (calMonth < 0) { calMonth = 11; calYear--; } if (calMonth > 11) { calMonth = 0; calYear++; }
   loadCalMonth();
 }
 
-/* ═══════════════════════════════════════════
-   STREAK
-   ═══════════════════════════════════════════ */
 async function loadStreak() {
-  // Fetch last 60 days of logs
-  const end = new Date();
-  const start = new Date(end.getFullYear(), end.getMonth(), end.getDate() - 60);
-  const startStr = localDateStr(start);
-  const rows = await sbGet('daily_logs', `date=gte.${startStr}&select=date,done,total&order=date.desc`);
-
-  let streak = 0;
-  const d = new Date();
-  // start from today and go backwards
+  const end = new Date(), start = new Date(end.getFullYear(), end.getMonth(), end.getDate()-60);
+  const rows = await sbGet('daily_logs', `date=gte.${localDateStr(start)}&select=date,done,total&order=date.desc`);
+  let streak = 0; const d = new Date();
   for (let i = 0; i < 61; i++) {
-    const ds = localDateStr(new Date(d.getFullYear(), d.getMonth(), d.getDate() - i));
+    const ds = localDateStr(new Date(d.getFullYear(), d.getMonth(), d.getDate()-i));
     const row = rows.find(r => r.date === ds);
-    if (row && row.done > 0) {
-      streak++;
-    } else if (i === 0) {
-      // today might not have data yet, skip
-      continue;
-    } else {
-      break;
-    }
+    if (row && row.done > 0) streak++; else if (i === 0) continue; else break;
   }
   document.getElementById('streak-num').textContent = streak;
 }
 
-/* ═══════════════════════════════════════════
-   RENDER MAIN VIEW
-   ═══════════════════════════════════════════ */
+function onSearch(q) {
+  searchQuery = q.toLowerCase().trim();
+  const cb = document.querySelector('.search-clear');
+  if (cb) cb.classList.toggle('visible', searchQuery.length > 0);
+  applySearch();
+}
+function clearSearch() {
+  const inp = document.querySelector('.search-input'); if (inp) inp.value = '';
+  searchQuery = ''; document.querySelector('.search-clear').classList.remove('visible');
+  applySearch();
+}
+function applySearch() {
+  const blocks = document.querySelectorAll('.block'), info = document.querySelector('.search-info');
+  let matchCount = 0;
+  if (!searchQuery) {
+    blocks.forEach(b => { b.style.display = ''; b.classList.remove('search-highlight'); b.querySelectorAll('.task').forEach(t => t.classList.remove('search-match')); });
+    if (info) info.classList.remove('visible'); return;
+  }
+  blocks.forEach(b => {
+    const tasks = b.querySelectorAll('.task'); let blockMatch = false;
+    const titleEl = b.querySelector('.block-title');
+    const titleMatch = titleEl && titleEl.textContent.toLowerCase().includes(searchQuery);
+    tasks.forEach(t => {
+      const label = t.querySelector('.task-label');
+      const matches = (label && label.textContent.toLowerCase().includes(searchQuery)) || titleMatch;
+      t.classList.toggle('search-match', matches); if (matches) { blockMatch = true; matchCount++; }
+    });
+    b.style.display = blockMatch ? '' : 'none'; b.classList.toggle('search-highlight', blockMatch);
+    if (blockMatch) { const h = b.querySelector('.block-header'), bd = b.querySelector('.block-body');
+      if (h && bd) { h.classList.remove('collapsed'); bd.classList.remove('hidden'); } }
+  });
+  if (info) {
+    info.classList.add('visible');
+    info.innerHTML = matchCount > 0 ? `Found <strong>${matchCount}</strong> task${matchCount!==1?'s':''} matching "<strong>${escHtml(searchQuery)}</strong>"` : `No tasks matching "<strong>${escHtml(searchQuery)}</strong>"`;
+  }
+}
+
 function render() {
   const main = document.getElementById('main-content');
   const dayName = dayOfWeekName(viewDate);
   const blocks = (config.schedule && config.schedule[dayName]) || [];
-
   let html = '';
 
-  // Day pills
+  html += `<div class="search-wrap"><span class="search-icon">\u{1F50D}</span><input class="search-input" type="text" placeholder="Search tasks\u2026" oninput="onSearch(this.value)" value="${escHtml(searchQuery)}" /><button class="search-clear${searchQuery?' visible':''}" onclick="clearSearch()">\u2715</button></div>`;
+  html += `<div class="search-info" id="search-info"></div>`;
+
   html += '<div class="day-pills">';
-  for (let i = 0; i < 7; i++) {
-    const ds = dateForWeekday(i);
-    const active = ds === viewDate ? ' active' : '';
-    html += `<div class="day-pill${active}" onclick="loadDay('${ds}')">${DAY_SHORT[i]}</div>`;
-  }
+  for (let i = 0; i < 7; i++) { const ds = dateForWeekday(i); html += `<div class="day-pill${ds===viewDate?' active':''}" onclick="loadDay('${ds}')">${DAY_SHORT[i]}</div>`; }
   html += '</div>';
 
-  // Read-only banner
   if (isReadonly) {
-    html += `<div class="readonly-banner">
-      <span>Viewing ${formatDateNice(viewDate)} — read only</span>
-      <button onclick="loadDay('${todayStr}')">Back to today</button>
-    </div>`;
+    html += `<div class="readonly-banner"><span>Viewing ${formatDateNice(viewDate)} \u2014 read only</span><button onclick="loadDay('${todayStr}')">Back to today</button></div>`;
   }
 
-  // Progress header
   const { done, total } = countTasks();
-  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-  html += `<div class="progress-header">
-    <div class="progress-date">${formatDateNice(viewDate)}</div>
-    <div class="progress-stats">
-      <span class="progress-count">${done}/${total}</span>
-      <div class="progress-bar-track"><div class="progress-bar-fill" style="width:${pct}%"></div></div>
-      <span class="progress-pct">${pct}%</span>
-    </div>
-  </div>`;
+  const pct = total > 0 ? Math.round((done/total)*100) : 0;
+  const circ = 2 * Math.PI * 22, offset = circ - (pct/100)*circ;
+  html += `<div class="progress-header"><div><div class="progress-date">${formatDateFull(viewDate)}</div><div class="progress-subtitle">${done} of ${total} tasks completed</div></div><div class="progress-right"><div class="progress-ring-wrap"><svg width="56" height="56"><circle class="progress-ring-bg" cx="28" cy="28" r="22" fill="none" stroke-width="4"/><circle class="progress-ring-fill" cx="28" cy="28" r="22" fill="none" stroke-width="4" stroke-dasharray="${circ}" stroke-dashoffset="${offset}" stroke-linecap="round"/></svg><div class="progress-ring-text">${pct}%</div></div></div></div>`;
 
-  // Blocks
   blocks.forEach(block => {
-    html += `<div class="block">
-      <div class="block-header" onclick="toggleBlock(this)">
-        <span class="block-icon">${block.icon || '▪'}</span>
-        <span>${block.title}</span>
-        <span class="block-time">${block.time || ''}</span>
-        <span class="block-chevron">▼</span>
-      </div>
-      <div class="block-body">`;
-
+    html += `<div class="block"><div class="block-header" onclick="toggleBlock(this)"><span class="block-icon">${block.icon||'\u25AA'}</span><span class="block-title">${escHtml(block.title)}</span><span class="block-time">${escHtml(block.time||'')}</span><span class="block-chevron">\u25BE</span></div><div class="block-body">`;
     block.tasks.forEach(t => {
-      const taskId = block.id + '::' + t.l;
-      const checked = dayState[taskId] ? ' checked' : '';
-      const ro = isReadonly ? ' readonly' : '';
-      const clickHandler = isReadonly ? '' : `onclick="toggleTask('${escapeAttr(taskId)}', this)"`;
-
-      let tagHtml = '';
-      if (t.tag) {
-        tagHtml = `<span class="tag tag-${t.tag}">${t.tag}</span>`;
-      }
-
-      html += `<div class="task${checked}${ro}" ${clickHandler}>
-        <div class="task-check">${dayState[taskId] ? '✓' : ''}</div>
-        <span class="task-label">${escHtml(t.l)}</span>
-        ${t.t ? `<span class="task-time">${escHtml(t.t)}</span>` : ''}
-        ${tagHtml}
-      </div>`;
+      const taskId = block.id+'::'+t.l, checked = dayState[taskId]?' checked':'', ro = isReadonly?' readonly':'';
+      const click = isReadonly ? '' : `onclick="toggleTask('${escapeAttr(taskId)}', this)"`;
+      let tagH = t.tag ? `<span class="tag tag-${t.tag}">${t.tag}</span>` : '';
+      html += `<div class="task${checked}${ro}" ${click}><div class="task-check">${dayState[taskId]?'\u2713':''}</div><span class="task-label">${escHtml(t.l)}</span>${t.t?`<span class="task-time">${escHtml(t.t)}</span>`:''}${tagH}</div>`;
     });
-
     html += '</div></div>';
   });
 
+  if (!blocks.length) html += '<div class="no-results"><div class="big">\u{1F4ED}</div>No schedule found for this day.</div>';
   main.innerHTML = html;
-
-  // Update pill active states for day pills
-  const pills = main.querySelectorAll('.day-pill');
-  pills.forEach(p => {
-    if (p.classList.contains('active')) {
-      // already set in html generation
-    }
-  });
+  if (searchQuery) setTimeout(applySearch, 10);
 }
 
-function escapeAttr(s) { return s.replace(/'/g, "\\'").replace(/"/g, '&quot;'); }
+function escapeAttr(s) { return s.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;'); }
 function escHtml(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
-function toggleBlock(header) {
-  header.classList.toggle('collapsed');
-  const body = header.nextElementSibling;
-  body.classList.toggle('hidden');
-}
+function toggleBlock(header) { header.classList.toggle('collapsed'); header.nextElementSibling.classList.toggle('hidden'); }
 
 function toggleTask(taskId, el) {
   if (isReadonly) return;
   dayState[taskId] = !dayState[taskId];
   el.classList.toggle('checked');
-  el.querySelector('.task-check').textContent = dayState[taskId] ? '✓' : '';
-
-  // Update progress
-  const { done, total } = countTasks();
-  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-  const ph = document.querySelector('.progress-count');
-  if (ph) ph.textContent = `${done}/${total}`;
-  const pb = document.querySelector('.progress-bar-fill');
-  if (pb) pb.style.width = pct + '%';
-  const pp = document.querySelector('.progress-pct');
-  if (pp) pp.textContent = pct + '%';
-
+  el.querySelector('.task-check').textContent = dayState[taskId] ? '\u2713' : '';
+  const { done, total } = countTasks(), pct = total>0?Math.round((done/total)*100):0;
+  const circ = 2*Math.PI*22, offset = circ-(pct/100)*circ;
+  const sub = document.querySelector('.progress-subtitle'); if (sub) sub.textContent = `${done} of ${total} tasks completed`;
+  const rf = document.querySelector('.progress-ring-fill'); if (rf) rf.setAttribute('stroke-dashoffset', offset);
+  const rt = document.querySelector('.progress-ring-text'); if (rt) rt.textContent = pct+'%';
   scheduleSave();
 }
 
-/* ═══════════════════════════════════════════
-   THEME
-   ═══════════════════════════════════════════ */
 function toggleTheme() {
   const isLight = document.body.classList.toggle('light');
-  localStorage.setItem('theme', isLight ? 'light' : 'dark');
-  document.getElementById('theme-label').textContent = isLight ? 'Light mode' : 'Dark mode';
+  localStorage.setItem('theme', isLight?'light':'dark');
+  document.getElementById('theme-label').textContent = isLight?'Light':'Dark';
 }
-
 function applyTheme() {
-  const saved = localStorage.getItem('theme');
-  if (saved === 'light') {
-    document.body.classList.add('light');
-    document.getElementById('theme-label').textContent = 'Light mode';
-  }
+  if (localStorage.getItem('theme')==='light') { document.body.classList.add('light'); document.getElementById('theme-label').textContent = 'Light'; }
 }
 
-/* ═══════════════════════════════════════════
-   INIT
-   ═══════════════════════════════════════════ */
-async function init() {
-  applyTheme();
-
-  try {
-    await loadConfig();
-  } catch (e) {
-    document.getElementById('main-content').innerHTML =
-      '<div class="loading" style="color:var(--red)">Failed to load config.json. Make sure it exists at the root of your GitHub Pages site.</div>';
-    return;
-  }
-
-  todayStr = localDateStr();
-  viewDate = todayStr;
-
-  // Set calendar to current month
-  const now = new Date();
-  calYear = now.getFullYear();
-  calMonth = now.getMonth();
-
-  // Load everything in parallel
-  await Promise.all([
-    loadDay(todayStr),
-    loadBook(),
-    loadCalMonth(),
-    loadStreak()
-  ]);
-
-  // Book input handler
-  document.getElementById('book-input').addEventListener('change', (e) => {
-    onBookInput(e.target.value);
+function setupDatePicker() {
+  const picker = document.getElementById('date-picker');
+  picker.value = todayStr; picker.max = todayStr;
+  picker.addEventListener('change', e => {
+    const val = e.target.value; if (!val) return;
+    loadDay(val);
+    const d = parseLocalDate(val); calYear = d.getFullYear(); calMonth = d.getMonth(); loadCalMonth();
   });
 }
 
+async function init() {
+  applyTheme();
+  try { await loadConfig(); } catch(e) {
+    document.getElementById('main-content').innerHTML = '<div class="loading" style="color:var(--red)">Failed to load config.json.</div>'; return;
+  }
+  todayStr = localDateStr(); viewDate = todayStr;
+  const now = new Date(); calYear = now.getFullYear(); calMonth = now.getMonth();
+  setupDatePicker();
+  await Promise.all([loadDay(todayStr), loadBook(), loadCalMonth(), loadStreak()]);
+  document.getElementById('book-input').addEventListener('change', e => onBookInput(e.target.value));
+}
 init();
 </script>
 </body>
