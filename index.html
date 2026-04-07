@@ -302,27 +302,9 @@ function setSyncStatus(status) {
 }
 
 // ── KEY HELPERS ──
-function dateKey(d) { return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
-
-// Returns the most recent calendar date (as a Date) for a given day-of-week index (0=Sun..6=Sat).
-// If that weekday IS today, returns today. If it's in the past this week, returns that past date.
-// If it's in the future this week, returns last week's occurrence — so we never map a pill to a future date.
-function absoluteDateForDayIdx(idx) {
-  const today = new Date(realNow.getFullYear(), realNow.getMonth(), realNow.getDate()); // midnight, local
-  const diff = idx - realDayIdx;
-  const d = new Date(today);
-  if (diff > 0) {
-    // Future day this week → go back to last week's occurrence
-    d.setDate(today.getDate() + diff - 7);
-  } else {
-    // Today or a past day this week → use directly
-    d.setDate(today.getDate() + diff);
-  }
-  return d;
-}
-
-function viewDate() { return absoluteDateForDayIdx(viewDayIdx); }
-function dayStateKey(idx) { return 'state_' + dateKey(absoluteDateForDayIdx(idx)); }
+function dateKey(d) { return d.toISOString().split('T')[0]; }
+function viewDate() { const d = new Date(realNow); d.setDate(d.getDate() + (viewDayIdx - realDayIdx)); return d; }
+function dayStateKey(idx) { const d = new Date(realNow); d.setDate(d.getDate() + (idx - realDayIdx)); return 'state_' + dateKey(d); }
 
 // ── IN-MEMORY CACHE (reduces Supabase reads) ──
 const cache = {};
@@ -338,7 +320,7 @@ async function setState(idx, s) {
   cache[k] = s;
   await sbSet(k, s);
   // also save history
-  const d = absoluteDateForDayIdx(idx);
+  const d = new Date(realNow); d.setDate(d.getDate() + (idx - realDayIdx));
   const dk = dateKey(d);
   const done = Object.values(s).filter(Boolean).length;
   const sched = CONFIG.schedule[DAYS[idx]] || CONFIG.schedule['Sunday'];
