@@ -1,703 +1,952 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Daily Dashboard</title>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-[data-theme="light"] {
-  --bg:#ffffff; --bg2:#f7f7f5; --bg3:#f0f0ec;
-  --text:#1a1a1a; --text2:#6b6b6b; --text3:#aaa;
-  --border:rgba(0,0,0,0.09); --border2:rgba(0,0,0,0.16);
-  --toggle-bg:#e8e8e4; --toggle-knob:#ffffff;
-}
-[data-theme="dark"] {
-  --bg:#1c1c1c; --bg2:#242424; --bg3:#2c2c2c;
-  --text:#efefef; --text2:#999; --text3:#555;
-  --border:rgba(255,255,255,0.08); --border2:rgba(255,255,255,0.16);
-  --toggle-bg:#444; --toggle-knob:#1c1c1c;
-}
-:root {
-  --green:#1D9E75; --coral:#D85A30; --amber:#BA7517;
-  --red:#E24B4A; --purple:#534AB7;
-  --radius:12px; --radius-sm:8px; --sidebar-w:272px;
-}
-body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--bg3); color:var(--text); min-height:100vh; transition:background 0.2s,color 0.2s; }
-.layout { display:flex; min-height:100vh; }
-.sidebar { width:var(--sidebar-w); flex-shrink:0; background:var(--bg2); border-right:0.5px solid var(--border2); display:flex; flex-direction:column; position:sticky; top:0; height:100vh; overflow-y:auto; }
-.main { flex:1; min-width:0; padding:1.5rem 1.5rem 3rem; }
-.main-inner { max-width:660px; margin:0 auto; }
-.sidebar-top { padding:1.25rem 1rem 0.75rem; border-bottom:0.5px solid var(--border); display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
-.sidebar-logo { font-size:16px; font-weight:600; color:var(--text); }
-.sidebar-sub { font-size:11px; color:var(--text2); margin-top:2px; }
-.theme-toggle { width:36px; height:20px; border-radius:10px; background:var(--toggle-bg); border:none; cursor:pointer; position:relative; flex-shrink:0; margin-top:2px; transition:background 0.2s; }
-.theme-toggle::after { content:''; position:absolute; top:3px; left:3px; width:14px; height:14px; border-radius:50%; background:var(--toggle-knob); transition:transform 0.2s; }
-[data-theme="dark"] .theme-toggle::after { transform:translateX(16px); }
-.sidebar-nav { padding:0.5rem 0; border-bottom:0.5px solid var(--border); }
-.nav-item { display:flex; align-items:center; gap:8px; padding:8px 1rem; font-size:13px; color:var(--text2); cursor:pointer; border:none; background:none; width:100%; text-align:left; transition:background 0.1s,color 0.1s; }
-.nav-item:hover { background:var(--bg3); color:var(--text); }
-.nav-item.active { background:var(--bg3); color:var(--text); font-weight:500; }
-.nav-icon { font-size:14px; width:20px; text-align:center; flex-shrink:0; }
-.sidebar-section { flex:1; overflow-y:auto; }
-.sidebar-panel { display:none; padding:1rem; }
-.sidebar-panel.active { display:block; }
-.sidebar-panel-title { font-size:13px; font-weight:500; color:var(--text); margin-bottom:1rem; padding-bottom:8px; border-bottom:0.5px solid var(--border); }
-.month-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
-.month-nav { background:none; border:0.5px solid var(--border2); border-radius:6px; color:var(--text2); cursor:pointer; font-size:13px; padding:3px 8px; }
-.month-nav:hover { color:var(--text); background:var(--bg3); }
-.month-name { font-size:13px; font-weight:500; color:var(--text); }
-.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:3px; margin-bottom:12px; }
-.cal-dow { font-size:10px; color:var(--text3); text-align:center; padding:2px 0; font-weight:500; }
-.cal-day { aspect-ratio:1; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:11px; color:var(--text2); position:relative; border:0.5px solid transparent; transition:background 0.1s; }
-.cal-day.today { border-color:var(--green); color:var(--text); font-weight:600; }
-.cal-day.viewing { background:var(--text); color:var(--bg) !important; border-radius:6px; }
-.cal-day.clickable { cursor:pointer; }
-.cal-day.clickable:hover:not(.viewing) { background:var(--bg3); }
-.cal-day .dot { position:absolute; bottom:3px; left:50%; transform:translateX(-50%); width:4px; height:4px; border-radius:50%; }
-.cal-day.pct-low .dot { background:var(--red); }
-.cal-day.pct-mid .dot { background:var(--amber); }
-.cal-day.pct-high .dot { background:var(--green); }
-.cal-day.pct-full { background:rgba(29,158,117,0.12); }
-.cal-day.pct-full .dot { background:var(--green); }
-.month-stats { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:12px; }
-.mstat { background:var(--bg3); border-radius:var(--radius-sm); padding:8px 10px; }
-.mstat-label { font-size:10px; color:var(--text2); margin-bottom:2px; }
-.mstat-val { font-size:17px; font-weight:600; color:var(--text); }
-.month-prog-label { display:flex; justify-content:space-between; font-size:11px; color:var(--text2); margin-bottom:5px; }
-.month-prog-track { height:6px; background:var(--border2); border-radius:3px; overflow:hidden; }
-.month-prog-fill { height:100%; border-radius:3px; background:var(--green); transition:width 0.4s ease; }
-.streak-row { display:flex; align-items:center; gap:6px; margin-top:10px; padding-top:10px; border-top:0.5px solid var(--border); }
-.streak-label { font-size:11px; color:var(--text2); }
-.streak-val { font-size:15px; font-weight:600; color:var(--amber); margin-left:auto; }
-.header { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:1.25rem; flex-wrap:wrap; gap:10px; }
-.header-left .day-name { font-size:24px; font-weight:600; color:var(--text); }
-.header-left .date-str { font-size:13px; color:var(--text2); margin-top:2px; }
-.header-right { display:flex; flex-direction:column; align-items:flex-end; gap:7px; }
-.day-pills { display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end; }
-.day-pill { font-size:12px; padding:5px 9px; border:0.5px solid var(--border2); border-radius:20px; background:var(--bg2); color:var(--text2); cursor:pointer; transition:all 0.15s; }
-.day-pill:hover { background:var(--bg3); color:var(--text); }
-.day-pill.active { background:var(--text); color:var(--bg); border-color:var(--text); }
-.btn-row { display:flex; align-items:center; gap:10px; }
-.sync-status { font-size:11px; color:var(--text3); display:flex; align-items:center; gap:4px; }
-.sync-dot { width:6px; height:6px; border-radius:50%; background:var(--text3); flex-shrink:0; }
-.sync-dot.synced { background:var(--green); }
-.sync-dot.syncing { background:var(--amber); animation:pulse 1s infinite; }
-.sync-dot.error { background:var(--red); }
-@keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
-.reset-btn { font-size:11px; color:var(--text3); background:none; border:none; cursor:pointer; }
-.reset-btn:hover { color:var(--text2); }
-.past-banner { background:var(--bg2); border:0.5px solid var(--border2); border-radius:var(--radius-sm); padding:8px 14px; margin-bottom:1rem; display:flex; align-items:center; justify-content:space-between; font-size:13px; color:var(--text2); }
-.back-btn { font-size:12px; color:var(--green); background:none; border:none; cursor:pointer; font-weight:500; }
-.prog-card { background:var(--bg2); border-radius:var(--radius); padding:1rem 1.25rem; margin-bottom:1rem; border:0.5px solid var(--border); }
-.prog-header { display:flex; justify-content:space-between; font-size:12px; color:var(--text2); margin-bottom:6px; }
-.prog-track { height:8px; background:var(--border2); border-radius:4px; overflow:hidden; margin-bottom:12px; }
-.prog-fill { height:100%; border-radius:4px; transition:width 0.5s ease; }
-.fill-green { background:var(--green); }
-.fill-coral { background:var(--coral); }
-.stat-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
-.stat { background:var(--bg); border-radius:var(--radius-sm); padding:10px 12px; border:0.5px solid var(--border); }
-.stat-label { font-size:11px; color:var(--text2); margin-bottom:3px; }
-.stat-val { font-size:19px; font-weight:600; color:var(--text); }
-.block { background:var(--bg); border-radius:var(--radius); border:0.5px solid var(--border); margin-bottom:0.75rem; overflow:hidden; }
-.block-hdr { display:flex; align-items:center; gap:10px; padding:11px 16px; cursor:pointer; user-select:none; border-bottom:0.5px solid transparent; transition:border-color 0.15s; }
-.block-hdr.open { border-bottom-color:var(--border); }
-.block-icon { font-size:15px; width:26px; text-align:center; flex-shrink:0; }
-.block-title { font-size:14px; font-weight:500; color:var(--text); flex:1; }
-.block-time { font-size:11px; font-weight:700; color:var(--text2); flex-shrink:0; margin-right:4px; }
-.block-badge { font-size:11px; color:var(--text2); background:var(--bg2); padding:3px 9px; border-radius:20px; flex-shrink:0; }
-.block-chev { font-size:13px; color:var(--text3); transition:transform 0.2s; flex-shrink:0; }
-.block-chev.open { transform:rotate(90deg); }
-.block-body { display:none; padding:8px 16px 12px; }
-.block-body.open { display:block; }
-.task-list { list-style:none; }
-.task-item { display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:0.5px solid var(--border); }
-.task-item:last-child { border-bottom:none; }
-.task-cb { width:18px; height:18px; border-radius:4px; border:1.5px solid var(--border2); cursor:pointer; flex-shrink:0; appearance:none; -webkit-appearance:none; background:var(--bg); position:relative; transition:background 0.15s,border-color 0.15s; }
-.task-cb:checked { background:var(--green); border-color:var(--green); }
-.task-cb:checked::after { content:''; position:absolute; left:4px; top:1px; width:6px; height:10px; border:2px solid white; border-top:none; border-left:none; transform:rotate(45deg); }
-.task-cb:disabled { opacity:0.5; cursor:default; }
-.task-label { font-size:13px; color:var(--text); line-height:1.5; cursor:pointer; flex:1; }
-.task-label.done { color:var(--text3); text-decoration:line-through; }
-.task-time { font-size:11px; font-weight:700; color:var(--text3); flex-shrink:0; min-width:36px; text-align:right; }
-.tag { display:inline-block; font-size:10px; font-weight:500; border-radius:4px; padding:1px 6px; margin-left:6px; vertical-align:middle; }
-.tag-supp { background:rgba(186,117,23,0.13); color:#854F0B; }
-.tag-sauna { background:rgba(15,110,86,0.12); color:#0F6E56; }
-.tag-mindset { background:rgba(83,74,183,0.12); color:#534AB7; }
-.book-card { background:var(--bg); border-radius:var(--radius); border:0.5px solid var(--border); padding:1rem 1.25rem; margin-bottom:0.75rem; }
-.book-name { font-size:15px; font-weight:500; color:var(--text); margin-bottom:2px; }
-.book-meta { font-size:12px; color:var(--text2); margin-bottom:12px; }
-.pages-row { display:flex; align-items:center; gap:8px; margin-top:12px; }
-.pages-row input { width:150px; font-size:13px; padding:7px 10px; border:0.5px solid var(--border2); border-radius:var(--radius-sm); background:var(--bg2); color:var(--text); outline:none; }
-.pages-row input:focus { border-color:var(--coral); }
-.pages-row button { font-size:13px; padding:7px 14px; border:0.5px solid var(--border2); border-radius:var(--radius-sm); background:var(--bg2); color:var(--text); cursor:pointer; }
-.pages-row button:hover { background:var(--bg3); }
-.loading { text-align:center; padding:3rem 1rem; color:var(--text2); font-size:14px; }
-@media (max-width:700px) {
-  .sidebar { width:52px; }
-  .nav-item span:not(.nav-icon) { display:none; }
-  .sidebar-panel { display:none !important; }
-  .sidebar-top .sidebar-logo,.sidebar-top .sidebar-sub,.sidebar-top div:first-child { display:none; }
-  .sidebar-top { padding:0.75rem 0.5rem; justify-content:center; }
-  .nav-item { justify-content:center; padding:10px 0; }
-  .main { padding:1rem 0.75rem 3rem; }
-}
+  /* ── CSS Variables ── */
+  :root {
+    --bg: #0f1117;
+    --bg2: #181a23;
+    --bg3: #222430;
+    --card: #1c1e2a;
+    --border: #2a2d3a;
+    --text: #e4e6ef;
+    --text2: #9a9cb5;
+    --accent: #6c8cff;
+    --accent2: #5a7bff;
+    --green: #34d399;
+    --green-dim: rgba(52,211,153,.15);
+    --amber: #fbbf24;
+    --amber-dim: rgba(251,191,36,.15);
+    --teal: #2dd4bf;
+    --teal-dim: rgba(45,212,191,.15);
+    --purple: #a78bfa;
+    --purple-dim: rgba(167,139,250,.15);
+    --red: #f87171;
+    --red-dim: rgba(248,113,113,.15);
+    --check: #34d399;
+    --radius: 10px;
+    --shadow: 0 2px 12px rgba(0,0,0,.3);
+  }
+  .light {
+    --bg: #f5f6fa;
+    --bg2: #ebedf5;
+    --bg3: #dfe1ec;
+    --card: #ffffff;
+    --border: #d4d6e1;
+    --text: #1a1c2e;
+    --text2: #5a5c75;
+    --accent: #4a6cf7;
+    --accent2: #3a5ce7;
+    --shadow: 0 2px 12px rgba(0,0,0,.08);
+    --green-dim: rgba(52,211,153,.12);
+    --amber-dim: rgba(251,191,36,.12);
+    --teal-dim: rgba(45,212,191,.12);
+    --purple-dim: rgba(167,139,250,.12);
+    --red-dim: rgba(248,113,113,.12);
+  }
+
+  /* ── Reset & Base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    min-height: 100vh;
+    transition: background .3s, color .3s;
+  }
+  a { color: var(--accent); text-decoration: none; }
+
+  /* ── Layout ── */
+  .shell { display: flex; min-height: 100vh; }
+  .sidebar {
+    width: 280px;
+    min-width: 280px;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+  .main {
+    flex: 1;
+    padding: 24px 32px;
+    overflow-y: auto;
+    max-width: 860px;
+  }
+
+  /* ── Sidebar: Logo / Title ── */
+  .sidebar-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -.3px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sidebar-title .icon { font-size: 22px; }
+
+  /* ── Theme Toggle ── */
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text2);
+    padding: 6px 0;
+    user-select: none;
+  }
+  .theme-toggle:hover { color: var(--text); }
+  .toggle-track {
+    width: 36px; height: 20px;
+    background: var(--border);
+    border-radius: 10px;
+    position: relative;
+    transition: background .3s;
+  }
+  .toggle-track::after {
+    content: '';
+    width: 16px; height: 16px;
+    background: var(--text);
+    border-radius: 50%;
+    position: absolute;
+    top: 2px; left: 2px;
+    transition: transform .3s;
+  }
+  .light .toggle-track { background: var(--accent); }
+  .light .toggle-track::after { transform: translateX(16px); }
+
+  /* ── Calendar ── */
+  .cal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .cal-header span { font-size: 14px; font-weight: 600; }
+  .cal-nav {
+    background: none;
+    border: none;
+    color: var(--text2);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background .2s;
+  }
+  .cal-nav:hover { background: var(--bg3); color: var(--text); }
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    text-align: center;
+    font-size: 12px;
+  }
+  .cal-dow { color: var(--text2); font-weight: 600; padding: 4px 0; font-size: 10px; text-transform: uppercase; }
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: default;
+    position: relative;
+    color: var(--text2);
+    transition: background .15s;
+  }
+  .cal-day.cur-month { color: var(--text); }
+  .cal-day.today { background: var(--accent); color: #fff; font-weight: 700; }
+  .cal-day.has-data { cursor: pointer; }
+  .cal-day.has-data:hover { background: var(--bg3); }
+  .cal-day.today:hover { background: var(--accent2); }
+  .cal-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 3px;
+  }
+  .cal-dot.green { background: var(--green); }
+  .cal-dot.amber { background: var(--amber); }
+  .cal-dot.red { background: var(--red); }
+  .cal-dot.perfect { background: var(--green); width: 6px; height: 6px; box-shadow: 0 0 4px var(--green); }
+
+  /* ── Streak ── */
+  .streak-box {
+    background: var(--bg3);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .streak-num { font-size: 28px; font-weight: 800; color: var(--accent); }
+  .streak-label { font-size: 12px; color: var(--text2); }
+
+  /* ── Book Progress ── */
+  .book-box {
+    background: var(--bg3);
+    border-radius: var(--radius);
+    padding: 14px;
+  }
+  .book-box h3 { font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--text2); text-transform: uppercase; letter-spacing: .5px; }
+  .book-title { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  .book-phase { font-size: 11px; color: var(--text2); margin-bottom: 8px; }
+  .book-bar-track {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 6px;
+  }
+  .book-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 3px;
+    transition: width .4s;
+  }
+  .book-pages {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text2);
+  }
+  .book-pages input {
+    width: 60px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 13px;
+    text-align: center;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .book-pages input:focus { border-color: var(--accent); }
+
+  /* ── Day Pills ── */
+  .day-pills {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .day-pill {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text2);
+    transition: all .2s;
+    user-select: none;
+  }
+  .day-pill:hover { border-color: var(--accent); color: var(--text); }
+  .day-pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* ── Progress Header ── */
+  .progress-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .progress-date { font-size: 14px; color: var(--text2); }
+  .progress-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .progress-count { font-size: 14px; font-weight: 600; }
+  .progress-bar-track {
+    width: 200px;
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 4px;
+    transition: width .4s;
+  }
+  .progress-pct { font-size: 14px; font-weight: 700; color: var(--green); }
+
+  /* ── Read-Only Banner ── */
+  .readonly-banner {
+    background: var(--amber-dim);
+    border: 1px solid var(--amber);
+    color: var(--amber);
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .readonly-banner button {
+    background: var(--amber);
+    color: #000;
+    border: none;
+    padding: 5px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity .2s;
+  }
+  .readonly-banner button:hover { opacity: .85; }
+
+  /* ── Blocks ── */
+  .block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .block-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    transition: background .15s;
+  }
+  .block-header:hover { background: var(--bg3); }
+  .block-icon { font-size: 16px; }
+  .block-time { font-weight: 700; color: var(--text2); margin-left: auto; font-size: 12px; }
+  .block-chevron {
+    font-size: 12px;
+    color: var(--text2);
+    transition: transform .25s;
+    margin-left: 4px;
+  }
+  .block-header.collapsed .block-chevron { transform: rotate(-90deg); }
+  .block-body { padding: 4px 0; }
+  .block-body.hidden { display: none; }
+
+  /* ── Task Rows ── */
+  .task {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+    transition: background .1s;
+    cursor: pointer;
+  }
+  .task:hover { background: var(--bg2); }
+  .task.checked { opacity: .55; }
+  .task.checked .task-label { text-decoration: line-through; }
+  .task-check {
+    width: 20px; height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all .2s;
+    font-size: 12px;
+    color: transparent;
+  }
+  .task.checked .task-check {
+    background: var(--check);
+    border-color: var(--check);
+    color: #fff;
+  }
+  .task.readonly .task-check { cursor: default; }
+  .task-label { flex: 1; }
+  .task-time { font-weight: 700; color: var(--text2); font-size: 12px; }
+  .tag {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+  .tag-supp { background: var(--amber-dim); color: var(--amber); }
+  .tag-sauna { background: var(--teal-dim); color: var(--teal); }
+  .tag-mindset { background: var(--purple-dim); color: var(--purple); }
+
+  /* ── Loading ── */
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    font-size: 16px;
+    color: var(--text2);
+  }
+  .spinner {
+    width: 24px; height: 24px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+    margin-right: 12px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Mobile ── */
+  @media (max-width: 768px) {
+    .shell { flex-direction: column; }
+    .sidebar {
+      width: 100%;
+      min-width: 100%;
+      height: auto;
+      position: relative;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 14px;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar > * { flex-shrink: 0; }
+    .sidebar-title { width: 100%; }
+    .cal-section { width: 100%; }
+    .streak-box { flex: 1; min-width: 100px; }
+    .book-box { width: 100%; }
+    .theme-toggle { width: 100%; }
+    .main { padding: 16px; }
+    .progress-bar-track { width: 120px; }
+  }
 </style>
 </head>
 <body>
-<div class="layout">
+<div class="shell">
+  <!-- Sidebar -->
   <aside class="sidebar">
-    <div class="sidebar-top">
-      <div>
-        <div class="sidebar-logo">Daily</div>
-        <div class="sidebar-sub">Your everyday dashboard</div>
-      </div>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+    <div class="sidebar-title"><span class="icon">📋</span> Daily Dashboard</div>
+
+    <div class="theme-toggle" onclick="toggleTheme()">
+      <div class="toggle-track"></div>
+      <span id="theme-label">Dark mode</span>
     </div>
-    <nav class="sidebar-nav">
-      <button class="nav-item active" onclick="switchPanel('monthly',this)">
-        <span class="nav-icon">📅</span><span>Monthly</span>
-      </button>
-    </nav>
-    <div class="sidebar-section">
-      <div class="sidebar-panel active" id="panel-monthly">
-        <div class="sidebar-panel-title" id="monthPanelTitle">Monthly progress</div>
-        <div class="month-header">
-          <button class="month-nav" onclick="shiftMonth(-1)">‹</button>
-          <span class="month-name" id="calMonthLabel"></span>
-          <button class="month-nav" onclick="shiftMonth(1)">›</button>
-        </div>
-        <div class="cal-grid" id="calGrid"></div>
-        <div class="month-stats">
-          <div class="mstat"><div class="mstat-label">Days tracked</div><div class="mstat-val" id="mDaysTracked">0</div></div>
-          <div class="mstat"><div class="mstat-label">Avg completion</div><div class="mstat-val" id="mAvgPct">—</div></div>
-          <div class="mstat"><div class="mstat-label">Perfect days</div><div class="mstat-val" id="mPerfect">0</div></div>
-          <div class="mstat"><div class="mstat-label">Best day</div><div class="mstat-val" id="mBest">—</div></div>
-        </div>
-        <div class="month-prog-label"><span>Month completion</span><span id="mProgPct">0%</span></div>
-        <div class="month-prog-track"><div class="month-prog-fill" id="mProgBar" style="width:0%"></div></div>
-        <div class="streak-row">
-          <span style="font-size:16px">🔥</span>
-          <span class="streak-label">Current streak</span>
-          <span class="streak-val" id="streakVal">0 days</span>
-        </div>
+
+    <div class="cal-section">
+      <div class="cal-header">
+        <button class="cal-nav" onclick="calNav(-1)">◀</button>
+        <span id="cal-month-label"></span>
+        <button class="cal-nav" onclick="calNav(1)">▶</button>
+      </div>
+      <div class="cal-grid" id="cal-grid"></div>
+    </div>
+
+    <div class="streak-box">
+      <div class="streak-num" id="streak-num">0</div>
+      <div class="streak-label">day streak</div>
+    </div>
+
+    <div class="book-box" id="book-box">
+      <h3>📚 Currently Reading</h3>
+      <div class="book-title" id="book-title">—</div>
+      <div class="book-phase" id="book-phase"></div>
+      <div class="book-bar-track"><div class="book-bar-fill" id="book-bar"></div></div>
+      <div class="book-pages">
+        <span id="book-pct">0%</span>
+        <span>·</span>
+        <input type="number" id="book-input" min="0" placeholder="pg" />
+        <span id="book-total-label">/ 0 pages</span>
       </div>
     </div>
   </aside>
 
-  <main class="main">
-    <div class="main-inner">
-      <div class="header">
-        <div class="header-left">
-          <div class="day-name" id="dayName"></div>
-          <div class="date-str" id="dateStr"></div>
-        </div>
-        <div class="header-right">
-          <div class="day-pills" id="dayPills"></div>
-          <div class="btn-row">
-            <div class="sync-status"><div class="sync-dot syncing" id="syncDot"></div><span id="syncLabel">Loading...</span></div>
-            <button class="reset-btn" id="resetBtn" onclick="resetDay()">Reset today</button>
-          </div>
-        </div>
-      </div>
-      <div id="pastBanner" style="display:none" class="past-banner">
-        <span id="pastBannerText"></span>
-        <button class="back-btn" onclick="goToToday()">← Back to today</button>
-      </div>
-      <div class="prog-card">
-        <div class="prog-header"><span>Progress</span><span id="dailyPct">0%</span></div>
-        <div class="prog-track"><div class="prog-fill fill-green" id="dailyBar" style="width:0%"></div></div>
-        <div class="stat-row">
-          <div class="stat"><div class="stat-label">Done</div><div class="stat-val" id="doneCount">0 / 0</div></div>
-          <div class="stat"><div class="stat-label">Week avg</div><div class="stat-val" id="weekAvg">—</div></div>
-          <div class="stat"><div class="stat-label">Month avg</div><div class="stat-val" id="monthAvg">—</div></div>
-        </div>
-      </div>
-      <div id="blocks"><div class="loading">Loading your day...</div></div>
-      <div class="book-card">
-        <div class="book-name" id="bookName">Loading...</div>
-        <div class="book-meta" id="bookMeta"></div>
-        <div class="prog-header" style="margin-bottom:6px"><span id="bookPct">0%</span><span id="bookPages"></span></div>
-        <div class="prog-track"><div class="prog-fill fill-coral" id="bookBar" style="width:0%"></div></div>
-        <div class="pages-row" id="bookInputRow">
-          <input type="number" id="pagesInput" placeholder="Pages read tonight" min="0">
-          <button onclick="logPages()">Log pages</button>
-        </div>
-      </div>
-    </div>
-  </main>
+  <!-- Main Content -->
+  <div class="main" id="main-content">
+    <div class="loading"><div class="spinner"></div>Loading dashboard…</div>
+  </div>
 </div>
 
 <script>
-// ── CONSTANTS ──
+/* ═══════════════════════════════════════════
+   CONFIG & CONSTANTS
+   ═══════════════════════════════════════════ */
 const SUPABASE_URL = 'https://xclkjrnkpejjgeoktihb.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_vG6RJpxrZuHIg6Bh2mxplA_ptMIn3js';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhjbGtqcm5rcGVqamdlb2t0aWhiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM4NjMyMjQsImV4cCI6MjA1OTQzOTIyNH0.z3CVyCsW7gVkMtOoL_GjxfcpUMZ46CLOSqpfITzJuAk';
 const CONFIG_URL = 'config.json';
-const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const MONTHS_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const DAY_SHORT = ['Su','Mo','Tu','We','Th','Fr','Sa'];
 
-// ── DATE HELPERS (all local time, never UTC) ──
-// Returns YYYY-MM-DD using LOCAL timezone — this is the single source of truth for all date keys
-function localDateKey(d) {
-  return d.getFullYear() + '-' +
-    String(d.getMonth() + 1).padStart(2, '0') + '-' +
-    String(d.getDate()).padStart(2, '0');
+let config = null;        // loaded config.json
+let viewDate = '';         // YYYY-MM-DD currently viewing
+let todayStr = '';         // YYYY-MM-DD today
+let dayState = {};         // { taskId: true/false }
+let isReadonly = false;
+let saveTimer = null;
+let calYear = 0;
+let calMonth = 0;          // 0-indexed
+let calData = {};           // { 'YYYY-MM-DD': {done, total} }
+let bookData = { idx: 0, pages_read: 0 };
+let books = [];
+
+/* ═══════════════════════════════════════════
+   DATE UTILITIES — LOCAL ONLY, NEVER UTC
+   ═══════════════════════════════════════════ */
+function localDateStr(d) {
+  d = d || new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
 }
 
-// Returns a Date object at local midnight for a given YYYY-MM-DD string
-function dateFromKey(key) {
-  const [y, m, d] = key.split('-').map(Number);
+function parseLocalDate(str) {
+  const [y, m, d] = str.split('-').map(Number);
   return new Date(y, m - 1, d);
 }
 
-// Today's date key in local time
-function todayKey() { return localDateKey(new Date()); }
-
-// Day name for a date key
-function dayNameForKey(key) { return DAYS[dateFromKey(key).getDay()]; }
-
-// ── STATE ──
-let CONFIG = null;
-let viewKey = todayKey(); // YYYY-MM-DD — the date currently being viewed
-let calYear = new Date().getFullYear();
-let calMonth = new Date().getMonth();
-const cache = {};
-
-// ── SUPABASE ──
-async function sbGet(key) {
-  try {
-    const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/daily_progress?key=eq.${encodeURIComponent(key)}&select=value`,
-      { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } }
-    );
-    const data = await res.json();
-    if (data && data[0]) return JSON.parse(data[0].value);
-    return null;
-  } catch(e) { return null; }
+function dayOfWeekName(dateStr) {
+  return DAY_NAMES[parseLocalDate(dateStr).getDay()];
 }
 
-async function sbSet(key, value) {
-  setSyncStatus('syncing');
-  try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/daily_progress`, {
-      method: 'POST',
-      headers: {
-        'apikey': SUPABASE_KEY,
-        'Authorization': `Bearer ${SUPABASE_KEY}`,
-        'Content-Type': 'application/json',
-        'Prefer': 'resolution=merge-duplicates'
-      },
-      body: JSON.stringify({ key, value: JSON.stringify(value), updated_at: new Date().toISOString() })
-    });
-    if (res.ok) setSyncStatus('synced');
-    else setSyncStatus('error');
-  } catch(e) { setSyncStatus('error'); }
+function formatDateNice(dateStr) {
+  const d = parseLocalDate(dateStr);
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${DAY_NAMES[d.getDay()]} ${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
 }
 
-async function sbGetAllHist() {
-  try {
-    const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/daily_progress?key=like.hist_*&select=key,value`,
-      { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } }
-    );
-    const data = await res.json();
-    const out = {};
-    data.forEach(row => {
-      const dk = row.key.replace('hist_', '');
-      try { out[dk] = JSON.parse(row.value); } catch(e) {}
-    });
-    return out;
-  } catch(e) { return {}; }
+// Get the YYYY-MM-DD for the most recent occurrence of a given weekday index (0=Sun)
+function dateForWeekday(targetDay) {
+  const now = new Date();
+  const today = now.getDay();
+  let diff = today - targetDay;
+  if (diff < 0) diff += 7;
+  const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() - diff);
+  return localDateStr(d);
 }
 
-// ── CACHED STATE ACCESSORS ──
-async function getState(dateKey) {
-  const k = 'state_' + dateKey;
-  if (cache[k] !== undefined) return cache[k];
-  const val = await sbGet(k);
-  cache[k] = val || {};
-  return cache[k];
+/* ═══════════════════════════════════════════
+   SUPABASE HELPERS
+   ═══════════════════════════════════════════ */
+function sbHeaders() {
+  return {
+    'apikey': SUPABASE_KEY,
+    'Authorization': `Bearer ${SUPABASE_KEY}`,
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
+  };
 }
 
-async function saveState(dateKey, s) {
-  const k = 'state_' + dateKey;
-  cache[k] = s;
-  await sbSet(k, s);
-  // update history
-  const dayName = dayNameForKey(dateKey);
-  const sched = CONFIG.schedule[dayName] || CONFIG.schedule['Sunday'];
-  const total = sched.reduce((a, b) => a + b.tasks.length, 0);
-  const done = Object.values(s).filter(Boolean).length;
-  const hk = 'hist_' + dateKey;
-  cache[hk] = { done, total };
-  await sbSet(hk, { done, total });
+async function sbGet(table, query) {
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${query}`, { headers: sbHeaders() });
+  if (!r.ok) { console.error('sbGet error', r.status); return []; }
+  return r.json();
 }
 
-async function getBookState() {
-  if (cache['books'] !== undefined) return cache['books'];
-  const val = await sbGet('books');
-  cache['books'] = val || { idx: 0, pagesRead: 0 };
-  return cache['books'];
-}
-
-async function saveBookState(s) {
-  cache['books'] = s;
-  await sbSet('books', s);
-}
-
-// ── SYNC STATUS ──
-function setSyncStatus(status) {
-  const dot = document.getElementById('syncDot');
-  const lbl = document.getElementById('syncLabel');
-  dot.className = 'sync-dot ' + status;
-  lbl.textContent = status === 'synced' ? 'Synced' : status === 'syncing' ? 'Syncing...' : 'Sync error';
-}
-
-// ── THEME ──
-function toggleTheme() {
-  const html = document.documentElement;
-  const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-  html.setAttribute('data-theme', next);
-  localStorage.setItem('daily_theme', next);
-}
-(function() {
-  const saved = localStorage.getItem('daily_theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-  else if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme', 'dark');
-})();
-
-// ── SIDEBAR ──
-function switchPanel(id, btn) {
-  document.querySelectorAll('.sidebar-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('panel-' + id).classList.add('active');
-  btn.classList.add('active');
-}
-
-// ── DAY PILLS ──
-// Each pill maps to the most recent occurrence of that weekday:
-// - If weekday === today's weekday → today
-// - If weekday < today's weekday (earlier this week) → that date this week
-// - If weekday > today's weekday (later in the week) → that date last week
-function dateKeyForWeekdayPill(pillDayIdx) {
-  const today = new Date();
-  const todayDayIdx = today.getDay();
-  const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  let diff = pillDayIdx - todayDayIdx;
-  if (diff > 0) diff -= 7; // future day this week → go back to last week
-  const d = new Date(todayMidnight);
-  d.setDate(todayMidnight.getDate() + diff);
-  return localDateKey(d);
-}
-
-function buildPills() {
-  const el = document.getElementById('dayPills');
-  el.innerHTML = '';
-  const tKey = todayKey();
-  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach((lbl, i) => {
-    const pillKey = dateKeyForWeekdayPill(i);
-    const isToday = pillKey === tKey;
-    const isViewing = pillKey === viewKey;
-    const btn = document.createElement('button');
-    btn.className = 'day-pill' + (isViewing ? ' active' : '');
-    btn.textContent = isToday ? lbl + ' •' : lbl;
-    btn.onclick = () => { viewKey = pillKey; render(); };
-    el.appendChild(btn);
+async function sbUpsert(table, data) {
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+    method: 'POST',
+    headers: { ...sbHeaders(), 'Prefer': 'resolution=merge-duplicates,return=representation' },
+    body: JSON.stringify(data)
   });
+  if (!r.ok) console.error('sbUpsert error', r.status, await r.text());
 }
 
-function tagHTML(tag) {
-  if (!tag) return '';
-  return `<span class="tag tag-${tag}">${tag}</span>`;
+/* ═══════════════════════════════════════════
+   LOAD CONFIG
+   ═══════════════════════════════════════════ */
+async function loadConfig() {
+  const r = await fetch(`${CONFIG_URL}?v=${Date.now()}`);
+  config = await r.json();
+  books = config.books || [];
 }
 
-// ── MAIN RENDER ──
-async function render() {
-  buildPills();
-  const tKey = todayKey();
-  const isPast = viewKey < tKey;
-  const isFuture = viewKey > tKey;
-  const isToday = viewKey === tKey;
-
-  // Header
-  const d = dateFromKey(viewKey);
-  const dayName = DAYS[d.getDay()];
-  let headerLabel = dayName;
-  if (isToday) headerLabel += ' — Today';
-  else if (isPast) headerLabel += ' — ' + MONTHS_SHORT[d.getMonth()] + ' ' + d.getDate();
-  document.getElementById('dayName').textContent = headerLabel;
-  document.getElementById('dateStr').textContent = MONTHS_LONG[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
-
-  // Past banner
-  const banner = document.getElementById('pastBanner');
-  const resetBtn = document.getElementById('resetBtn');
-  const bookInputRow = document.getElementById('bookInputRow');
-  if (isPast) {
-    banner.style.display = 'flex';
-    document.getElementById('pastBannerText').textContent = 'Viewing ' + dayName + ' ' + MONTHS_SHORT[d.getMonth()] + ' ' + d.getDate() + ' — read only';
-    resetBtn.style.display = 'none';
-    bookInputRow.style.display = 'none';
+/* ═══════════════════════════════════════════
+   LOAD DAY DATA
+   ═══════════════════════════════════════════ */
+async function loadDay(dateStr) {
+  const rows = await sbGet('daily_logs', `date=eq.${dateStr}`);
+  if (rows.length > 0) {
+    dayState = rows[0].state || {};
   } else {
-    banner.style.display = 'none';
-    resetBtn.style.display = '';
-    bookInputRow.style.display = '';
+    dayState = {};
   }
+  viewDate = dateStr;
+  todayStr = localDateStr();
+  isReadonly = (viewDate !== todayStr);
+  render();
+}
 
-  // Schedule
-  const schedule = CONFIG.schedule[dayName] || CONFIG.schedule['Sunday'];
-  const state = await getState(viewKey);
-  const blocksEl = document.getElementById('blocks');
-  blocksEl.innerHTML = '';
-  let total = 0, done = 0;
+/* ═══════════════════════════════════════════
+   SAVE DAY DATA (debounced)
+   ═══════════════════════════════════════════ */
+function scheduleSave() {
+  if (isReadonly) return;
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveNow, 300);
+}
 
-  schedule.forEach((blk, bi) => {
-    total += blk.tasks.length;
-    const blkDone = blk.tasks.filter((_, ti) => !!state[bi + '_' + ti]).length;
-    done += blkDone;
-    const wrap = document.createElement('div');
-    wrap.className = 'block';
-    const firstOpen = bi === 0;
-    const hdr = document.createElement('div');
-    hdr.className = 'block-hdr' + (firstOpen ? ' open' : '');
-    hdr.innerHTML = `<span class="block-icon">${blk.icon}</span><span class="block-title">${blk.title}</span><span class="block-time">${blk.time}</span><span class="block-badge" id="badge${bi}">${blkDone}/${blk.tasks.length}</span><span class="block-chev${firstOpen ? ' open' : ''}" id="chev${bi}">›</span>`;
-    hdr.onclick = () => {
-      const body = document.getElementById('body' + bi);
-      const chev = document.getElementById('chev' + bi);
-      const open = body.classList.toggle('open');
-      chev.classList.toggle('open', open);
-      hdr.classList.toggle('open', open);
-    };
-    const body = document.createElement('div');
-    body.className = 'block-body' + (firstOpen ? ' open' : '');
-    body.id = 'body' + bi;
-    const ul = document.createElement('ul');
-    ul.className = 'task-list';
-    blk.tasks.forEach((task, ti) => {
-      const key = bi + '_' + ti;
-      const checked = !!state[key];
-      const li = document.createElement('li');
-      li.className = 'task-item';
-      const cb = document.createElement('input');
-      cb.type = 'checkbox';
-      cb.className = 'task-cb';
-      cb.checked = checked;
-      cb.id = 'cb' + bi + '_' + ti;
-      cb.disabled = isPast; // read-only for past days
-      const lbl = document.createElement('label');
-      lbl.htmlFor = cb.id;
-      lbl.className = 'task-label' + (checked ? ' done' : '');
-      lbl.innerHTML = task.l + tagHTML(task.tag);
-      const timeEl = document.createElement('span');
-      timeEl.className = 'task-time';
-      timeEl.textContent = task.t || '';
-      if (!isPast) {
-        cb.onchange = async () => {
-          const s = await getState(viewKey);
-          s[key] = cb.checked;
-          await saveState(viewKey, s);
-          lbl.className = 'task-label' + (cb.checked ? ' done' : '');
-          recalcUI(schedule, state);
-        };
-      }
-      li.appendChild(cb);
-      li.appendChild(lbl);
-      li.appendChild(timeEl);
-      ul.appendChild(li);
-    });
-    body.appendChild(ul);
-    wrap.appendChild(hdr);
-    wrap.appendChild(body);
-    blocksEl.appendChild(wrap);
+async function saveNow() {
+  if (isReadonly) return;
+  const { done, total } = countTasks();
+  await sbUpsert('daily_logs', {
+    date: viewDate,
+    state: dayState,
+    done: done,
+    total: total,
+    updated_at: new Date().toISOString()
   });
-
-  recalcWith(total, done);
-  await updateWeekMonth();
-  await renderBook();
-  await renderCalendar();
-  setSyncStatus('synced');
-}
-
-function recalcUI(schedule, state) {
-  let total = 0, done = 0;
-  schedule.forEach((blk, bi) => {
-    blk.tasks.forEach((_, ti) => { total++; if (state[bi + '_' + ti]) done++; });
-    const bd = blk.tasks.filter((_, ti) => state[bi + '_' + ti]).length;
-    const badge = document.getElementById('badge' + bi);
-    if (badge) badge.textContent = bd + '/' + blk.tasks.length;
-  });
-  recalcWith(total, done);
-}
-
-function recalcWith(total, done) {
-  const pct = total ? Math.round(done / total * 100) : 0;
-  document.getElementById('dailyBar').style.width = pct + '%';
-  document.getElementById('dailyPct').textContent = pct + '%';
-  document.getElementById('doneCount').textContent = done + ' / ' + total;
-}
-
-function getWeekNum(d) {
-  const jan1 = new Date(d.getFullYear(), 0, 1);
-  return Math.ceil(((d - jan1) / 86400000 + jan1.getDay() + 1) / 7);
-}
-
-async function updateWeekMonth() {
-  const hist = await sbGetAllHist();
-  const d = dateFromKey(viewKey);
-  const wNum = getWeekNum(d); const yr = d.getFullYear(); const mo = d.getMonth();
-  const wdays = Object.entries(hist)
-    .filter(([dk]) => { const dd = dateFromKey(dk); return dd.getFullYear() === yr && getWeekNum(dd) === wNum; })
-    .map(([, v]) => v);
-  if (wdays.length && wdays.reduce((a, x) => a + x.total, 0) > 0) {
-    const p = Math.round(wdays.reduce((a, x) => a + x.done, 0) / wdays.reduce((a, x) => a + x.total, 0) * 100);
-    document.getElementById('weekAvg').textContent = p + '%';
-  }
-  const mdays = Object.entries(hist)
-    .filter(([dk]) => { const dd = dateFromKey(dk); return dd.getFullYear() === yr && dd.getMonth() === mo; })
-    .map(([, v]) => v);
-  if (mdays.length && mdays.reduce((a, x) => a + x.total, 0) > 0) {
-    const p = Math.round(mdays.reduce((a, x) => a + x.done, 0) / mdays.reduce((a, x) => a + x.total, 0) * 100);
-    document.getElementById('monthAvg').textContent = p + '%';
-  }
-}
-
-function countTotal(dayName) {
-  const s = CONFIG.schedule[dayName] || CONFIG.schedule['Sunday'];
-  return s.reduce((a, b) => a + b.tasks.length, 0);
-}
-
-// ── CALENDAR ──
-function shiftMonth(dir) {
-  calMonth += dir;
-  if (calMonth > 11) { calMonth = 0; calYear++; }
-  if (calMonth < 0) { calMonth = 11; calYear--; }
+  // refresh calendar dot for today
+  calData[viewDate] = { done, total };
   renderCalendar();
 }
 
-async function renderCalendar() {
-  const hist = await sbGetAllHist();
-  document.getElementById('calMonthLabel').textContent = MONTHS_SHORT[calMonth] + ' ' + calYear;
-  document.getElementById('monthPanelTitle').textContent = MONTHS_LONG[calMonth] + ' progress';
-  const grid = document.getElementById('calGrid');
-  grid.innerHTML = '';
-  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d => {
-    const el = document.createElement('div'); el.className = 'cal-dow'; el.textContent = d; grid.appendChild(el);
+function countTasks() {
+  const dayName = dayOfWeekName(viewDate);
+  const blocks = (config.schedule && config.schedule[dayName]) || [];
+  let total = 0, done = 0;
+  blocks.forEach(b => {
+    b.tasks.forEach(t => {
+      const id = b.id + '::' + t.l;
+      total++;
+      if (dayState[id]) done++;
+    });
   });
-  const firstDay = new Date(calYear, calMonth, 1).getDay();
-  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
-  const tKey = todayKey();
-  for (let i = 0; i < firstDay; i++) { const el = document.createElement('div'); el.className = 'cal-day'; grid.appendChild(el); }
-  let tracked = 0, totalPct = 0, perfect = 0, bestPct = 0, bestDay = '—';
-  for (let day = 1; day <= daysInMonth; day++) {
-    const dk = calYear + '-' + String(calMonth + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
-    const el = document.createElement('div');
-    el.className = 'cal-day';
-    el.textContent = day;
-    if (dk === tKey) el.classList.add('today');
-    if (dk === viewKey) el.classList.add('viewing');
-    const st = hist[dk];
-    if (st && st.total > 0) {
-      const pct = Math.round(st.done / st.total * 100);
-      tracked++; totalPct += pct;
-      if (pct === 100) perfect++;
-      if (pct > bestPct) { bestPct = pct; bestDay = day + ' ' + MONTHS_SHORT[calMonth]; }
-      const dot = document.createElement('div'); dot.className = 'dot'; el.appendChild(dot);
-      if (pct === 100) el.classList.add('pct-full');
-      else if (pct >= 70) el.classList.add('pct-high');
-      else if (pct >= 40) el.classList.add('pct-mid');
-      else el.classList.add('pct-low');
-      // clickable — load that day's view
-      el.classList.add('clickable');
-      el.onclick = () => { viewKey = dk; calYear = parseInt(dk.split('-')[0]); calMonth = parseInt(dk.split('-')[1]) - 1; render(); };
-    } else if (dk === tKey) {
-      // today is always clickable even if no data yet
-      el.classList.add('clickable');
-      el.onclick = () => { viewKey = dk; render(); };
-    }
-    grid.appendChild(el);
-  }
-  const avg = tracked ? Math.round(totalPct / tracked) : 0;
-  document.getElementById('mDaysTracked').textContent = tracked;
-  document.getElementById('mAvgPct').textContent = tracked ? avg + '%' : '—';
-  document.getElementById('mPerfect').textContent = perfect;
-  document.getElementById('mBest').textContent = bestDay;
-  document.getElementById('mProgPct').textContent = avg + '%';
-  document.getElementById('mProgBar').style.width = avg + '%';
-  // streak
-  let streak = 0;
-  for (let i = 0; i < 365; i++) {
-    const d = new Date(); d.setDate(d.getDate() - i);
-    const dk = localDateKey(d);
-    const st = hist[dk];
-    if (!st || !st.total) { if (i === 0) continue; break; }
-    if (st.done / st.total >= 0.8) streak++; else if (i > 0) break;
-  }
-  document.getElementById('streakVal').textContent = streak + ' day' + (streak === 1 ? '' : 's');
+  return { done, total };
 }
 
-// ── BOOK ──
-async function renderBook() {
-  const bs = await getBookState();
-  const books = CONFIG.books;
-  const book = books[Math.min(bs.idx, books.length - 1)];
-  const pct = book.pages ? Math.round(bs.pagesRead / book.pages * 100) : 0;
-  document.getElementById('bookName').textContent = book.title;
-  document.getElementById('bookMeta').textContent = 'Phase ' + book.phase + ' — Book ' + book.num + ' of ' + book.total;
-  document.getElementById('bookPct').textContent = pct + '%';
-  document.getElementById('bookPages').textContent = bs.pagesRead + ' / ' + book.pages + ' pages';
-  document.getElementById('bookBar').style.width = Math.min(pct, 100) + '%';
-}
-
-async function logPages() {
-  const inp = document.getElementById('pagesInput');
-  const n = parseInt(inp.value) || 0;
-  if (n <= 0) return;
-  const bs = await getBookState();
-  const books = CONFIG.books;
-  const book = books[Math.min(bs.idx, books.length - 1)];
-  bs.pagesRead += n;
-  if (bs.pagesRead >= book.pages) {
-    const next = books[bs.idx + 1];
-    alert('You finished "' + book.title + '"!\n' + (next ? 'Starting: ' + next.title : 'All books complete!'));
-    bs.pagesRead = 0;
-    bs.idx = Math.min(bs.idx + 1, books.length - 1);
+/* ═══════════════════════════════════════════
+   BOOK PROGRESS
+   ═══════════════════════════════════════════ */
+async function loadBook() {
+  const rows = await sbGet('book_progress', 'id=eq.singleton');
+  if (rows.length > 0) {
+    bookData = { idx: rows[0].idx || 0, pages_read: rows[0].pages_read || 0 };
   }
-  await saveBookState(bs);
-  inp.value = '';
   renderBook();
 }
 
-// ── CONTROLS ──
-function goToToday() {
-  viewKey = todayKey();
-  render();
+async function saveBook() {
+  await sbUpsert('book_progress', {
+    id: 'singleton',
+    idx: bookData.idx,
+    pages_read: bookData.pages_read,
+    updated_at: new Date().toISOString()
+  });
 }
 
-async function resetDay() {
-  if (!confirm('Reset all tasks for today?')) return;
-  cache['state_' + viewKey] = {};
-  await sbSet('state_' + viewKey, {});
-  await sbSet('hist_' + viewKey, { done: 0, total: countTotal(dayNameForKey(viewKey)) });
-  cache['hist_' + viewKey] = { done: 0, total: countTotal(dayNameForKey(viewKey)) };
-  render();
+function renderBook() {
+  if (!books.length) return;
+  if (bookData.idx >= books.length) bookData.idx = books.length - 1;
+  const bk = books[bookData.idx];
+  document.getElementById('book-title').textContent = bk.title;
+  document.getElementById('book-phase').textContent = `Phase ${bk.phase} · Book ${bk.num} of ${bk.total}`;
+  const pct = bk.pages > 0 ? Math.min(100, Math.round((bookData.pages_read / bk.pages) * 100)) : 0;
+  document.getElementById('book-bar').style.width = pct + '%';
+  document.getElementById('book-pct').textContent = pct + '%';
+  document.getElementById('book-total-label').textContent = `/ ${bk.pages} pages`;
+  const inp = document.getElementById('book-input');
+  inp.value = bookData.pages_read || '';
+  inp.max = bk.pages;
 }
 
-// ── BOOT ──
-async function boot() {
-  setSyncStatus('syncing');
+function onBookInput(val) {
+  const bk = books[bookData.idx];
+  let pg = parseInt(val) || 0;
+  if (pg < 0) pg = 0;
+  if (pg > bk.pages) pg = bk.pages;
+  bookData.pages_read = pg;
+
+  // auto-advance
+  if (pg >= bk.pages && bookData.idx < books.length - 1) {
+    bookData.idx++;
+    bookData.pages_read = 0;
+  }
+  renderBook();
+  saveBook();
+}
+
+/* ═══════════════════════════════════════════
+   CALENDAR
+   ═══════════════════════════════════════════ */
+async function loadCalMonth() {
+  const prefix = `${calYear}-${String(calMonth + 1).padStart(2, '0')}`;
+  const rows = await sbGet('daily_logs', `date=like.${prefix}*&select=date,done,total`);
+  // reset calData for this month
+  rows.forEach(r => { calData[r.date] = { done: r.done, total: r.total }; });
+  renderCalendar();
+}
+
+function renderCalendar() {
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('cal-month-label').textContent = `${months[calMonth]} ${calYear}`;
+
+  const grid = document.getElementById('cal-grid');
+  grid.innerHTML = '';
+
+  // day-of-week headers
+  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d => {
+    const el = document.createElement('div');
+    el.className = 'cal-dow';
+    el.textContent = d;
+    grid.appendChild(el);
+  });
+
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  const todayLocal = localDateStr();
+
+  // leading blanks
+  for (let i = 0; i < firstDay; i++) {
+    const el = document.createElement('div');
+    el.className = 'cal-day';
+    grid.appendChild(el);
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const ds = `${calYear}-${String(calMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+    const el = document.createElement('div');
+    el.className = 'cal-day cur-month';
+    if (ds === todayLocal) el.classList.add('today');
+
+    el.textContent = d;
+
+    const cd = calData[ds];
+    if (cd && cd.total > 0) {
+      el.classList.add('has-data');
+      const pct = cd.done / cd.total;
+      const dot = document.createElement('div');
+      dot.className = 'cal-dot';
+      if (pct >= 1) dot.classList.add('perfect');
+      else if (pct >= 0.7) dot.classList.add('green');
+      else if (pct >= 0.4) dot.classList.add('amber');
+      else dot.classList.add('red');
+      el.appendChild(dot);
+
+      el.onclick = () => loadDay(ds);
+    }
+
+    grid.appendChild(el);
+  }
+}
+
+function calNav(dir) {
+  calMonth += dir;
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  loadCalMonth();
+}
+
+/* ═══════════════════════════════════════════
+   STREAK
+   ═══════════════════════════════════════════ */
+async function loadStreak() {
+  // Fetch last 60 days of logs
+  const end = new Date();
+  const start = new Date(end.getFullYear(), end.getMonth(), end.getDate() - 60);
+  const startStr = localDateStr(start);
+  const rows = await sbGet('daily_logs', `date=gte.${startStr}&select=date,done,total&order=date.desc`);
+
+  let streak = 0;
+  const d = new Date();
+  // start from today and go backwards
+  for (let i = 0; i < 61; i++) {
+    const ds = localDateStr(new Date(d.getFullYear(), d.getMonth(), d.getDate() - i));
+    const row = rows.find(r => r.date === ds);
+    if (row && row.done > 0) {
+      streak++;
+    } else if (i === 0) {
+      // today might not have data yet, skip
+      continue;
+    } else {
+      break;
+    }
+  }
+  document.getElementById('streak-num').textContent = streak;
+}
+
+/* ═══════════════════════════════════════════
+   RENDER MAIN VIEW
+   ═══════════════════════════════════════════ */
+function render() {
+  const main = document.getElementById('main-content');
+  const dayName = dayOfWeekName(viewDate);
+  const blocks = (config.schedule && config.schedule[dayName]) || [];
+
+  let html = '';
+
+  // Day pills
+  html += '<div class="day-pills">';
+  for (let i = 0; i < 7; i++) {
+    const ds = dateForWeekday(i);
+    const active = ds === viewDate ? ' active' : '';
+    html += `<div class="day-pill${active}" onclick="loadDay('${ds}')">${DAY_SHORT[i]}</div>`;
+  }
+  html += '</div>';
+
+  // Read-only banner
+  if (isReadonly) {
+    html += `<div class="readonly-banner">
+      <span>Viewing ${formatDateNice(viewDate)} — read only</span>
+      <button onclick="loadDay('${todayStr}')">Back to today</button>
+    </div>`;
+  }
+
+  // Progress header
+  const { done, total } = countTasks();
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+  html += `<div class="progress-header">
+    <div class="progress-date">${formatDateNice(viewDate)}</div>
+    <div class="progress-stats">
+      <span class="progress-count">${done}/${total}</span>
+      <div class="progress-bar-track"><div class="progress-bar-fill" style="width:${pct}%"></div></div>
+      <span class="progress-pct">${pct}%</span>
+    </div>
+  </div>`;
+
+  // Blocks
+  blocks.forEach(block => {
+    html += `<div class="block">
+      <div class="block-header" onclick="toggleBlock(this)">
+        <span class="block-icon">${block.icon || '▪'}</span>
+        <span>${block.title}</span>
+        <span class="block-time">${block.time || ''}</span>
+        <span class="block-chevron">▼</span>
+      </div>
+      <div class="block-body">`;
+
+    block.tasks.forEach(t => {
+      const taskId = block.id + '::' + t.l;
+      const checked = dayState[taskId] ? ' checked' : '';
+      const ro = isReadonly ? ' readonly' : '';
+      const clickHandler = isReadonly ? '' : `onclick="toggleTask('${escapeAttr(taskId)}', this)"`;
+
+      let tagHtml = '';
+      if (t.tag) {
+        tagHtml = `<span class="tag tag-${t.tag}">${t.tag}</span>`;
+      }
+
+      html += `<div class="task${checked}${ro}" ${clickHandler}>
+        <div class="task-check">${dayState[taskId] ? '✓' : ''}</div>
+        <span class="task-label">${escHtml(t.l)}</span>
+        ${t.t ? `<span class="task-time">${escHtml(t.t)}</span>` : ''}
+        ${tagHtml}
+      </div>`;
+    });
+
+    html += '</div></div>';
+  });
+
+  main.innerHTML = html;
+
+  // Update pill active states for day pills
+  const pills = main.querySelectorAll('.day-pill');
+  pills.forEach(p => {
+    if (p.classList.contains('active')) {
+      // already set in html generation
+    }
+  });
+}
+
+function escapeAttr(s) { return s.replace(/'/g, "\\'").replace(/"/g, '&quot;'); }
+function escHtml(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function toggleBlock(header) {
+  header.classList.toggle('collapsed');
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+}
+
+function toggleTask(taskId, el) {
+  if (isReadonly) return;
+  dayState[taskId] = !dayState[taskId];
+  el.classList.toggle('checked');
+  el.querySelector('.task-check').textContent = dayState[taskId] ? '✓' : '';
+
+  // Update progress
+  const { done, total } = countTasks();
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+  const ph = document.querySelector('.progress-count');
+  if (ph) ph.textContent = `${done}/${total}`;
+  const pb = document.querySelector('.progress-bar-fill');
+  if (pb) pb.style.width = pct + '%';
+  const pp = document.querySelector('.progress-pct');
+  if (pp) pp.textContent = pct + '%';
+
+  scheduleSave();
+}
+
+/* ═══════════════════════════════════════════
+   THEME
+   ═══════════════════════════════════════════ */
+function toggleTheme() {
+  const isLight = document.body.classList.toggle('light');
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  document.getElementById('theme-label').textContent = isLight ? 'Light mode' : 'Dark mode';
+}
+
+function applyTheme() {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') {
+    document.body.classList.add('light');
+    document.getElementById('theme-label').textContent = 'Light mode';
+  }
+}
+
+/* ═══════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════ */
+async function init() {
+  applyTheme();
+
   try {
-    const res = await fetch(CONFIG_URL + '?v=' + Date.now());
-    if (!res.ok) throw new Error('config not found');
-    CONFIG = await res.json();
-  } catch(e) {
-    setSyncStatus('error');
-    document.getElementById('blocks').innerHTML = '<div class="loading">Failed to load config.json. Make sure it is in the same folder as index.html.</div>';
+    await loadConfig();
+  } catch (e) {
+    document.getElementById('main-content').innerHTML =
+      '<div class="loading" style="color:var(--red)">Failed to load config.json. Make sure it exists at the root of your GitHub Pages site.</div>';
     return;
   }
-  render();
+
+  todayStr = localDateStr();
+  viewDate = todayStr;
+
+  // Set calendar to current month
+  const now = new Date();
+  calYear = now.getFullYear();
+  calMonth = now.getMonth();
+
+  // Load everything in parallel
+  await Promise.all([
+    loadDay(todayStr),
+    loadBook(),
+    loadCalMonth(),
+    loadStreak()
+  ]);
+
+  // Book input handler
+  document.getElementById('book-input').addEventListener('change', (e) => {
+    onBookInput(e.target.value);
+  });
 }
 
-boot();
+init();
 </script>
 </body>
 </html>
