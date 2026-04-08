@@ -1,820 +1,2599 @@
 {
   "books": [
-    {"title": "Man's Search for Meaning", "phase": 1, "num": 1, "total": 7, "pages": 165},
-    {"title": "Rework", "phase": 1, "num": 2, "total": 7, "pages": 288},
-    {"title": "Zero to One", "phase": 1, "num": 3, "total": 7, "pages": 224},
-    {"title": "Range", "phase": 1, "num": 4, "total": 7, "pages": 352},
-    {"title": "Nonviolent Communication", "phase": 1, "num": 5, "total": 7, "pages": 264},
-    {"title": "The 5 Types of Wealth", "phase": 1, "num": 6, "total": 7, "pages": 272},
-    {"title": "The Score Takes Care of Itself", "phase": 1, "num": 7, "total": 7, "pages": 288},
-    {"title": "The Millionaire Next Door", "phase": 2, "num": 1, "total": 10, "pages": 258},
-    {"title": "High Output Management", "phase": 2, "num": 2, "total": 10, "pages": 272},
-    {"title": "Measure What Matters", "phase": 2, "num": 3, "total": 10, "pages": 320},
-    {"title": "The Hard Thing About Hard Things", "phase": 2, "num": 4, "total": 10, "pages": 304},
-    {"title": "Only the Paranoid Survive", "phase": 2, "num": 5, "total": 10, "pages": 224},
-    {"title": "The Outsiders", "phase": 2, "num": 6, "total": 10, "pages": 272},
-    {"title": "Secrets of Sand Hill Road", "phase": 2, "num": 7, "total": 10, "pages": 368},
-    {"title": "Blitzscaling", "phase": 2, "num": 8, "total": 10, "pages": 336},
-    {"title": "Scale", "phase": 2, "num": 9, "total": 10, "pages": 479},
-    {"title": "Winning", "phase": 2, "num": 10, "total": 10, "pages": 384},
-    {"title": "Berkshire Hathaway Letters to Shareholders", "phase": 3, "num": 1, "total": 4, "pages": 828},
-    {"title": "Poor Charlie's Almanack", "phase": 3, "num": 2, "total": 4, "pages": 544},
-    {"title": "Principles - Ray Dalio", "phase": 3, "num": 3, "total": 4, "pages": 592},
-    {"title": "Read Write Own", "phase": 3, "num": 4, "total": 4, "pages": 336},
-    {"title": "Thinking, Fast and Slow", "phase": 4, "num": 1, "total": 4, "pages": 499},
-    {"title": "Alchemy", "phase": 4, "num": 2, "total": 4, "pages": 304},
-    {"title": "Complexity", "phase": 4, "num": 3, "total": 4, "pages": 520},
-    {"title": "The Beginning of Infinity", "phase": 4, "num": 4, "total": 4, "pages": 496},
-    {"title": "The Sovereign Individual", "phase": 5, "num": 1, "total": 2, "pages": 464},
-    {"title": "Superintelligence", "phase": 5, "num": 2, "total": 2, "pages": 352},
-    {"title": "Brave New World", "phase": 6, "num": 1, "total": 5, "pages": 311},
-    {"title": "The Fountainhead", "phase": 6, "num": 2, "total": 5, "pages": 753},
-    {"title": "Tao Te Ching", "phase": 6, "num": 3, "total": 5, "pages": 112},
-    {"title": "The Master Key System", "phase": 6, "num": 4, "total": 5, "pages": 200},
-    {"title": "Meditations", "phase": 6, "num": 5, "total": 5, "pages": 254}
+    {
+      "title": "Man's Search for Meaning",
+      "phase": 1,
+      "num": 1,
+      "total": 7,
+      "pages": 165
+    },
+    {
+      "title": "Rework",
+      "phase": 1,
+      "num": 2,
+      "total": 7,
+      "pages": 288
+    },
+    {
+      "title": "Zero to One",
+      "phase": 1,
+      "num": 3,
+      "total": 7,
+      "pages": 224
+    },
+    {
+      "title": "Range",
+      "phase": 1,
+      "num": 4,
+      "total": 7,
+      "pages": 352
+    },
+    {
+      "title": "Nonviolent Communication",
+      "phase": 1,
+      "num": 5,
+      "total": 7,
+      "pages": 264
+    },
+    {
+      "title": "The 5 Types of Wealth",
+      "phase": 1,
+      "num": 6,
+      "total": 7,
+      "pages": 272
+    },
+    {
+      "title": "The Score Takes Care of Itself",
+      "phase": 1,
+      "num": 7,
+      "total": 7,
+      "pages": 288
+    },
+    {
+      "title": "The Millionaire Next Door",
+      "phase": 2,
+      "num": 1,
+      "total": 10,
+      "pages": 258
+    },
+    {
+      "title": "High Output Management",
+      "phase": 2,
+      "num": 2,
+      "total": 10,
+      "pages": 272
+    },
+    {
+      "title": "Measure What Matters",
+      "phase": 2,
+      "num": 3,
+      "total": 10,
+      "pages": 320
+    },
+    {
+      "title": "The Hard Thing About Hard Things",
+      "phase": 2,
+      "num": 4,
+      "total": 10,
+      "pages": 304
+    },
+    {
+      "title": "Only the Paranoid Survive",
+      "phase": 2,
+      "num": 5,
+      "total": 10,
+      "pages": 224
+    },
+    {
+      "title": "The Outsiders",
+      "phase": 2,
+      "num": 6,
+      "total": 10,
+      "pages": 272
+    },
+    {
+      "title": "Secrets of Sand Hill Road",
+      "phase": 2,
+      "num": 7,
+      "total": 10,
+      "pages": 368
+    },
+    {
+      "title": "Blitzscaling",
+      "phase": 2,
+      "num": 8,
+      "total": 10,
+      "pages": 336
+    },
+    {
+      "title": "Scale",
+      "phase": 2,
+      "num": 9,
+      "total": 10,
+      "pages": 479
+    },
+    {
+      "title": "Winning",
+      "phase": 2,
+      "num": 10,
+      "total": 10,
+      "pages": 384
+    },
+    {
+      "title": "Berkshire Hathaway Letters to Shareholders",
+      "phase": 3,
+      "num": 1,
+      "total": 4,
+      "pages": 828
+    },
+    {
+      "title": "Poor Charlie's Almanack",
+      "phase": 3,
+      "num": 2,
+      "total": 4,
+      "pages": 544
+    },
+    {
+      "title": "Principles - Ray Dalio",
+      "phase": 3,
+      "num": 3,
+      "total": 4,
+      "pages": 592
+    },
+    {
+      "title": "Read Write Own",
+      "phase": 3,
+      "num": 4,
+      "total": 4,
+      "pages": 336
+    },
+    {
+      "title": "Thinking, Fast and Slow",
+      "phase": 4,
+      "num": 1,
+      "total": 4,
+      "pages": 499
+    },
+    {
+      "title": "Alchemy",
+      "phase": 4,
+      "num": 2,
+      "total": 4,
+      "pages": 304
+    },
+    {
+      "title": "Complexity",
+      "phase": 4,
+      "num": 3,
+      "total": 4,
+      "pages": 520
+    },
+    {
+      "title": "The Beginning of Infinity",
+      "phase": 4,
+      "num": 4,
+      "total": 4,
+      "pages": 496
+    },
+    {
+      "title": "The Sovereign Individual",
+      "phase": 5,
+      "num": 1,
+      "total": 2,
+      "pages": 464
+    },
+    {
+      "title": "Superintelligence",
+      "phase": 5,
+      "num": 2,
+      "total": 2,
+      "pages": 352
+    },
+    {
+      "title": "Brave New World",
+      "phase": 6,
+      "num": 1,
+      "total": 5,
+      "pages": 311
+    },
+    {
+      "title": "The Fountainhead",
+      "phase": 6,
+      "num": 2,
+      "total": 5,
+      "pages": 753
+    },
+    {
+      "title": "Tao Te Ching",
+      "phase": 6,
+      "num": 3,
+      "total": 5,
+      "pages": 112
+    },
+    {
+      "title": "The Master Key System",
+      "phase": 6,
+      "num": 4,
+      "total": 5,
+      "pages": 200
+    },
+    {
+      "title": "Meditations",
+      "phase": 6,
+      "num": 5,
+      "total": 5,
+      "pages": 254
+    }
   ],
   "schedule": {
     "Monday": [
       {
-        "id": "wake", "icon": "🌅", "title": "Wake up", "time": "6:00 – 6:15am",
+        "id": "wake",
+        "icon": "\ud83c\udf05",
+        "title": "Wake up",
+        "time": "6:00 \u2013 6:15am",
         "tasks": [
-          {"l": "Get out of bed", "t": "6:00"},
-          {"l": "Open shades + Make bed", "t": "6:00"},
-          {"l": "Drink 500ml of water", "t": "6:02"},
-          {"l": "Electrolytes", "t": "6:02", "tag": "supp"},
-          {"l": "Wear face mask", "t": "6:05"},
-          {"l": "Wash face (cold water)", "t": "6:08"},
-          {"l": "Upper body stretch", "t": "6:10"},
-          {"l": "Brush teeth", "t": "6:12"},
-          {"l": "Clean nose (saline)", "t": "6:14"},
-          {"l": "NMN", "t": "6:15", "tag": "supp"},
-          {"l": "Trans-Resveratrol", "t": "6:15", "tag": "supp"},
-          {"l": "Shilajit (x2)", "t": "6:15", "tag": "supp"}
+          {
+            "l": "Get out of bed",
+            "t": "6:00"
+          },
+          {
+            "l": "Open shades + Make bed",
+            "t": "6:00"
+          },
+          {
+            "l": "Drink 500ml of water",
+            "t": "6:02"
+          },
+          {
+            "l": "Electrolytes",
+            "t": "6:02",
+            "tag": "supp"
+          },
+          {
+            "l": "Wear face mask",
+            "t": "6:05"
+          },
+          {
+            "l": "Wash face (cold water)",
+            "t": "6:08"
+          },
+          {
+            "l": "Upper body stretch",
+            "t": "6:10"
+          },
+          {
+            "l": "Brush teeth",
+            "t": "6:12"
+          },
+          {
+            "l": "Clean nose (saline)",
+            "t": "6:14"
+          },
+          {
+            "l": "NMN",
+            "t": "6:15",
+            "tag": "supp"
+          },
+          {
+            "l": "Trans-Resveratrol",
+            "t": "6:15",
+            "tag": "supp"
+          },
+          {
+            "l": "Shilajit (x2)",
+            "t": "6:15",
+            "tag": "supp"
+          }
         ]
       },
       {
-        "id": "prep", "icon": "🧘", "title": "Breathwork + Mobility", "time": "6:15 – 6:40am",
+        "id": "prep",
+        "icon": "\ud83e\uddd8",
+        "title": "Breathwork + Mobility",
+        "time": "6:15 \u2013 6:40am",
         "tasks": [
-          {"l": "Eat protein bar", "t": "6:15"},
-          {"l": "Wear workout clothes", "t": "6:18"},
-          {"l": "Wim Hof + Box breathing — 5 mins", "t": "6:20", "tag": "mindset"},
-          {"l": "Mike Holland exercises — 5 mins", "t": "6:25", "tag": "mindset"},
-          {"l": "Mobility: full body, hips, shoulders — 15 mins", "t": "6:30", "tag": "mindset"}
+          {
+            "l": "Eat protein bar",
+            "t": "6:15"
+          },
+          {
+            "l": "Wear workout clothes",
+            "t": "6:18"
+          },
+          {
+            "l": "Wim Hof + Box breathing \u2014 5 mins",
+            "t": "6:20",
+            "tag": "mindset"
+          },
+          {
+            "l": "Mike Holland exercises \u2014 5 mins",
+            "t": "6:25",
+            "tag": "mindset"
+          },
+          {
+            "l": "Mobility: full body, hips, shoulders \u2014 15 mins",
+            "t": "6:30",
+            "tag": "mindset"
+          }
         ]
       },
       {
-        "id": "cardio", "icon": "🏃", "title": "Cardio — Zone 2 jog to gym", "time": "6:40 – 7:05am",
+        "id": "cardio",
+        "icon": "\ud83c\udfc3",
+        "title": "Cardio \u2014 Zone 2 jog to gym",
+        "time": "6:40 \u2013 7:05am",
         "tasks": [
-          {"l": "Zone 2 jog to gym", "t": "6:40"}
+          {
+            "l": "Zone 2 jog to gym",
+            "t": "6:40"
+          }
         ]
       },
       {
-        "id": "gymam", "icon": "🏋️", "title": "Morning gym — Push (Chest + Triceps)", "time": "7:05 – 8:05am",
+        "id": "gymam",
+        "icon": "\ud83c\udfcb\ufe0f",
+        "title": "Morning gym \u2014 Push (Chest + Triceps)",
+        "time": "7:05 \u2013 8:05am",
         "tasks": [
-          {"l": "50 Push ups", "t": "7:05"},
-          {"l": "Abs", "t": "7:15"},
-          {"l": "Dips till failure then Assisted Dip", "t": "7:25"},
-          {"l": "20 min Sauna", "t": "7:40", "tag": "sauna"}
+          {
+            "l": "50 Push ups",
+            "t": "7:05"
+          },
+          {
+            "l": "Abs",
+            "t": "7:15"
+          },
+          {
+            "l": "Dips till failure then Assisted Dip",
+            "t": "7:25"
+          },
+          {
+            "l": "Sauna",
+            "t": "7:40",
+            "tag": "sauna"
+          }
         ]
       },
       {
-        "id": "postgym", "icon": "🚿", "title": "Post-gym", "time": "8:05 – 8:45am",
+        "id": "postgym",
+        "icon": "\ud83d\udebf",
+        "title": "Post-gym",
+        "time": "8:05 \u2013 8:45am",
         "tasks": [
-          {"l": "Walk back from gym", "t": "8:05"},
-          {"l": "Drink water", "t": "8:20"},
-          {"l": "Cold shower", "t": "8:22"},
-          {"l": "Skincare", "t": "8:35"},
-          {"l": "Get ready for work / Start work", "t": "8:40"},
-          {"l": "Read News dashboard", "t": "8:45"}
+          {
+            "l": "Walk back from gym",
+            "t": "8:05"
+          },
+          {
+            "l": "Drink water",
+            "t": "8:20"
+          },
+          {
+            "l": "Cold shower",
+            "t": "8:22"
+          },
+          {
+            "l": "Skincare",
+            "t": "8:35"
+          },
+          {
+            "l": "Get ready for work / Start work",
+            "t": "8:40"
+          },
+          {
+            "l": "Read News dashboard",
+            "t": "8:45"
+          }
         ]
       },
       {
-        "id": "bsupps", "icon": "💊", "title": "Breakfast supplements", "time": "8:45am",
+        "id": "bsupps",
+        "icon": "\ud83d\udc8a",
+        "title": "Breakfast supplements",
+        "time": "8:45am",
         "tasks": [
-          {"l": "Vitamin D3", "t": "8:45", "tag": "supp"},
-          {"l": "Omega 3", "t": "8:45", "tag": "supp"},
-          {"l": "Tostero (x2)", "t": "8:45", "tag": "supp"},
-          {"l": "Longevit", "t": "8:45", "tag": "supp"},
-          {"l": "Collagen + Coffee", "t": "8:45", "tag": "supp"},
-          {"l": "Quercetin & Bromelain (x2)", "t": "8:45", "tag": "supp"}
+          {
+            "l": "Vitamin D3",
+            "t": "8:45",
+            "tag": "supp"
+          },
+          {
+            "l": "Omega 3",
+            "t": "8:45",
+            "tag": "supp"
+          },
+          {
+            "l": "Tostero (x2)",
+            "t": "8:45",
+            "tag": "supp"
+          },
+          {
+            "l": "Quercetin & Bromelain (x2)",
+            "t": "8:45",
+            "tag": "supp"
+          }
         ]
       },
       {
-        "id": "work", "icon": "💼", "title": "Work", "time": "9:00am – 12:30pm",
+        "id": "work",
+        "icon": "\ud83d\udcbc",
+        "title": "Work",
+        "time": "9:00am \u2013 12:30pm",
         "tasks": [
-          {"l": "Office", "t": "9:00"},
-          {"l": "Coffee + Ryze Coffee", "t": "9:15"}
+          {
+            "l": "Office",
+            "t": "9:00"
+          },
+          {
+            "l": "Coffee + Ryze + Collagen",
+            "t": "9:15"
+          }
         ]
       },
       {
-        "id": "lunch", "icon": "🍱", "title": "Lunch break", "time": "12:30 – 1:30pm",
+        "id": "lunch",
+        "icon": "\ud83c\udf71",
+        "title": "Lunch break",
+        "time": "12:30 \u2013 1:30pm",
         "tasks": [
-          {"l": "Wordle", "t": "12:30"},
-          {"l": "Pips (all levels)", "t": "12:40"},
-          {"l": "Impulse Training", "t": "12:50"},
-          {"l": "Duolingo", "t": "1:00"},
-          {"l": "1 chapter of Chess learning", "t": "1:10"},
-          {"l": "Lunch + Overnight Oats", "t": "1:20"}
+          {
+            "l": "Wordle",
+            "t": "12:30"
+          },
+          {
+            "l": "Pips (all levels)",
+            "t": "12:40"
+          },
+          {
+            "l": "Impulse Training",
+            "t": "12:50"
+          },
+          {
+            "l": "Duolingo",
+            "t": "1:00"
+          },
+          {
+            "l": "1 chapter of Chess learning",
+            "t": "1:10"
+          },
+          {
+            "l": "Lunch + Overnight Oats",
+            "t": "1:20"
+          }
         ]
       },
       {
-        "id": "eve", "icon": "🔱", "title": "Evening — Push (Chest + Triceps)", "time": "4:30 – 6:30pm",
+        "id": "eve",
+        "icon": "\ud83d\udd31",
+        "title": "Evening \u2014 Push (Chest + Triceps)",
+        "time": "4:30 \u2013 6:30pm",
         "tasks": [
-          {"l": "Neck exercises", "t": "4:30", "tag": "mindset"},
-          {"l": "Light mobility", "t": "4:45", "tag": "mindset"},
-          {"l": "Dead Hang", "t": "5:00"},
-          {"l": "Machine Fly's", "t": "5:05"},
-          {"l": "Incline bench DB press", "t": "5:15"},
-          {"l": "Incline Machine Chest Press", "t": "5:25"},
-          {"l": "Dip Machine", "t": "5:35"},
-          {"l": "Tricep push downs", "t": "5:45"},
-          {"l": "Cable skull crushers", "t": "5:52"},
-          {"l": "Single hand tricep pushdown", "t": "6:00"},
-          {"l": "Machine Shoulder Press", "t": "6:10"}
+          {
+            "l": "Neck exercises",
+            "t": "4:30",
+            "tag": "mindset"
+          },
+          {
+            "l": "Light mobility",
+            "t": "4:45",
+            "tag": "mindset"
+          },
+          {
+            "l": "15 min Incline Cardio",
+            "t": ""
+          },
+          {
+            "l": "Dead Hang",
+            "t": "5:00"
+          },
+          {
+            "l": "Machine Fly's",
+            "t": "5:05"
+          },
+          {
+            "l": "Incline bench DB press",
+            "t": "5:15"
+          },
+          {
+            "l": "Incline Machine Chest Press",
+            "t": "5:25"
+          },
+          {
+            "l": "Dip Machine",
+            "t": "5:35"
+          },
+          {
+            "l": "Tricep push downs",
+            "t": "5:45"
+          },
+          {
+            "l": "Cable skull crushers",
+            "t": "5:52"
+          },
+          {
+            "l": "Single hand tricep pushdown",
+            "t": "6:00"
+          },
+          {
+            "l": "Machine Shoulder Press",
+            "t": "6:10"
+          }
         ]
       },
       {
-        "id": "dinner", "icon": "🍽️", "title": "Dinner + wind down", "time": "6:30 – 7:30pm",
+        "id": "dinner",
+        "icon": "\ud83c\udf7d\ufe0f",
+        "title": "Dinner + wind down",
+        "time": "6:30 \u2013 7:30pm",
         "tasks": [
-          {"l": "Shower", "t": "6:30"},
-          {"l": "Dinner + Eggs", "t": "7:00"},
-          {"l": "Creatine (x4)", "t": "7:00", "tag": "supp"},
-          {"l": "Watch something", "t": "7:30"}
+          {
+            "l": "Shower",
+            "t": "6:30"
+          },
+          {
+            "l": "Dinner + Eggs",
+            "t": "7:00"
+          },
+          {
+            "l": "Creatine (x4)",
+            "t": "7:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Watch something",
+            "t": "7:30"
+          }
         ]
       },
       {
-        "id": "build", "icon": "🧠", "title": "Build / Learn", "time": "7:30 – 10:00pm",
+        "id": "build",
+        "icon": "\ud83e\udde0",
+        "title": "Build / Learn",
+        "time": "7:30 \u2013 10:00pm",
         "tasks": [
-          {"l": "Build / Learn session", "t": "7:30"}
+          {
+            "l": "Build / Learn session",
+            "t": "7:30"
+          }
         ]
       },
       {
-        "id": "night", "icon": "🌙", "title": "Night routine", "time": "10:30 – 11:30pm",
+        "id": "night",
+        "icon": "\ud83c\udf19",
+        "title": "Night routine",
+        "time": "10:30 \u2013 11:30pm",
         "tasks": [
-          {"l": "Make overnight oats + Talk to mum", "t": "10:30"},
-          {"l": "Take meal prep out from freezer", "t": "10:45"},
-          {"l": "Wash face", "t": "10:50"},
-          {"l": "Skincare", "t": "10:55"},
-          {"l": "Magnesium", "t": "11:00", "tag": "supp"},
-          {"l": "Read", "t": "11:00"},
-          {"l": "Nose strip", "t": "11:20"},
-          {"l": "Mouth tape", "t": "11:25"},
-          {"l": "Eye tape", "t": "11:27"},
-          {"l": "Eye mask", "t": "11:28"},
-          {"l": "Sleep", "t": "11:30"}
+          {
+            "l": "Make overnight oats + Talk to mum",
+            "t": "10:30"
+          },
+          {
+            "l": "Take meal prep out from freezer",
+            "t": "10:45"
+          },
+          {
+            "l": "Wash face",
+            "t": "10:50"
+          },
+          {
+            "l": "Skincare",
+            "t": "10:55"
+          },
+          {
+            "l": "Magnesium",
+            "t": "11:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Read",
+            "t": "11:00"
+          },
+          {
+            "l": "Nose strip",
+            "t": "11:20"
+          },
+          {
+            "l": "Mouth tape",
+            "t": "11:25"
+          },
+          {
+            "l": "Eye tape",
+            "t": "11:27"
+          },
+          {
+            "l": "Eye mask",
+            "t": "11:28"
+          },
+          {
+            "l": "Sleep",
+            "t": "11:30"
+          }
         ]
       }
     ],
     "Tuesday": [
       {
-        "id": "wake", "icon": "🌅", "title": "Wake up", "time": "6:00 – 6:15am",
+        "id": "wake",
+        "icon": "\ud83c\udf05",
+        "title": "Wake up",
+        "time": "6:00 \u2013 6:15am",
         "tasks": [
-          {"l": "Get out of bed", "t": "6:00"},
-          {"l": "Open shades + Make bed", "t": "6:00"},
-          {"l": "Drink 500ml of water", "t": "6:02"},
-          {"l": "Electrolytes", "t": "6:02", "tag": "supp"},
-          {"l": "Wear face mask", "t": "6:05"},
-          {"l": "Wash face (cold water)", "t": "6:08"},
-          {"l": "Upper body stretch", "t": "6:10"},
-          {"l": "Brush teeth", "t": "6:12"},
-          {"l": "Clean nose (saline)", "t": "6:14"},
-          {"l": "NMN", "t": "6:15", "tag": "supp"},
-          {"l": "Trans-Resveratrol", "t": "6:15", "tag": "supp"},
-          {"l": "Shilajit (x2)", "t": "6:15", "tag": "supp"}
+          {
+            "l": "Get out of bed",
+            "t": "6:00"
+          },
+          {
+            "l": "Open shades + Make bed",
+            "t": "6:00"
+          },
+          {
+            "l": "Drink 500ml of water",
+            "t": "6:02"
+          },
+          {
+            "l": "Electrolytes",
+            "t": "6:02",
+            "tag": "supp"
+          },
+          {
+            "l": "Wear face mask",
+            "t": "6:05"
+          },
+          {
+            "l": "Wash face (cold water)",
+            "t": "6:08"
+          },
+          {
+            "l": "Upper body stretch",
+            "t": "6:10"
+          },
+          {
+            "l": "Brush teeth",
+            "t": "6:12"
+          },
+          {
+            "l": "Clean nose (saline)",
+            "t": "6:14"
+          },
+          {
+            "l": "NMN",
+            "t": "6:15",
+            "tag": "supp"
+          },
+          {
+            "l": "Trans-Resveratrol",
+            "t": "6:15",
+            "tag": "supp"
+          },
+          {
+            "l": "Shilajit (x2)",
+            "t": "6:15",
+            "tag": "supp"
+          }
         ]
       },
       {
-        "id": "prep", "icon": "🧘", "title": "Breathwork + Mobility", "time": "6:15 – 6:40am",
+        "id": "prep",
+        "icon": "\ud83e\uddd8",
+        "title": "Breathwork + Mobility",
+        "time": "6:15 \u2013 6:40am",
         "tasks": [
-          {"l": "Eat protein bar", "t": "6:15"},
-          {"l": "Wear workout clothes", "t": "6:18"},
-          {"l": "Wim Hof + Box breathing — 5 mins", "t": "6:20", "tag": "mindset"},
-          {"l": "Mike Holland exercises — 5 mins", "t": "6:25", "tag": "mindset"},
-          {"l": "Mobility: full body, hips, shoulders — 15 mins", "t": "6:30", "tag": "mindset"}
+          {
+            "l": "Eat protein bar",
+            "t": "6:15"
+          },
+          {
+            "l": "Wear workout clothes",
+            "t": "6:18"
+          },
+          {
+            "l": "Wim Hof + Box breathing \u2014 5 mins",
+            "t": "6:20",
+            "tag": "mindset"
+          },
+          {
+            "l": "Mike Holland exercises \u2014 5 mins",
+            "t": "6:25",
+            "tag": "mindset"
+          },
+          {
+            "l": "Mobility: full body, hips, shoulders \u2014 15 mins",
+            "t": "6:30",
+            "tag": "mindset"
+          }
         ]
       },
       {
-        "id": "cardio", "icon": "🏃", "title": "Cardio — VO2 Max", "time": "6:40 – 7:05am",
-        "tasks": [{"l": "VO2 Max session", "t": "6:40"}]
-      },
-      {
-        "id": "gymam", "icon": "🏋️", "title": "Morning gym — Pull (Back + Biceps)", "time": "7:05 – 8:05am",
+        "id": "cardio",
+        "icon": "\ud83c\udfc3",
+        "title": "Cardio \u2014 VO2 Max",
+        "time": "6:40 \u2013 7:05am",
         "tasks": [
-          {"l": "Hip Thrusts + Planks", "t": "7:05"},
-          {"l": "Pull ups + Forearms", "t": "7:25"},
-          {"l": "Sauna", "t": "7:45", "tag": "sauna"}
+          {
+            "l": "VO2 Max session",
+            "t": "6:40"
+          }
         ]
       },
       {
-        "id": "postgym", "icon": "🚿", "title": "Post-gym", "time": "8:05 – 8:45am",
+        "id": "gymam",
+        "icon": "\ud83c\udfcb\ufe0f",
+        "title": "Morning gym \u2014 Pull (Back + Biceps)",
+        "time": "7:05 \u2013 8:05am",
         "tasks": [
-          {"l": "Walk back from gym", "t": "8:05"},
-          {"l": "Drink water", "t": "8:20"},
-          {"l": "Cold shower", "t": "8:22"},
-          {"l": "Skincare", "t": "8:35"},
-          {"l": "Get ready for work / Start work", "t": "8:40"},
-          {"l": "Read News dashboard", "t": "8:45"}
+          {
+            "l": "Hip Thrusts + Planks",
+            "t": "7:05"
+          },
+          {
+            "l": "Pull ups + Forearms",
+            "t": "7:25"
+          },
+          {
+            "l": "Shrugs",
+            "t": "7:35"
+          },
+          {
+            "l": "Sauna",
+            "t": "7:45",
+            "tag": "sauna"
+          }
         ]
       },
       {
-        "id": "bsupps", "icon": "💊", "title": "Breakfast supplements", "time": "8:45am",
+        "id": "postgym",
+        "icon": "\ud83d\udebf",
+        "title": "Post-gym",
+        "time": "8:05 \u2013 8:45am",
         "tasks": [
-          {"l": "Vitamin D3", "t": "8:45", "tag": "supp"},
-          {"l": "Omega 3", "t": "8:45", "tag": "supp"},
-          {"l": "Tostero (x2)", "t": "8:45", "tag": "supp"},
-          {"l": "Longevit", "t": "8:45", "tag": "supp"},
-          {"l": "Collagen + Coffee", "t": "8:45", "tag": "supp"},
-          {"l": "Quercetin & Bromelain (x2)", "t": "8:45", "tag": "supp"}
+          {
+            "l": "Walk back from gym",
+            "t": "8:05"
+          },
+          {
+            "l": "Drink water",
+            "t": "8:20"
+          },
+          {
+            "l": "Cold shower",
+            "t": "8:22"
+          },
+          {
+            "l": "Skincare",
+            "t": "8:35"
+          },
+          {
+            "l": "Get ready for work / Start work",
+            "t": "8:40"
+          },
+          {
+            "l": "Read News dashboard",
+            "t": "8:45"
+          }
         ]
       },
       {
-        "id": "work", "icon": "💼", "title": "Work", "time": "9:00am – 12:30pm",
+        "id": "bsupps",
+        "icon": "\ud83d\udc8a",
+        "title": "Breakfast supplements",
+        "time": "8:45am",
         "tasks": [
-          {"l": "Office", "t": "9:00"},
-          {"l": "Coffee + Ryze Coffee", "t": "9:15"}
+          {
+            "l": "Vitamin D3",
+            "t": "8:45",
+            "tag": "supp"
+          },
+          {
+            "l": "Omega 3",
+            "t": "8:45",
+            "tag": "supp"
+          },
+          {
+            "l": "Tostero (x2)",
+            "t": "8:45",
+            "tag": "supp"
+          },
+          {
+            "l": "Quercetin & Bromelain (x2)",
+            "t": "8:45",
+            "tag": "supp"
+          }
         ]
       },
       {
-        "id": "lunch", "icon": "🍱", "title": "Lunch break", "time": "12:30 – 1:30pm",
+        "id": "work",
+        "icon": "\ud83d\udcbc",
+        "title": "Work",
+        "time": "9:00am \u2013 12:30pm",
         "tasks": [
-          {"l": "Wordle", "t": "12:30"},
-          {"l": "Pips (all levels)", "t": "12:40"},
-          {"l": "Impulse Training", "t": "12:50"},
-          {"l": "Duolingo", "t": "1:00"},
-          {"l": "1 chapter of Chess learning", "t": "1:10"},
-          {"l": "Lunch + Overnight Oats", "t": "1:20"}
+          {
+            "l": "Office",
+            "t": "9:00"
+          },
+          {
+            "l": "Coffee + Ryze + Collagen",
+            "t": "9:15"
+          }
         ]
       },
       {
-        "id": "eve", "icon": "🔱", "title": "Evening — Pull (Back + Biceps)", "time": "4:30 – 6:30pm",
+        "id": "lunch",
+        "icon": "\ud83c\udf71",
+        "title": "Lunch break",
+        "time": "12:30 \u2013 1:30pm",
         "tasks": [
-          {"l": "Neck exercises", "t": "4:30", "tag": "mindset"},
-          {"l": "Light mobility", "t": "4:45", "tag": "mindset"},
-          {"l": "Dead Hang", "t": "5:00"},
-          {"l": "Bicep Pull ups", "t": "5:05"},
-          {"l": "Machine Rows superset with Kelso shrug", "t": "5:15"},
-          {"l": "Lat Pull Down", "t": "5:25"},
-          {"l": "Lat crunch machine", "t": "5:35"},
-          {"l": "Hand supported Bicep Curls", "t": "5:42"},
-          {"l": "Hand supported Hammer Curls", "t": "5:50"},
-          {"l": "Preacher curls", "t": "5:58"},
-          {"l": "Cable Reverse Curls", "t": "6:06"},
-          {"l": "Rear Delt Fly's", "t": "6:14"}
+          {
+            "l": "Wordle",
+            "t": "12:30"
+          },
+          {
+            "l": "Pips (all levels)",
+            "t": "12:40"
+          },
+          {
+            "l": "Impulse Training",
+            "t": "12:50"
+          },
+          {
+            "l": "Duolingo",
+            "t": "1:00"
+          },
+          {
+            "l": "1 chapter of Chess learning",
+            "t": "1:10"
+          },
+          {
+            "l": "Lunch + Overnight Oats",
+            "t": "1:20"
+          }
         ]
       },
       {
-        "id": "dinner", "icon": "🍽️", "title": "Dinner + wind down", "time": "6:30 – 7:30pm",
+        "id": "eve",
+        "icon": "\ud83d\udd31",
+        "title": "Evening \u2014 Pull (Back + Biceps)",
+        "time": "4:30 \u2013 6:30pm",
         "tasks": [
-          {"l": "Shower", "t": "6:30"},
-          {"l": "Dinner + Eggs", "t": "7:00"},
-          {"l": "Creatine (x4)", "t": "7:00", "tag": "supp"},
-          {"l": "Watch something", "t": "7:30"}
+          {
+            "l": "Neck exercises",
+            "t": "4:30",
+            "tag": "mindset"
+          },
+          {
+            "l": "Light mobility",
+            "t": "4:45",
+            "tag": "mindset"
+          },
+          {
+            "l": "15 min Incline Cardio",
+            "t": ""
+          },
+          {
+            "l": "Dead Hang",
+            "t": "5:00"
+          },
+          {
+            "l": "Bicep Pull ups",
+            "t": "5:05"
+          },
+          {
+            "l": "Machine Rows superset with Kelso shrug",
+            "t": "5:15"
+          },
+          {
+            "l": "Lat Pull Down",
+            "t": "5:25"
+          },
+          {
+            "l": "Lat crunch machine",
+            "t": "5:35"
+          },
+          {
+            "l": "Hand supported Bicep Curls",
+            "t": "5:42"
+          },
+          {
+            "l": "Hand supported Hammer Curls",
+            "t": "5:50"
+          },
+          {
+            "l": "Preacher curls",
+            "t": "5:58"
+          },
+          {
+            "l": "Cable Reverse Curls",
+            "t": "6:06"
+          },
+          {
+            "l": "Rear Delt Fly's",
+            "t": "6:14"
+          }
         ]
       },
       {
-        "id": "build", "icon": "🧠", "title": "Build / Learn", "time": "7:30 – 10:00pm",
-        "tasks": [{"l": "Build / Learn session", "t": "7:30"}]
+        "id": "dinner",
+        "icon": "\ud83c\udf7d\ufe0f",
+        "title": "Dinner + wind down",
+        "time": "6:30 \u2013 7:30pm",
+        "tasks": [
+          {
+            "l": "Shower",
+            "t": "6:30"
+          },
+          {
+            "l": "Dinner + Eggs",
+            "t": "7:00"
+          },
+          {
+            "l": "Creatine (x4)",
+            "t": "7:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Watch something",
+            "t": "7:30"
+          }
+        ]
       },
       {
-        "id": "night", "icon": "🌙", "title": "Night routine", "time": "10:30 – 11:30pm",
+        "id": "build",
+        "icon": "\ud83e\udde0",
+        "title": "Build / Learn",
+        "time": "7:30 \u2013 10:00pm",
         "tasks": [
-          {"l": "Make overnight oats + Talk to mum", "t": "10:30"},
-          {"l": "Take meal prep out from freezer", "t": "10:45"},
-          {"l": "Wash face", "t": "10:50"},
-          {"l": "Skincare", "t": "10:55"},
-          {"l": "Magnesium", "t": "11:00", "tag": "supp"},
-          {"l": "Read", "t": "11:00"},
-          {"l": "Nose strip", "t": "11:20"},
-          {"l": "Mouth tape", "t": "11:25"},
-          {"l": "Eye tape", "t": "11:27"},
-          {"l": "Eye mask", "t": "11:28"},
-          {"l": "Sleep", "t": "11:30"}
+          {
+            "l": "Build / Learn session",
+            "t": "7:30"
+          }
+        ]
+      },
+      {
+        "id": "night",
+        "icon": "\ud83c\udf19",
+        "title": "Night routine",
+        "time": "10:30 \u2013 11:30pm",
+        "tasks": [
+          {
+            "l": "Make overnight oats + Talk to mum",
+            "t": "10:30"
+          },
+          {
+            "l": "Take meal prep out from freezer",
+            "t": "10:45"
+          },
+          {
+            "l": "Wash face",
+            "t": "10:50"
+          },
+          {
+            "l": "Skincare",
+            "t": "10:55"
+          },
+          {
+            "l": "Magnesium",
+            "t": "11:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Read",
+            "t": "11:00"
+          },
+          {
+            "l": "Nose strip",
+            "t": "11:20"
+          },
+          {
+            "l": "Mouth tape",
+            "t": "11:25"
+          },
+          {
+            "l": "Eye tape",
+            "t": "11:27"
+          },
+          {
+            "l": "Eye mask",
+            "t": "11:28"
+          },
+          {
+            "l": "Sleep",
+            "t": "11:30"
+          }
         ]
       }
     ],
     "Wednesday": [
       {
-        "id": "wake", "icon": "🌅", "title": "Wake up", "time": "6:00 – 6:15am",
+        "id": "wake",
+        "icon": "\ud83c\udf05",
+        "title": "Wake up",
+        "time": "6:00 \u2013 6:15am",
         "tasks": [
-          {"l": "Get out of bed", "t": "6:00"},
-          {"l": "Open shades + Make bed", "t": "6:00"},
-          {"l": "Drink 500ml of water", "t": "6:02"},
-          {"l": "Electrolytes", "t": "6:02", "tag": "supp"},
-          {"l": "Wear face mask", "t": "6:05"},
-          {"l": "Wash face (cold water)", "t": "6:08"},
-          {"l": "Upper body stretch", "t": "6:10"},
-          {"l": "Brush teeth", "t": "6:12"},
-          {"l": "Clean nose (saline)", "t": "6:14"},
-          {"l": "NMN", "t": "6:15", "tag": "supp"},
-          {"l": "Trans-Resveratrol", "t": "6:15", "tag": "supp"},
-          {"l": "Shilajit (x2)", "t": "6:15", "tag": "supp"}
+          {
+            "l": "Get out of bed",
+            "t": "6:00"
+          },
+          {
+            "l": "Open shades + Make bed",
+            "t": "6:00"
+          },
+          {
+            "l": "Drink 500ml of water",
+            "t": "6:02"
+          },
+          {
+            "l": "Electrolytes",
+            "t": "6:02",
+            "tag": "supp"
+          },
+          {
+            "l": "Wear face mask",
+            "t": "6:05"
+          },
+          {
+            "l": "Wash face (cold water)",
+            "t": "6:08"
+          },
+          {
+            "l": "Upper body stretch",
+            "t": "6:10"
+          },
+          {
+            "l": "Brush teeth",
+            "t": "6:12"
+          },
+          {
+            "l": "Clean nose (saline)",
+            "t": "6:14"
+          },
+          {
+            "l": "NMN",
+            "t": "6:15",
+            "tag": "supp"
+          },
+          {
+            "l": "Trans-Resveratrol",
+            "t": "6:15",
+            "tag": "supp"
+          },
+          {
+            "l": "Shilajit (x2)",
+            "t": "6:15",
+            "tag": "supp"
+          }
         ]
       },
       {
-        "id": "prep", "icon": "🧘", "title": "Breathwork + Mobility", "time": "6:15 – 6:40am",
+        "id": "prep",
+        "icon": "\ud83e\uddd8",
+        "title": "Breathwork + Mobility",
+        "time": "6:15 \u2013 6:40am",
         "tasks": [
-          {"l": "Eat protein bar", "t": "6:15"},
-          {"l": "Wear workout clothes", "t": "6:18"},
-          {"l": "Wim Hof + Box breathing — 5 mins", "t": "6:20", "tag": "mindset"},
-          {"l": "Mike Holland exercises — 5 mins", "t": "6:25", "tag": "mindset"},
-          {"l": "Mobility: full body, hips, shoulders — 15 mins", "t": "6:30", "tag": "mindset"}
+          {
+            "l": "Eat protein bar",
+            "t": "6:15"
+          },
+          {
+            "l": "Wear workout clothes",
+            "t": "6:18"
+          },
+          {
+            "l": "Wim Hof + Box breathing \u2014 5 mins",
+            "t": "6:20",
+            "tag": "mindset"
+          },
+          {
+            "l": "Mike Holland exercises \u2014 5 mins",
+            "t": "6:25",
+            "tag": "mindset"
+          },
+          {
+            "l": "Mobility: full body, hips, shoulders \u2014 15 mins",
+            "t": "6:30",
+            "tag": "mindset"
+          }
         ]
       },
       {
-        "id": "cardio", "icon": "🏃", "title": "Cardio — Zone 2 jog to gym", "time": "6:40 – 7:05am",
-        "tasks": [{"l": "Zone 2 jog to gym", "t": "6:40"}]
-      },
-      {
-        "id": "gymam", "icon": "🏋️", "title": "Morning gym — Legs + Shoulders", "time": "7:05 – 8:05am",
+        "id": "cardio",
+        "icon": "\ud83c\udfc3",
+        "title": "Cardio \u2014 Zone 2 jog to gym",
+        "time": "6:40 \u2013 7:05am",
         "tasks": [
-          {"l": "Abs", "t": "7:05"},
-          {"l": "50 Push ups", "t": "7:15"},
-          {"l": "Dips till failure then Assisted Dip", "t": "7:25"},
-          {"l": "20 min Sauna", "t": "7:40", "tag": "sauna"}
+          {
+            "l": "Zone 2 jog to gym",
+            "t": "6:40"
+          }
         ]
       },
       {
-        "id": "postgym", "icon": "🚿", "title": "Post-gym", "time": "8:05 – 8:45am",
+        "id": "gymam",
+        "icon": "\ud83c\udfcb\ufe0f",
+        "title": "Morning gym \u2014 Legs + Shoulders",
+        "time": "7:05 \u2013 8:05am",
         "tasks": [
-          {"l": "Walk back from gym", "t": "8:05"},
-          {"l": "Drink water", "t": "8:20"},
-          {"l": "Cold shower", "t": "8:22"},
-          {"l": "Skincare", "t": "8:35"},
-          {"l": "Get ready for work / Start work", "t": "8:40"},
-          {"l": "Read News dashboard", "t": "8:45"}
+          {
+            "l": "Abs",
+            "t": "7:05"
+          },
+          {
+            "l": "50 Push ups",
+            "t": "7:15"
+          },
+          {
+            "l": "Dips till failure then Assisted Dip",
+            "t": "7:25"
+          },
+          {
+            "l": "Sauna",
+            "t": "7:40",
+            "tag": "sauna"
+          }
         ]
       },
       {
-        "id": "bsupps", "icon": "💊", "title": "Breakfast supplements", "time": "8:45am",
+        "id": "postgym",
+        "icon": "\ud83d\udebf",
+        "title": "Post-gym",
+        "time": "8:05 \u2013 8:45am",
         "tasks": [
-          {"l": "Vitamin D3", "t": "8:45", "tag": "supp"},
-          {"l": "Omega 3", "t": "8:45", "tag": "supp"},
-          {"l": "Tostero (x2)", "t": "8:45", "tag": "supp"},
-          {"l": "Longevit", "t": "8:45", "tag": "supp"},
-          {"l": "Collagen + Coffee", "t": "8:45", "tag": "supp"},
-          {"l": "Quercetin & Bromelain (x2)", "t": "8:45", "tag": "supp"}
+          {
+            "l": "Walk back from gym",
+            "t": "8:05"
+          },
+          {
+            "l": "Drink water",
+            "t": "8:20"
+          },
+          {
+            "l": "Cold shower",
+            "t": "8:22"
+          },
+          {
+            "l": "Skincare",
+            "t": "8:35"
+          },
+          {
+            "l": "Get ready for work / Start work",
+            "t": "8:40"
+          },
+          {
+            "l": "Read News dashboard",
+            "t": "8:45"
+          }
         ]
       },
       {
-        "id": "work", "icon": "💼", "title": "Work", "time": "9:00am – 12:30pm",
+        "id": "bsupps",
+        "icon": "\ud83d\udc8a",
+        "title": "Breakfast supplements",
+        "time": "8:45am",
         "tasks": [
-          {"l": "Office", "t": "9:00"},
-          {"l": "Coffee + Ryze Coffee", "t": "9:15"}
+          {
+            "l": "Vitamin D3",
+            "t": "8:45",
+            "tag": "supp"
+          },
+          {
+            "l": "Omega 3",
+            "t": "8:45",
+            "tag": "supp"
+          },
+          {
+            "l": "Tostero (x2)",
+            "t": "8:45",
+            "tag": "supp"
+          },
+          {
+            "l": "Quercetin & Bromelain (x2)",
+            "t": "8:45",
+            "tag": "supp"
+          }
         ]
       },
       {
-        "id": "lunch", "icon": "🍱", "title": "Lunch break", "time": "12:30 – 1:30pm",
+        "id": "work",
+        "icon": "\ud83d\udcbc",
+        "title": "Work",
+        "time": "9:00am \u2013 12:30pm",
         "tasks": [
-          {"l": "Wordle", "t": "12:30"},
-          {"l": "Pips (all levels)", "t": "12:40"},
-          {"l": "Impulse Training", "t": "12:50"},
-          {"l": "Duolingo", "t": "1:00"},
-          {"l": "1 chapter of Chess learning", "t": "1:10"},
-          {"l": "Lunch + Overnight Oats", "t": "1:20"}
+          {
+            "l": "Office",
+            "t": "9:00"
+          },
+          {
+            "l": "Coffee + Ryze + Collagen",
+            "t": "9:15"
+          }
         ]
       },
       {
-        "id": "eve", "icon": "🔱", "title": "Evening — Legs + Shoulders", "time": "4:30 – 6:30pm",
+        "id": "lunch",
+        "icon": "\ud83c\udf71",
+        "title": "Lunch break",
+        "time": "12:30 \u2013 1:30pm",
         "tasks": [
-          {"l": "Neck exercises", "t": "4:30", "tag": "mindset"},
-          {"l": "Light mobility", "t": "4:45", "tag": "mindset"},
-          {"l": "Front Squats", "t": "5:00"},
-          {"l": "Leg Curls", "t": "5:10"},
-          {"l": "Leg Extensions", "t": "5:20"},
-          {"l": "Single Leg Curls", "t": "5:30"},
-          {"l": "Calf presses", "t": "5:40"},
-          {"l": "Seated Lateral Raises", "t": "5:50"},
-          {"l": "Lateral Raise Machine", "t": "5:58"},
-          {"l": "Front Lateral Raises", "t": "6:06"},
-          {"l": "Cross Machine Shoulder Press", "t": "6:14"}
+          {
+            "l": "Wordle",
+            "t": "12:30"
+          },
+          {
+            "l": "Pips (all levels)",
+            "t": "12:40"
+          },
+          {
+            "l": "Impulse Training",
+            "t": "12:50"
+          },
+          {
+            "l": "Duolingo",
+            "t": "1:00"
+          },
+          {
+            "l": "1 chapter of Chess learning",
+            "t": "1:10"
+          },
+          {
+            "l": "Lunch + Overnight Oats",
+            "t": "1:20"
+          }
         ]
       },
       {
-        "id": "dinner", "icon": "🍽️", "title": "Dinner + wind down", "time": "6:30 – 7:30pm",
+        "id": "eve",
+        "icon": "\ud83d\udd31",
+        "title": "Evening \u2014 Legs + Shoulders",
+        "time": "4:30 \u2013 6:30pm",
         "tasks": [
-          {"l": "Shower", "t": "6:30"},
-          {"l": "Dinner + Eggs", "t": "7:00"},
-          {"l": "Creatine (x4)", "t": "7:00", "tag": "supp"},
-          {"l": "Watch something", "t": "7:30"}
+          {
+            "l": "Neck exercises",
+            "t": "4:30",
+            "tag": "mindset"
+          },
+          {
+            "l": "Light mobility",
+            "t": "4:45",
+            "tag": "mindset"
+          },
+          {
+            "l": "15 min Incline Cardio",
+            "t": ""
+          },
+          {
+            "l": "Front Squats",
+            "t": "5:00"
+          },
+          {
+            "l": "Leg Curls",
+            "t": "5:10"
+          },
+          {
+            "l": "Leg Extensions",
+            "t": "5:20"
+          },
+          {
+            "l": "Single Leg Curls",
+            "t": "5:30"
+          },
+          {
+            "l": "Calf presses",
+            "t": "5:40"
+          },
+          {
+            "l": "Seated Lateral Raises",
+            "t": "5:50"
+          },
+          {
+            "l": "Lateral Raise Machine",
+            "t": "5:58"
+          },
+          {
+            "l": "Front Lateral Raises",
+            "t": "6:06"
+          },
+          {
+            "l": "Cross Machine Shoulder Press",
+            "t": "6:14"
+          },
+          {
+            "l": "Rear Delt Raises",
+            "t": "6:22"
+          }
         ]
       },
       {
-        "id": "build", "icon": "🧠", "title": "Build / Learn", "time": "7:30 – 10:00pm",
-        "tasks": [{"l": "Build / Learn session", "t": "7:30"}]
+        "id": "dinner",
+        "icon": "\ud83c\udf7d\ufe0f",
+        "title": "Dinner + wind down",
+        "time": "6:30 \u2013 7:30pm",
+        "tasks": [
+          {
+            "l": "Shower",
+            "t": "6:30"
+          },
+          {
+            "l": "Dinner + Eggs",
+            "t": "7:00"
+          },
+          {
+            "l": "Creatine (x4)",
+            "t": "7:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Watch something",
+            "t": "7:30"
+          }
+        ]
       },
       {
-        "id": "night", "icon": "🌙", "title": "Night routine", "time": "10:30 – 11:30pm",
+        "id": "build",
+        "icon": "\ud83e\udde0",
+        "title": "Build / Learn",
+        "time": "7:30 \u2013 10:00pm",
         "tasks": [
-          {"l": "Make overnight oats + Talk to mum", "t": "10:30"},
-          {"l": "Take meal prep out from freezer", "t": "10:45"},
-          {"l": "Wash face", "t": "10:50"},
-          {"l": "Skincare", "t": "10:55"},
-          {"l": "Magnesium", "t": "11:00", "tag": "supp"},
-          {"l": "Read", "t": "11:00"},
-          {"l": "Nose strip", "t": "11:20"},
-          {"l": "Mouth tape", "t": "11:25"},
-          {"l": "Eye tape", "t": "11:27"},
-          {"l": "Eye mask", "t": "11:28"},
-          {"l": "Sleep", "t": "11:30"}
+          {
+            "l": "Build / Learn session",
+            "t": "7:30"
+          }
+        ]
+      },
+      {
+        "id": "night",
+        "icon": "\ud83c\udf19",
+        "title": "Night routine",
+        "time": "10:30 \u2013 11:30pm",
+        "tasks": [
+          {
+            "l": "Make overnight oats + Talk to mum",
+            "t": "10:30"
+          },
+          {
+            "l": "Take meal prep out from freezer",
+            "t": "10:45"
+          },
+          {
+            "l": "Wash face",
+            "t": "10:50"
+          },
+          {
+            "l": "Skincare",
+            "t": "10:55"
+          },
+          {
+            "l": "Magnesium",
+            "t": "11:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Read",
+            "t": "11:00"
+          },
+          {
+            "l": "Nose strip",
+            "t": "11:20"
+          },
+          {
+            "l": "Mouth tape",
+            "t": "11:25"
+          },
+          {
+            "l": "Eye tape",
+            "t": "11:27"
+          },
+          {
+            "l": "Eye mask",
+            "t": "11:28"
+          },
+          {
+            "l": "Sleep",
+            "t": "11:30"
+          }
         ]
       }
     ],
     "Thursday": [
       {
-        "id": "wake", "icon": "🌅", "title": "Wake up", "time": "6:00 – 6:15am",
+        "id": "wake",
+        "icon": "\ud83c\udf05",
+        "title": "Wake up",
+        "time": "6:00 \u2013 6:15am",
         "tasks": [
-          {"l": "Get out of bed", "t": "6:00"},
-          {"l": "Open shades + Make bed", "t": "6:00"},
-          {"l": "Drink 500ml of water", "t": "6:02"},
-          {"l": "Electrolytes", "t": "6:02", "tag": "supp"},
-          {"l": "Wear face mask", "t": "6:05"},
-          {"l": "Wash face (cold water)", "t": "6:08"},
-          {"l": "Upper body stretch", "t": "6:10"},
-          {"l": "Brush teeth", "t": "6:12"},
-          {"l": "Clean nose (saline)", "t": "6:14"},
-          {"l": "NMN", "t": "6:15", "tag": "supp"},
-          {"l": "Trans-Resveratrol", "t": "6:15", "tag": "supp"},
-          {"l": "Shilajit (x2)", "t": "6:15", "tag": "supp"}
+          {
+            "l": "Get out of bed",
+            "t": "6:00"
+          },
+          {
+            "l": "Open shades + Make bed",
+            "t": "6:00"
+          },
+          {
+            "l": "Drink 500ml of water",
+            "t": "6:02"
+          },
+          {
+            "l": "Electrolytes",
+            "t": "6:02",
+            "tag": "supp"
+          },
+          {
+            "l": "Wear face mask",
+            "t": "6:05"
+          },
+          {
+            "l": "Wash face (cold water)",
+            "t": "6:08"
+          },
+          {
+            "l": "Upper body stretch",
+            "t": "6:10"
+          },
+          {
+            "l": "Brush teeth",
+            "t": "6:12"
+          },
+          {
+            "l": "Clean nose (saline)",
+            "t": "6:14"
+          },
+          {
+            "l": "NMN",
+            "t": "6:15",
+            "tag": "supp"
+          },
+          {
+            "l": "Trans-Resveratrol",
+            "t": "6:15",
+            "tag": "supp"
+          },
+          {
+            "l": "Shilajit (x2)",
+            "t": "6:15",
+            "tag": "supp"
+          }
         ]
       },
       {
-        "id": "prep", "icon": "🧘", "title": "Breathwork + Mobility", "time": "6:15 – 6:40am",
+        "id": "prep",
+        "icon": "\ud83e\uddd8",
+        "title": "Breathwork + Mobility",
+        "time": "6:15 \u2013 6:40am",
         "tasks": [
-          {"l": "Eat protein bar", "t": "6:15"},
-          {"l": "Wear workout clothes", "t": "6:18"},
-          {"l": "Wim Hof + Box breathing — 5 mins", "t": "6:20", "tag": "mindset"},
-          {"l": "Mike Holland exercises — 5 mins", "t": "6:25", "tag": "mindset"},
-          {"l": "Mobility: full body, hips, shoulders — 15 mins", "t": "6:30", "tag": "mindset"}
+          {
+            "l": "Eat protein bar",
+            "t": "6:15"
+          },
+          {
+            "l": "Wear workout clothes",
+            "t": "6:18"
+          },
+          {
+            "l": "Wim Hof + Box breathing \u2014 5 mins",
+            "t": "6:20",
+            "tag": "mindset"
+          },
+          {
+            "l": "Mike Holland exercises \u2014 5 mins",
+            "t": "6:25",
+            "tag": "mindset"
+          },
+          {
+            "l": "Mobility: full body, hips, shoulders \u2014 15 mins",
+            "t": "6:30",
+            "tag": "mindset"
+          }
         ]
       },
       {
-        "id": "cardio", "icon": "🏃", "title": "Cardio — VO2 Max", "time": "6:40 – 7:05am",
-        "tasks": [{"l": "VO2 Max session", "t": "6:40"}]
-      },
-      {
-        "id": "postgym", "icon": "🚿", "title": "Post-gym", "time": "8:05 – 8:45am",
+        "id": "cardio",
+        "icon": "\ud83c\udfc3",
+        "title": "Cardio \u2014 VO2 Max",
+        "time": "6:40 \u2013 7:05am",
         "tasks": [
-          {"l": "Walk back", "t": "8:05"},
-          {"l": "Drink water", "t": "8:20"},
-          {"l": "Cold shower", "t": "8:22"},
-          {"l": "Skincare", "t": "8:35"},
-          {"l": "Get ready for work / Start work", "t": "8:40"},
-          {"l": "Read News dashboard", "t": "8:45"}
+          {
+            "l": "VO2 Max session",
+            "t": "6:40"
+          }
         ]
       },
       {
-        "id": "bsupps", "icon": "💊", "title": "Breakfast supplements", "time": "8:45am",
+        "id": "postgym",
+        "icon": "\ud83d\udebf",
+        "title": "Post-gym",
+        "time": "8:05 \u2013 8:45am",
         "tasks": [
-          {"l": "Vitamin D3", "t": "8:45", "tag": "supp"},
-          {"l": "Omega 3", "t": "8:45", "tag": "supp"},
-          {"l": "Tostero (x2)", "t": "8:45", "tag": "supp"},
-          {"l": "Longevit", "t": "8:45", "tag": "supp"},
-          {"l": "Collagen + Coffee", "t": "8:45", "tag": "supp"},
-          {"l": "Quercetin & Bromelain (x2)", "t": "8:45", "tag": "supp"}
+          {
+            "l": "Walk back",
+            "t": "8:05"
+          },
+          {
+            "l": "Drink water",
+            "t": "8:20"
+          },
+          {
+            "l": "Cold shower",
+            "t": "8:22"
+          },
+          {
+            "l": "Skincare",
+            "t": "8:35"
+          },
+          {
+            "l": "Get ready for work / Start work",
+            "t": "8:40"
+          },
+          {
+            "l": "Read News dashboard",
+            "t": "8:45"
+          }
         ]
       },
       {
-        "id": "work", "icon": "💼", "title": "Work", "time": "9:00am – 12:30pm",
+        "id": "bsupps",
+        "icon": "\ud83d\udc8a",
+        "title": "Breakfast supplements",
+        "time": "8:45am",
         "tasks": [
-          {"l": "Office", "t": "9:00"},
-          {"l": "Coffee + Ryze Coffee", "t": "9:15"}
+          {
+            "l": "Vitamin D3",
+            "t": "8:45",
+            "tag": "supp"
+          },
+          {
+            "l": "Omega 3",
+            "t": "8:45",
+            "tag": "supp"
+          },
+          {
+            "l": "Tostero (x2)",
+            "t": "8:45",
+            "tag": "supp"
+          },
+          {
+            "l": "Quercetin & Bromelain (x2)",
+            "t": "8:45",
+            "tag": "supp"
+          }
         ]
       },
       {
-        "id": "lunch", "icon": "🍱", "title": "Lunch break", "time": "12:30 – 1:30pm",
+        "id": "work",
+        "icon": "\ud83d\udcbc",
+        "title": "Work",
+        "time": "9:00am \u2013 12:30pm",
         "tasks": [
-          {"l": "Wordle", "t": "12:30"},
-          {"l": "Pips (all levels)", "t": "12:40"},
-          {"l": "Impulse Training", "t": "12:50"},
-          {"l": "Duolingo", "t": "1:00"},
-          {"l": "1 chapter of Chess learning", "t": "1:10"},
-          {"l": "Lunch + Overnight Oats", "t": "1:20"}
+          {
+            "l": "Office",
+            "t": "9:00"
+          },
+          {
+            "l": "Coffee + Ryze + Collagen",
+            "t": "9:15"
+          }
         ]
       },
       {
-        "id": "eve", "icon": "🔱", "title": "Evening — VO2 Max + Recovery", "time": "4:30 – 6:30pm",
+        "id": "lunch",
+        "icon": "\ud83c\udf71",
+        "title": "Lunch break",
+        "time": "12:30 \u2013 1:30pm",
         "tasks": [
-          {"l": "Neck exercises", "t": "4:30", "tag": "mindset"},
-          {"l": "Light mobility", "t": "4:45", "tag": "mindset"},
-          {"l": "Foam rolling", "t": "5:00"},
-          {"l": "Stretch session", "t": "5:20"}
+          {
+            "l": "Wordle",
+            "t": "12:30"
+          },
+          {
+            "l": "Pips (all levels)",
+            "t": "12:40"
+          },
+          {
+            "l": "Impulse Training",
+            "t": "12:50"
+          },
+          {
+            "l": "Duolingo",
+            "t": "1:00"
+          },
+          {
+            "l": "1 chapter of Chess learning",
+            "t": "1:10"
+          },
+          {
+            "l": "Lunch + Overnight Oats",
+            "t": "1:20"
+          }
         ]
       },
       {
-        "id": "dinner", "icon": "🍽️", "title": "Dinner + wind down", "time": "6:30 – 7:30pm",
+        "id": "eve",
+        "icon": "\ud83d\udd31",
+        "title": "Evening \u2014 VO2 Max + Recovery",
+        "time": "4:30 \u2013 6:30pm",
         "tasks": [
-          {"l": "Shower", "t": "6:30"},
-          {"l": "Dinner + Eggs", "t": "7:00"},
-          {"l": "Creatine (x4)", "t": "7:00", "tag": "supp"},
-          {"l": "Watch something", "t": "7:30"}
+          {
+            "l": "Neck exercises",
+            "t": "4:30",
+            "tag": "mindset"
+          },
+          {
+            "l": "Light mobility",
+            "t": "4:45",
+            "tag": "mindset"
+          },
+          {
+            "l": "15 min Incline Cardio",
+            "t": ""
+          },
+          {
+            "l": "Foam rolling",
+            "t": "5:00"
+          },
+          {
+            "l": "Stretch session",
+            "t": "5:20"
+          }
         ]
       },
       {
-        "id": "build", "icon": "🧠", "title": "Build / Learn", "time": "7:30 – 10:00pm",
-        "tasks": [{"l": "Build / Learn session", "t": "7:30"}]
+        "id": "dinner",
+        "icon": "\ud83c\udf7d\ufe0f",
+        "title": "Dinner + wind down",
+        "time": "6:30 \u2013 7:30pm",
+        "tasks": [
+          {
+            "l": "Shower",
+            "t": "6:30"
+          },
+          {
+            "l": "Dinner + Eggs",
+            "t": "7:00"
+          },
+          {
+            "l": "Creatine (x4)",
+            "t": "7:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Watch something",
+            "t": "7:30"
+          }
+        ]
       },
       {
-        "id": "night", "icon": "🌙", "title": "Night routine", "time": "10:30 – 11:30pm",
+        "id": "build",
+        "icon": "\ud83e\udde0",
+        "title": "Build / Learn",
+        "time": "7:30 \u2013 10:00pm",
         "tasks": [
-          {"l": "Make overnight oats + Talk to mum", "t": "10:30"},
-          {"l": "Take meal prep out from freezer", "t": "10:45"},
-          {"l": "Wash face", "t": "10:50"},
-          {"l": "Skincare", "t": "10:55"},
-          {"l": "Magnesium", "t": "11:00", "tag": "supp"},
-          {"l": "Read", "t": "11:00"},
-          {"l": "Nose strip", "t": "11:20"},
-          {"l": "Mouth tape", "t": "11:25"},
-          {"l": "Eye tape", "t": "11:27"},
-          {"l": "Eye mask", "t": "11:28"},
-          {"l": "Sleep", "t": "11:30"}
+          {
+            "l": "Build / Learn session",
+            "t": "7:30"
+          }
+        ]
+      },
+      {
+        "id": "night",
+        "icon": "\ud83c\udf19",
+        "title": "Night routine",
+        "time": "10:30 \u2013 11:30pm",
+        "tasks": [
+          {
+            "l": "Make overnight oats + Talk to mum",
+            "t": "10:30"
+          },
+          {
+            "l": "Take meal prep out from freezer",
+            "t": "10:45"
+          },
+          {
+            "l": "Wash face",
+            "t": "10:50"
+          },
+          {
+            "l": "Skincare",
+            "t": "10:55"
+          },
+          {
+            "l": "Magnesium",
+            "t": "11:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Read",
+            "t": "11:00"
+          },
+          {
+            "l": "Nose strip",
+            "t": "11:20"
+          },
+          {
+            "l": "Mouth tape",
+            "t": "11:25"
+          },
+          {
+            "l": "Eye tape",
+            "t": "11:27"
+          },
+          {
+            "l": "Eye mask",
+            "t": "11:28"
+          },
+          {
+            "l": "Sleep",
+            "t": "11:30"
+          }
         ]
       }
     ],
     "Friday": [
       {
-        "id": "wake", "icon": "🌅", "title": "Wake up", "time": "6:00 – 6:15am",
+        "id": "wake",
+        "icon": "\ud83c\udf05",
+        "title": "Wake up",
+        "time": "6:00 \u2013 6:15am",
         "tasks": [
-          {"l": "Get out of bed", "t": "6:00"},
-          {"l": "Open shades + Make bed", "t": "6:00"},
-          {"l": "Drink 500ml of water", "t": "6:02"},
-          {"l": "Electrolytes", "t": "6:02", "tag": "supp"},
-          {"l": "Wear face mask", "t": "6:05"},
-          {"l": "Wash face (cold water)", "t": "6:08"},
-          {"l": "Upper body stretch", "t": "6:10"},
-          {"l": "Brush teeth", "t": "6:12"},
-          {"l": "Clean nose (saline)", "t": "6:14"},
-          {"l": "NMN", "t": "6:15", "tag": "supp"},
-          {"l": "Trans-Resveratrol", "t": "6:15", "tag": "supp"},
-          {"l": "Shilajit (x2)", "t": "6:15", "tag": "supp"}
+          {
+            "l": "Get out of bed",
+            "t": "6:00"
+          },
+          {
+            "l": "Open shades + Make bed",
+            "t": "6:00"
+          },
+          {
+            "l": "Drink 500ml of water",
+            "t": "6:02"
+          },
+          {
+            "l": "Electrolytes",
+            "t": "6:02",
+            "tag": "supp"
+          },
+          {
+            "l": "Wear face mask",
+            "t": "6:05"
+          },
+          {
+            "l": "Wash face (cold water)",
+            "t": "6:08"
+          },
+          {
+            "l": "Upper body stretch",
+            "t": "6:10"
+          },
+          {
+            "l": "Brush teeth",
+            "t": "6:12"
+          },
+          {
+            "l": "Clean nose (saline)",
+            "t": "6:14"
+          },
+          {
+            "l": "NMN",
+            "t": "6:15",
+            "tag": "supp"
+          },
+          {
+            "l": "Trans-Resveratrol",
+            "t": "6:15",
+            "tag": "supp"
+          },
+          {
+            "l": "Shilajit (x2)",
+            "t": "6:15",
+            "tag": "supp"
+          }
         ]
       },
       {
-        "id": "prep", "icon": "🧘", "title": "Breathwork + Mobility", "time": "6:15 – 6:40am",
+        "id": "prep",
+        "icon": "\ud83e\uddd8",
+        "title": "Breathwork + Mobility",
+        "time": "6:15 \u2013 6:40am",
         "tasks": [
-          {"l": "Eat protein bar", "t": "6:15"},
-          {"l": "Wear workout clothes", "t": "6:18"},
-          {"l": "Wim Hof + Box breathing — 5 mins", "t": "6:20", "tag": "mindset"},
-          {"l": "Mike Holland exercises — 5 mins", "t": "6:25", "tag": "mindset"},
-          {"l": "Mobility: full body, hips, shoulders — 15 mins", "t": "6:30", "tag": "mindset"}
+          {
+            "l": "Eat protein bar",
+            "t": "6:15"
+          },
+          {
+            "l": "Wear workout clothes",
+            "t": "6:18"
+          },
+          {
+            "l": "Wim Hof + Box breathing \u2014 5 mins",
+            "t": "6:20",
+            "tag": "mindset"
+          },
+          {
+            "l": "Mike Holland exercises \u2014 5 mins",
+            "t": "6:25",
+            "tag": "mindset"
+          },
+          {
+            "l": "Mobility: full body, hips, shoulders \u2014 15 mins",
+            "t": "6:30",
+            "tag": "mindset"
+          }
         ]
       },
       {
-        "id": "cardio", "icon": "🏃", "title": "Cardio — Zone 2 jog to gym", "time": "6:40 – 7:05am",
-        "tasks": [{"l": "Zone 2 jog to gym", "t": "6:40"}]
-      },
-      {
-        "id": "gymam", "icon": "🏋️", "title": "Morning gym — Full Upper", "time": "7:05 – 8:05am",
+        "id": "cardio",
+        "icon": "\ud83c\udfc3",
+        "title": "Cardio \u2014 Zone 2 jog to gym",
+        "time": "6:40 \u2013 7:05am",
         "tasks": [
-          {"l": "Hip Thrusts + Planks", "t": "7:05"},
-          {"l": "Pull ups + Forearms", "t": "7:25"},
-          {"l": "Sauna", "t": "7:45", "tag": "sauna"}
+          {
+            "l": "Zone 2 jog to gym",
+            "t": "6:40"
+          }
         ]
       },
       {
-        "id": "postgym", "icon": "🚿", "title": "Post-gym", "time": "8:05 – 8:45am",
+        "id": "gymam",
+        "icon": "\ud83c\udfcb\ufe0f",
+        "title": "Morning gym \u2014 Full Upper",
+        "time": "7:05 \u2013 8:05am",
         "tasks": [
-          {"l": "Walk back from gym", "t": "8:05"},
-          {"l": "Drink water", "t": "8:20"},
-          {"l": "Cold shower", "t": "8:22"},
-          {"l": "Skincare", "t": "8:35"},
-          {"l": "Get ready for work / Start work", "t": "8:40"},
-          {"l": "Read News dashboard", "t": "8:45"}
+          {
+            "l": "Hip Thrusts + Planks",
+            "t": "7:05"
+          },
+          {
+            "l": "Pull ups + Forearms",
+            "t": "7:25"
+          },
+          {
+            "l": "Shrugs",
+            "t": "7:35"
+          },
+          {
+            "l": "Sauna",
+            "t": "7:45",
+            "tag": "sauna"
+          }
         ]
       },
       {
-        "id": "bsupps", "icon": "💊", "title": "Breakfast supplements", "time": "8:45am",
+        "id": "postgym",
+        "icon": "\ud83d\udebf",
+        "title": "Post-gym",
+        "time": "8:05 \u2013 8:45am",
         "tasks": [
-          {"l": "Vitamin D3", "t": "8:45", "tag": "supp"},
-          {"l": "Omega 3", "t": "8:45", "tag": "supp"},
-          {"l": "Tostero (x2)", "t": "8:45", "tag": "supp"},
-          {"l": "Longevit", "t": "8:45", "tag": "supp"},
-          {"l": "Collagen + Coffee", "t": "8:45", "tag": "supp"},
-          {"l": "Quercetin & Bromelain (x2)", "t": "8:45", "tag": "supp"}
+          {
+            "l": "Walk back from gym",
+            "t": "8:05"
+          },
+          {
+            "l": "Drink water",
+            "t": "8:20"
+          },
+          {
+            "l": "Cold shower",
+            "t": "8:22"
+          },
+          {
+            "l": "Skincare",
+            "t": "8:35"
+          },
+          {
+            "l": "Get ready for work / Start work",
+            "t": "8:40"
+          },
+          {
+            "l": "Read News dashboard",
+            "t": "8:45"
+          }
         ]
       },
       {
-        "id": "work", "icon": "💼", "title": "Work", "time": "9:00am – 12:30pm",
+        "id": "bsupps",
+        "icon": "\ud83d\udc8a",
+        "title": "Breakfast supplements",
+        "time": "8:45am",
         "tasks": [
-          {"l": "Office", "t": "9:00"},
-          {"l": "Coffee + Ryze Coffee", "t": "9:15"}
+          {
+            "l": "Vitamin D3",
+            "t": "8:45",
+            "tag": "supp"
+          },
+          {
+            "l": "Omega 3",
+            "t": "8:45",
+            "tag": "supp"
+          },
+          {
+            "l": "Tostero (x2)",
+            "t": "8:45",
+            "tag": "supp"
+          },
+          {
+            "l": "Quercetin & Bromelain (x2)",
+            "t": "8:45",
+            "tag": "supp"
+          }
         ]
       },
       {
-        "id": "lunch", "icon": "🍱", "title": "Lunch break", "time": "12:30 – 1:30pm",
+        "id": "work",
+        "icon": "\ud83d\udcbc",
+        "title": "Work",
+        "time": "9:00am \u2013 12:30pm",
         "tasks": [
-          {"l": "Wordle", "t": "12:30"},
-          {"l": "Pips (all levels)", "t": "12:40"},
-          {"l": "Impulse Training", "t": "12:50"},
-          {"l": "Duolingo", "t": "1:00"},
-          {"l": "1 chapter of Chess learning", "t": "1:10"},
-          {"l": "Lunch + Overnight Oats", "t": "1:20"}
+          {
+            "l": "Office",
+            "t": "9:00"
+          },
+          {
+            "l": "Coffee + Ryze + Collagen",
+            "t": "9:15"
+          }
         ]
       },
       {
-        "id": "eve", "icon": "🔱", "title": "Evening — Full Upper (Chest + Back + Arms + Shoulders)", "time": "4:30 – 6:30pm",
+        "id": "lunch",
+        "icon": "\ud83c\udf71",
+        "title": "Lunch break",
+        "time": "12:30 \u2013 1:30pm",
         "tasks": [
-          {"l": "Neck exercises", "t": "4:30", "tag": "mindset"},
-          {"l": "Light mobility", "t": "4:45", "tag": "mindset"},
-          {"l": "Deadlifts", "t": "5:00"},
-          {"l": "Barbell Rows", "t": "5:10"},
-          {"l": "Incline Bench Press", "t": "5:20"},
-          {"l": "Cable Fly's — Up n Down", "t": "5:30"},
-          {"l": "Skull Crushers", "t": "5:40"},
-          {"l": "Superset Tricep Push Down", "t": "5:48"},
-          {"l": "Incline DB Curls", "t": "5:56"},
-          {"l": "Preacher Curls", "t": "6:04"},
-          {"l": "Reverse Curls", "t": "6:12"},
-          {"l": "Machine Shoulder Press", "t": "6:18"},
-          {"l": "DB Lateral Raise", "t": "6:24"},
-          {"l": "Rear Delt Fly's", "t": "6:28"}
+          {
+            "l": "Wordle",
+            "t": "12:30"
+          },
+          {
+            "l": "Pips (all levels)",
+            "t": "12:40"
+          },
+          {
+            "l": "Impulse Training",
+            "t": "12:50"
+          },
+          {
+            "l": "Duolingo",
+            "t": "1:00"
+          },
+          {
+            "l": "1 chapter of Chess learning",
+            "t": "1:10"
+          },
+          {
+            "l": "Lunch + Overnight Oats",
+            "t": "1:20"
+          }
         ]
       },
       {
-        "id": "dinner", "icon": "🍽️", "title": "Dinner + wind down", "time": "6:30 – 7:30pm",
+        "id": "eve",
+        "icon": "\ud83d\udd31",
+        "title": "Evening \u2014 Full Upper (Chest + Back + Arms + Shoulders)",
+        "time": "4:30 \u2013 6:30pm",
         "tasks": [
-          {"l": "Shower", "t": "6:30"},
-          {"l": "Dinner + Eggs", "t": "7:00"},
-          {"l": "Creatine (x4)", "t": "7:00", "tag": "supp"},
-          {"l": "Watch something", "t": "7:30"}
+          {
+            "l": "Neck exercises",
+            "t": "4:30",
+            "tag": "mindset"
+          },
+          {
+            "l": "Light mobility",
+            "t": "4:45",
+            "tag": "mindset"
+          },
+          {
+            "l": "15 min Incline Cardio",
+            "t": ""
+          },
+          {
+            "l": "Deadlifts",
+            "t": "5:00"
+          },
+          {
+            "l": "Barbell Rows",
+            "t": "5:10"
+          },
+          {
+            "l": "Incline Bench Press",
+            "t": "5:20"
+          },
+          {
+            "l": "Cable Fly's \u2014 Up n Down",
+            "t": "5:30"
+          },
+          {
+            "l": "Skull Crushers",
+            "t": "5:40"
+          },
+          {
+            "l": "Superset Tricep Push Down",
+            "t": "5:48"
+          },
+          {
+            "l": "Incline DB Curls",
+            "t": "5:56"
+          },
+          {
+            "l": "Preacher Curls",
+            "t": "6:04"
+          },
+          {
+            "l": "Reverse Curls",
+            "t": "6:12"
+          },
+          {
+            "l": "Machine Shoulder Press",
+            "t": "6:18"
+          },
+          {
+            "l": "DB Lateral Raise",
+            "t": "6:24"
+          },
+          {
+            "l": "Rear Delt Fly's",
+            "t": "6:28"
+          }
         ]
       },
       {
-        "id": "build", "icon": "🧠", "title": "Build / Learn", "time": "7:30 – 10:00pm",
-        "tasks": [{"l": "Build / Learn session", "t": "7:30"}]
+        "id": "dinner",
+        "icon": "\ud83c\udf7d\ufe0f",
+        "title": "Dinner + wind down",
+        "time": "6:30 \u2013 7:30pm",
+        "tasks": [
+          {
+            "l": "Shower",
+            "t": "6:30"
+          },
+          {
+            "l": "Dinner + Eggs",
+            "t": "7:00"
+          },
+          {
+            "l": "Creatine (x4)",
+            "t": "7:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Watch something",
+            "t": "7:30"
+          }
+        ]
       },
       {
-        "id": "night", "icon": "🌙", "title": "Night routine", "time": "10:30 – 11:30pm",
+        "id": "build",
+        "icon": "\ud83e\udde0",
+        "title": "Build / Learn",
+        "time": "7:30 \u2013 10:00pm",
         "tasks": [
-          {"l": "Make overnight oats + Talk to mum", "t": "10:30"},
-          {"l": "Take meal prep out from freezer", "t": "10:45"},
-          {"l": "Wash face", "t": "10:50"},
-          {"l": "Skincare", "t": "10:55"},
-          {"l": "Magnesium", "t": "11:00", "tag": "supp"},
-          {"l": "Read", "t": "11:00"},
-          {"l": "Nose strip", "t": "11:20"},
-          {"l": "Mouth tape", "t": "11:25"},
-          {"l": "Eye tape", "t": "11:27"},
-          {"l": "Eye mask", "t": "11:28"},
-          {"l": "Sleep", "t": "11:30"}
+          {
+            "l": "Build / Learn session",
+            "t": "7:30"
+          }
+        ]
+      },
+      {
+        "id": "night",
+        "icon": "\ud83c\udf19",
+        "title": "Night routine",
+        "time": "10:30 \u2013 11:30pm",
+        "tasks": [
+          {
+            "l": "Make overnight oats + Talk to mum",
+            "t": "10:30"
+          },
+          {
+            "l": "Take meal prep out from freezer",
+            "t": "10:45"
+          },
+          {
+            "l": "Wash face",
+            "t": "10:50"
+          },
+          {
+            "l": "Skincare",
+            "t": "10:55"
+          },
+          {
+            "l": "Magnesium",
+            "t": "11:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Read",
+            "t": "11:00"
+          },
+          {
+            "l": "Nose strip",
+            "t": "11:20"
+          },
+          {
+            "l": "Mouth tape",
+            "t": "11:25"
+          },
+          {
+            "l": "Eye tape",
+            "t": "11:27"
+          },
+          {
+            "l": "Eye mask",
+            "t": "11:28"
+          },
+          {
+            "l": "Sleep",
+            "t": "11:30"
+          }
         ]
       }
     ],
     "Saturday": [
       {
-        "id": "wake", "icon": "🌅", "title": "Wake up", "time": "6:00 – 6:15am",
+        "id": "wake",
+        "icon": "\ud83c\udf05",
+        "title": "Wake up",
+        "time": "6:00 \u2013 6:15am",
         "tasks": [
-          {"l": "Get out of bed", "t": "6:00"},
-          {"l": "Open shades + Make bed", "t": "6:00"},
-          {"l": "Drink 500ml of water", "t": "6:02"},
-          {"l": "Electrolytes", "t": "6:02", "tag": "supp"},
-          {"l": "Wear face mask", "t": "6:05"},
-          {"l": "Wash face (cold water)", "t": "6:08"},
-          {"l": "Upper body stretch", "t": "6:10"},
-          {"l": "Brush teeth", "t": "6:12"},
-          {"l": "Clean nose (saline)", "t": "6:14"},
-          {"l": "NMN", "t": "6:15", "tag": "supp"},
-          {"l": "Trans-Resveratrol", "t": "6:15", "tag": "supp"},
-          {"l": "Shilajit (x2)", "t": "6:15", "tag": "supp"}
+          {
+            "l": "Get out of bed",
+            "t": "6:00"
+          },
+          {
+            "l": "Open shades + Make bed",
+            "t": "6:00"
+          },
+          {
+            "l": "Drink 500ml of water",
+            "t": "6:02"
+          },
+          {
+            "l": "Electrolytes",
+            "t": "6:02",
+            "tag": "supp"
+          },
+          {
+            "l": "Wear face mask",
+            "t": "6:05"
+          },
+          {
+            "l": "Wash face (cold water)",
+            "t": "6:08"
+          },
+          {
+            "l": "Upper body stretch",
+            "t": "6:10"
+          },
+          {
+            "l": "Brush teeth",
+            "t": "6:12"
+          },
+          {
+            "l": "Clean nose (saline)",
+            "t": "6:14"
+          },
+          {
+            "l": "NMN",
+            "t": "6:15",
+            "tag": "supp"
+          },
+          {
+            "l": "Trans-Resveratrol",
+            "t": "6:15",
+            "tag": "supp"
+          },
+          {
+            "l": "Shilajit (x2)",
+            "t": "6:15",
+            "tag": "supp"
+          }
         ]
       },
       {
-        "id": "cardio", "icon": "🏃", "title": "Cardio — Long Run", "time": "6:15 – 7:15am",
-        "tasks": [{"l": "Long Run", "t": "6:15"}]
-      },
-      {
-        "id": "gymam", "icon": "🏋️", "title": "Morning gym — Legs + Big Saturday", "time": "7:15 – 8:30am",
+        "id": "cardio",
+        "icon": "\ud83c\udfc3",
+        "title": "Cardio \u2014 Long Run",
+        "time": "6:15 \u2013 7:15am",
         "tasks": [
-          {"l": "Bicep Pull Ups + Dips + Pull Ups", "t": "7:15"},
-          {"l": "Leg Accessories — For Running", "t": "7:30"},
-          {"l": "Calves", "t": "7:45"},
-          {"l": "Hip Outward", "t": "7:52"},
-          {"l": "Hip Inward", "t": "8:00"},
-          {"l": "Abs", "t": "8:08"},
-          {"l": "Sauna — 30 mins", "t": "8:15", "tag": "sauna"}
+          {
+            "l": "Long Run",
+            "t": "6:15"
+          }
         ]
       },
       {
-        "id": "postgym", "icon": "🚿", "title": "Post-gym", "time": "8:30 – 9:00am",
+        "id": "gymam",
+        "icon": "\ud83c\udfcb\ufe0f",
+        "title": "Morning gym \u2014 Legs + Big Saturday",
+        "time": "7:15 \u2013 8:30am",
         "tasks": [
-          {"l": "Drink water", "t": "8:30"},
-          {"l": "Cold shower", "t": "8:35"},
-          {"l": "Skincare", "t": "8:50"},
-          {"l": "Get ready", "t": "8:55"}
+          {
+            "l": "Bicep Pull Ups + Dips + Pull Ups",
+            "t": "7:15"
+          },
+          {
+            "l": "Leg Accessories \u2014 For Running",
+            "t": "7:30"
+          },
+          {
+            "l": "Calves",
+            "t": "7:45"
+          },
+          {
+            "l": "Hip Outward",
+            "t": "7:52"
+          },
+          {
+            "l": "Hip Inward",
+            "t": "8:00"
+          },
+          {
+            "l": "Abs",
+            "t": "8:08"
+          },
+          {
+            "l": "Sauna \u2014 30 mins",
+            "t": "8:15",
+            "tag": "sauna"
+          }
         ]
       },
       {
-        "id": "bsupps", "icon": "💊", "title": "Breakfast supplements", "time": "9:00am",
+        "id": "postgym",
+        "icon": "\ud83d\udebf",
+        "title": "Post-gym",
+        "time": "8:30 \u2013 9:00am",
         "tasks": [
-          {"l": "Vitamin D3", "t": "9:00", "tag": "supp"},
-          {"l": "Omega 3", "t": "9:00", "tag": "supp"},
-          {"l": "Tostero (x2)", "t": "9:00", "tag": "supp"},
-          {"l": "Longevit", "t": "9:00", "tag": "supp"},
-          {"l": "Collagen + Coffee", "t": "9:00", "tag": "supp"},
-          {"l": "Quercetin & Bromelain (x2)", "t": "9:00", "tag": "supp"}
+          {
+            "l": "Drink water",
+            "t": "8:30"
+          },
+          {
+            "l": "Cold shower",
+            "t": "8:35"
+          },
+          {
+            "l": "Skincare",
+            "t": "8:50"
+          },
+          {
+            "l": "Get ready",
+            "t": "8:55"
+          }
         ]
       },
       {
-        "id": "dinner", "icon": "🍽️", "title": "Dinner + wind down", "time": "6:30 – 7:30pm",
+        "id": "bsupps",
+        "icon": "\ud83d\udc8a",
+        "title": "Breakfast supplements",
+        "time": "9:00am",
         "tasks": [
-          {"l": "Shower", "t": "6:30"},
-          {"l": "Dinner + Eggs", "t": "7:00"},
-          {"l": "Creatine (x4)", "t": "7:00", "tag": "supp"},
-          {"l": "Watch something", "t": "7:30"}
+          {
+            "l": "Vitamin D3",
+            "t": "9:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Omega 3",
+            "t": "9:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Tostero (x2)",
+            "t": "9:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Quercetin & Bromelain (x2)",
+            "t": "9:00",
+            "tag": "supp"
+          }
         ]
       },
       {
-        "id": "build", "icon": "🧠", "title": "Build / Learn", "time": "7:30 – 10:00pm",
-        "tasks": [{"l": "Build / Learn session", "t": "7:30"}]
+        "id": "dinner",
+        "icon": "\ud83c\udf7d\ufe0f",
+        "title": "Dinner + wind down",
+        "time": "6:30 \u2013 7:30pm",
+        "tasks": [
+          {
+            "l": "Shower",
+            "t": "6:30"
+          },
+          {
+            "l": "Dinner + Eggs",
+            "t": "7:00"
+          },
+          {
+            "l": "Creatine (x4)",
+            "t": "7:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Watch something",
+            "t": "7:30"
+          }
+        ]
       },
       {
-        "id": "night", "icon": "🌙", "title": "Night routine", "time": "10:30 – 11:30pm",
+        "id": "build",
+        "icon": "\ud83e\udde0",
+        "title": "Build / Learn",
+        "time": "7:30 \u2013 10:00pm",
         "tasks": [
-          {"l": "Make overnight oats + Talk to mum", "t": "10:30"},
-          {"l": "Take meal prep out from freezer", "t": "10:45"},
-          {"l": "Wash face", "t": "10:50"},
-          {"l": "Skincare", "t": "10:55"},
-          {"l": "Magnesium", "t": "11:00", "tag": "supp"},
-          {"l": "Read", "t": "11:00"},
-          {"l": "Nose strip", "t": "11:20"},
-          {"l": "Mouth tape", "t": "11:25"},
-          {"l": "Eye tape", "t": "11:27"},
-          {"l": "Eye mask", "t": "11:28"},
-          {"l": "Sleep", "t": "11:30"}
+          {
+            "l": "Build / Learn session",
+            "t": "7:30"
+          }
+        ]
+      },
+      {
+        "id": "night",
+        "icon": "\ud83c\udf19",
+        "title": "Night routine",
+        "time": "10:30 \u2013 11:30pm",
+        "tasks": [
+          {
+            "l": "Make overnight oats + Talk to mum",
+            "t": "10:30"
+          },
+          {
+            "l": "Take meal prep out from freezer",
+            "t": "10:45"
+          },
+          {
+            "l": "Wash face",
+            "t": "10:50"
+          },
+          {
+            "l": "Skincare",
+            "t": "10:55"
+          },
+          {
+            "l": "Magnesium",
+            "t": "11:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Read",
+            "t": "11:00"
+          },
+          {
+            "l": "Nose strip",
+            "t": "11:20"
+          },
+          {
+            "l": "Mouth tape",
+            "t": "11:25"
+          },
+          {
+            "l": "Eye tape",
+            "t": "11:27"
+          },
+          {
+            "l": "Eye mask",
+            "t": "11:28"
+          },
+          {
+            "l": "Sleep",
+            "t": "11:30"
+          }
         ]
       }
     ],
     "Sunday": [
       {
-        "id": "wake", "icon": "🌅", "title": "Wake up", "time": "6:00 – 6:15am",
+        "id": "wake",
+        "icon": "\ud83c\udf05",
+        "title": "Wake up",
+        "time": "6:00 \u2013 6:15am",
         "tasks": [
-          {"l": "Get out of bed", "t": "6:00"},
-          {"l": "Open shades + Make bed", "t": "6:00"},
-          {"l": "Drink 500ml of water", "t": "6:02"},
-          {"l": "Electrolytes", "t": "6:02", "tag": "supp"},
-          {"l": "Wear face mask", "t": "6:05"},
-          {"l": "Wash face (cold water)", "t": "6:08"},
-          {"l": "Upper body stretch", "t": "6:10"},
-          {"l": "Brush teeth", "t": "6:12"},
-          {"l": "Clean nose (saline)", "t": "6:14"},
-          {"l": "NMN", "t": "6:15", "tag": "supp"},
-          {"l": "Trans-Resveratrol", "t": "6:15", "tag": "supp"},
-          {"l": "Shilajit (x2)", "t": "6:15", "tag": "supp"}
+          {
+            "l": "Get out of bed",
+            "t": "6:00"
+          },
+          {
+            "l": "Open shades + Make bed",
+            "t": "6:00"
+          },
+          {
+            "l": "Drink 500ml of water",
+            "t": "6:02"
+          },
+          {
+            "l": "Electrolytes",
+            "t": "6:02",
+            "tag": "supp"
+          },
+          {
+            "l": "Wear face mask",
+            "t": "6:05"
+          },
+          {
+            "l": "Wash face (cold water)",
+            "t": "6:08"
+          },
+          {
+            "l": "Upper body stretch",
+            "t": "6:10"
+          },
+          {
+            "l": "Brush teeth",
+            "t": "6:12"
+          },
+          {
+            "l": "Clean nose (saline)",
+            "t": "6:14"
+          },
+          {
+            "l": "NMN",
+            "t": "6:15",
+            "tag": "supp"
+          },
+          {
+            "l": "Trans-Resveratrol",
+            "t": "6:15",
+            "tag": "supp"
+          },
+          {
+            "l": "Shilajit (x2)",
+            "t": "6:15",
+            "tag": "supp"
+          }
         ]
       },
       {
-        "id": "recovery", "icon": "⛳", "title": "Golf + Recovery", "time": "9:00am – 12:00pm",
+        "id": "recovery",
+        "icon": "\u26f3",
+        "title": "Golf + Recovery",
+        "time": "9:00am \u2013 12:00pm",
         "tasks": [
-          {"l": "Golf or active recovery", "t": "9:00"},
-          {"l": "Foam rolling", "t": "11:30"},
-          {"l": "Stretching", "t": "11:45", "tag": "mindset"}
+          {
+            "l": "Golf or active recovery",
+            "t": "9:00"
+          },
+          {
+            "l": "Foam rolling",
+            "t": "11:30"
+          },
+          {
+            "l": "Stretching",
+            "t": "11:45",
+            "tag": "mindset"
+          }
         ]
       },
       {
-        "id": "personal", "icon": "📋", "title": "Personal time", "time": "12:00 – 4:00pm",
+        "id": "personal",
+        "icon": "\ud83d\udccb",
+        "title": "Personal time",
+        "time": "12:00 \u2013 4:00pm",
         "tasks": [
-          {"l": "Personal admin", "t": "12:00"},
-          {"l": "Meal prep review", "t": "1:00"},
-          {"l": "Plan the week ahead", "t": "2:00"}
+          {
+            "l": "Personal admin",
+            "t": "12:00"
+          },
+          {
+            "l": "Meal prep review",
+            "t": "1:00"
+          },
+          {
+            "l": "Plan the week ahead",
+            "t": "2:00"
+          }
         ]
       },
       {
-        "id": "bsupps", "icon": "💊", "title": "Breakfast supplements", "time": "9:00am",
+        "id": "bsupps",
+        "icon": "\ud83d\udc8a",
+        "title": "Breakfast supplements",
+        "time": "9:00am",
         "tasks": [
-          {"l": "Vitamin D3", "t": "9:00", "tag": "supp"},
-          {"l": "Omega 3", "t": "9:00", "tag": "supp"},
-          {"l": "Tostero (x2)", "t": "9:00", "tag": "supp"},
-          {"l": "Longevit", "t": "9:00", "tag": "supp"},
-          {"l": "Collagen + Coffee", "t": "9:00", "tag": "supp"},
-          {"l": "Quercetin & Bromelain (x2)", "t": "9:00", "tag": "supp"}
+          {
+            "l": "Vitamin D3",
+            "t": "9:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Omega 3",
+            "t": "9:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Tostero (x2)",
+            "t": "9:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Quercetin & Bromelain (x2)",
+            "t": "9:00",
+            "tag": "supp"
+          }
         ]
       },
       {
-        "id": "dinner", "icon": "🍽️", "title": "Dinner + wind down", "time": "6:30 – 7:30pm",
+        "id": "dinner",
+        "icon": "\ud83c\udf7d\ufe0f",
+        "title": "Dinner + wind down",
+        "time": "6:30 \u2013 7:30pm",
         "tasks": [
-          {"l": "Shower", "t": "6:30"},
-          {"l": "Dinner + Eggs", "t": "7:00"},
-          {"l": "Creatine (x4)", "t": "7:00", "tag": "supp"},
-          {"l": "Watch something", "t": "7:30"}
+          {
+            "l": "Shower",
+            "t": "6:30"
+          },
+          {
+            "l": "Dinner + Eggs",
+            "t": "7:00"
+          },
+          {
+            "l": "Creatine (x4)",
+            "t": "7:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Watch something",
+            "t": "7:30"
+          }
         ]
       },
       {
-        "id": "build", "icon": "🧠", "title": "Build / Learn", "time": "7:30 – 10:00pm",
-        "tasks": [{"l": "Build / Learn session", "t": "7:30"}]
+        "id": "build",
+        "icon": "\ud83e\udde0",
+        "title": "Build / Learn",
+        "time": "7:30 \u2013 10:00pm",
+        "tasks": [
+          {
+            "l": "Build / Learn session",
+            "t": "7:30"
+          }
+        ]
       },
       {
-        "id": "night", "icon": "🌙", "title": "Night routine", "time": "10:30 – 11:30pm",
+        "id": "night",
+        "icon": "\ud83c\udf19",
+        "title": "Night routine",
+        "time": "10:30 \u2013 11:30pm",
         "tasks": [
-          {"l": "Make overnight oats + Talk to mum", "t": "10:30"},
-          {"l": "Take meal prep out from freezer", "t": "10:45"},
-          {"l": "Wash face", "t": "10:50"},
-          {"l": "Skincare", "t": "10:55"},
-          {"l": "Magnesium", "t": "11:00", "tag": "supp"},
-          {"l": "Read", "t": "11:00"},
-          {"l": "Nose strip", "t": "11:20"},
-          {"l": "Mouth tape", "t": "11:25"},
-          {"l": "Eye tape", "t": "11:27"},
-          {"l": "Eye mask", "t": "11:28"},
-          {"l": "Sleep", "t": "11:30"}
+          {
+            "l": "Make overnight oats + Talk to mum",
+            "t": "10:30"
+          },
+          {
+            "l": "Take meal prep out from freezer",
+            "t": "10:45"
+          },
+          {
+            "l": "Wash face",
+            "t": "10:50"
+          },
+          {
+            "l": "Skincare",
+            "t": "10:55"
+          },
+          {
+            "l": "Magnesium",
+            "t": "11:00",
+            "tag": "supp"
+          },
+          {
+            "l": "Read",
+            "t": "11:00"
+          },
+          {
+            "l": "Nose strip",
+            "t": "11:20"
+          },
+          {
+            "l": "Mouth tape",
+            "t": "11:25"
+          },
+          {
+            "l": "Eye tape",
+            "t": "11:27"
+          },
+          {
+            "l": "Eye mask",
+            "t": "11:28"
+          },
+          {
+            "l": "Sleep",
+            "t": "11:30"
+          }
         ]
       }
     ]
