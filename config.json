@@ -1,2601 +1,959 @@
-{
-  "books": [
-    {
-      "title": "Man's Search for Meaning",
-      "phase": 1,
-      "num": 1,
-      "total": 7,
-      "pages": 165
-    },
-    {
-      "title": "Rework",
-      "phase": 1,
-      "num": 2,
-      "total": 7,
-      "pages": 288
-    },
-    {
-      "title": "Zero to One",
-      "phase": 1,
-      "num": 3,
-      "total": 7,
-      "pages": 224
-    },
-    {
-      "title": "Range",
-      "phase": 1,
-      "num": 4,
-      "total": 7,
-      "pages": 352
-    },
-    {
-      "title": "Nonviolent Communication",
-      "phase": 1,
-      "num": 5,
-      "total": 7,
-      "pages": 264
-    },
-    {
-      "title": "The 5 Types of Wealth",
-      "phase": 1,
-      "num": 6,
-      "total": 7,
-      "pages": 272
-    },
-    {
-      "title": "The Score Takes Care of Itself",
-      "phase": 1,
-      "num": 7,
-      "total": 7,
-      "pages": 288
-    },
-    {
-      "title": "The Millionaire Next Door",
-      "phase": 2,
-      "num": 1,
-      "total": 10,
-      "pages": 258
-    },
-    {
-      "title": "High Output Management",
-      "phase": 2,
-      "num": 2,
-      "total": 10,
-      "pages": 272
-    },
-    {
-      "title": "Measure What Matters",
-      "phase": 2,
-      "num": 3,
-      "total": 10,
-      "pages": 320
-    },
-    {
-      "title": "The Hard Thing About Hard Things",
-      "phase": 2,
-      "num": 4,
-      "total": 10,
-      "pages": 304
-    },
-    {
-      "title": "Only the Paranoid Survive",
-      "phase": 2,
-      "num": 5,
-      "total": 10,
-      "pages": 224
-    },
-    {
-      "title": "The Outsiders",
-      "phase": 2,
-      "num": 6,
-      "total": 10,
-      "pages": 272
-    },
-    {
-      "title": "Secrets of Sand Hill Road",
-      "phase": 2,
-      "num": 7,
-      "total": 10,
-      "pages": 368
-    },
-    {
-      "title": "Blitzscaling",
-      "phase": 2,
-      "num": 8,
-      "total": 10,
-      "pages": 336
-    },
-    {
-      "title": "Scale",
-      "phase": 2,
-      "num": 9,
-      "total": 10,
-      "pages": 479
-    },
-    {
-      "title": "Winning",
-      "phase": 2,
-      "num": 10,
-      "total": 10,
-      "pages": 384
-    },
-    {
-      "title": "Berkshire Hathaway Letters to Shareholders",
-      "phase": 3,
-      "num": 1,
-      "total": 4,
-      "pages": 828
-    },
-    {
-      "title": "Poor Charlie's Almanack",
-      "phase": 3,
-      "num": 2,
-      "total": 4,
-      "pages": 544
-    },
-    {
-      "title": "Principles - Ray Dalio",
-      "phase": 3,
-      "num": 3,
-      "total": 4,
-      "pages": 592
-    },
-    {
-      "title": "Read Write Own",
-      "phase": 3,
-      "num": 4,
-      "total": 4,
-      "pages": 336
-    },
-    {
-      "title": "Thinking, Fast and Slow",
-      "phase": 4,
-      "num": 1,
-      "total": 4,
-      "pages": 499
-    },
-    {
-      "title": "Alchemy",
-      "phase": 4,
-      "num": 2,
-      "total": 4,
-      "pages": 304
-    },
-    {
-      "title": "Complexity",
-      "phase": 4,
-      "num": 3,
-      "total": 4,
-      "pages": 520
-    },
-    {
-      "title": "The Beginning of Infinity",
-      "phase": 4,
-      "num": 4,
-      "total": 4,
-      "pages": 496
-    },
-    {
-      "title": "The Sovereign Individual",
-      "phase": 5,
-      "num": 1,
-      "total": 2,
-      "pages": 464
-    },
-    {
-      "title": "Superintelligence",
-      "phase": 5,
-      "num": 2,
-      "total": 2,
-      "pages": 352
-    },
-    {
-      "title": "Brave New World",
-      "phase": 6,
-      "num": 1,
-      "total": 5,
-      "pages": 311
-    },
-    {
-      "title": "The Fountainhead",
-      "phase": 6,
-      "num": 2,
-      "total": 5,
-      "pages": 753
-    },
-    {
-      "title": "Tao Te Ching",
-      "phase": 6,
-      "num": 3,
-      "total": 5,
-      "pages": 112
-    },
-    {
-      "title": "The Master Key System",
-      "phase": 6,
-      "num": 4,
-      "total": 5,
-      "pages": 200
-    },
-    {
-      "title": "Meditations",
-      "phase": 6,
-      "num": 5,
-      "total": 5,
-      "pages": 254
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --bg2: #111115;
+    --bg3: #1a1a20;
+    --card: #141418;
+    --card-hover: #1c1c22;
+    --border: #232329;
+    --border2: #2e2e36;
+    --text: #f0f0f5;
+    --text2: #8a8a9a;
+    --text3: #5a5a6a;
+    --accent: #fc5f2b;
+    --accent2: #e84e1c;
+    --accent-dim: rgba(252,95,43,.1);
+    --green: #2dd881;
+    --green-dim: rgba(45,216,129,.1);
+    --amber: #ffb020;
+    --amber-dim: rgba(255,176,32,.1);
+    --teal: #20d5c4;
+    --teal-dim: rgba(32,213,196,.1);
+    --purple: #a78bfa;
+    --purple-dim: rgba(167,139,250,.1);
+    --red: #ff5a5a;
+    --red-dim: rgba(255,90,90,.1);
+    --check: #2dd881;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 24px rgba(0,0,0,.4);
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --transition: .2s cubic-bezier(.4,0,.2,1);
+  }
+  .light {
+    --bg: #f7f7fa;
+    --bg2: #efeff5;
+    --bg3: #e5e5ee;
+    --card: #ffffff;
+    --card-hover: #f8f8fc;
+    --border: #dddde5;
+    --border2: #ccccd5;
+    --text: #111118;
+    --text2: #6a6a7a;
+    --text3: #9a9aaa;
+    --shadow: 0 4px 24px rgba(0,0,0,.06);
+    --accent-dim: rgba(252,95,43,.08);
+    --green-dim: rgba(45,216,129,.08);
+    --amber-dim: rgba(255,176,32,.08);
+    --teal-dim: rgba(32,213,196,.08);
+    --purple-dim: rgba(167,139,250,.08);
+    --red-dim: rgba(255,90,90,.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    transition: background var(--transition), color var(--transition);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--accent); color: #fff; }
+
+  .shell { display: flex; min-height: 100vh; }
+
+  .sidebar {
+    width: 300px; min-width: 300px;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    padding: 28px 20px;
+    display: flex; flex-direction: column; gap: 24px;
+    overflow-y: auto;
+    position: sticky; top: 0; height: 100vh;
+  }
+
+  .sidebar-brand { display: flex; align-items: center; gap: 10px; }
+  .sidebar-brand .logo {
+    width: 36px; height: 36px;
+    background: var(--accent);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: #fff; font-weight: 700;
+    font-family: var(--font-display);
+  }
+  .sidebar-brand h1 {
+    font-family: var(--font-display);
+    font-size: 18px; font-weight: 700; letter-spacing: -.4px;
+    flex: 1;
+  }
+  .sync-indicator {
+    display: flex; align-items: center; gap: 6px;
+    padding: 4px 10px; border-radius: 20px;
+    background: var(--bg3); font-size: 11px;
+    font-family: var(--font-display); font-weight: 600;
+    color: var(--text3); transition: all .3s;
+    white-space: nowrap;
+  }
+  .sync-indicator.synced { color: var(--green); background: var(--green-dim); }
+  .sync-indicator.syncing { color: var(--amber); background: var(--amber-dim); }
+  .sync-indicator.error { color: var(--red); background: var(--red-dim); }
+  .sync-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--text3); transition: background .3s;
+  }
+  .sync-indicator.synced .sync-dot { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .sync-indicator.syncing .sync-dot { background: var(--amber); animation: pulse 1s infinite; }
+  .sync-indicator.error .sync-dot { background: var(--red); }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+
+  .theme-toggle {
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer; font-size: 13px; color: var(--text2);
+    user-select: none; padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    transition: background var(--transition);
+  }
+  .theme-toggle:hover { background: var(--bg3); }
+  .toggle-track {
+    width: 40px; height: 22px;
+    background: var(--border2); border-radius: 11px;
+    position: relative; transition: background var(--transition); flex-shrink: 0;
+  }
+  .toggle-track::after {
+    content: ''; width: 18px; height: 18px;
+    background: #fff; border-radius: 50%;
+    position: absolute; top: 2px; left: 2px;
+    transition: transform var(--transition);
+    box-shadow: 0 1px 4px rgba(0,0,0,.2);
+  }
+  .light .toggle-track { background: var(--accent); }
+  .light .toggle-track::after { transform: translateX(18px); }
+
+  .cal-header {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;
+  }
+  .cal-header span { font-family: var(--font-display); font-size: 14px; font-weight: 600; }
+  .cal-nav {
+    background: none; border: 1px solid var(--border);
+    color: var(--text2); cursor: pointer; font-size: 14px;
+    width: 30px; height: 30px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--transition);
+  }
+  .cal-nav:hover { background: var(--bg3); color: var(--text); border-color: var(--border2); }
+  .cal-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    gap: 2px; text-align: center;
+  }
+  .cal-dow {
+    color: var(--text3); font-weight: 600; padding: 6px 0;
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    border-radius: 8px; font-size: 12px; cursor: default;
+    position: relative; color: var(--text3);
+    transition: all var(--transition); font-weight: 500;
+  }
+  .cal-day.cur-month { color: var(--text2); }
+  .cal-day.today {
+    background: var(--accent); color: #fff; font-weight: 700;
+    box-shadow: 0 2px 12px rgba(252,95,43,.3);
+  }
+  .cal-day.has-data { cursor: pointer; }
+  .cal-day.has-data:hover { background: var(--bg3); }
+  .cal-day.today:hover { background: var(--accent2); }
+  .cal-day.selected:not(.today) {
+    background: var(--accent-dim); color: var(--accent); font-weight: 700;
+  }
+  .cal-dot {
+    width: 4px; height: 4px; border-radius: 50%; position: absolute; bottom: 2px;
+  }
+  .cal-dot.green { background: var(--green); }
+  .cal-dot.amber { background: var(--amber); }
+  .cal-dot.red { background: var(--red); }
+  .cal-dot.perfect { background: var(--green); width: 5px; height: 5px; box-shadow: 0 0 6px var(--green); }
+
+  .date-picker-section {
+    background: var(--bg3); border-radius: var(--radius); padding: 14px;
+  }
+  .date-picker-section label {
+    display: block; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .8px;
+    color: var(--text3); margin-bottom: 8px;
+    font-family: var(--font-display);
+  }
+  .date-picker-input {
+    width: 100%; background: var(--bg); border: 1px solid var(--border);
+    color: var(--text); border-radius: var(--radius-sm);
+    padding: 8px 12px; font-size: 14px; font-family: var(--font-body);
+    outline: none; transition: border-color var(--transition); cursor: pointer;
+  }
+  .date-picker-input:focus { border-color: var(--accent); }
+
+  .streak-box {
+    background: linear-gradient(135deg, var(--accent-dim), transparent);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 16px; text-align: center;
+  }
+  .streak-num {
+    font-family: var(--font-display); font-size: 36px; font-weight: 800;
+    color: var(--accent); line-height: 1;
+  }
+  .streak-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
+
+  .macro-box {
+    background: var(--bg3); border-radius: var(--radius);
+    padding: 16px; border: 1px solid var(--border);
+  }
+  .macro-box h3 {
+    font-family: var(--font-display); font-size: 11px; font-weight: 600;
+    margin-bottom: 12px; color: var(--text3);
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .macro-row { margin-bottom: 10px; }
+  .macro-row:last-child { margin-bottom: 0; }
+  .macro-label {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 12px; font-weight: 600; color: var(--text2); margin-bottom: 2px;
+  }
+  .macro-icon { font-size: 11px; }
+  .macro-values {
+    font-family: var(--font-display); font-size: 12px;
+    font-weight: 700; color: var(--text); margin-bottom: 4px;
+  }
+  .macro-bar-track {
+    height: 5px; background: var(--border); border-radius: 3px; overflow: hidden;
+  }
+  .macro-bar-fill {
+    height: 100%; border-radius: 3px;
+    transition: width .5s cubic-bezier(.4,0,.2,1);
+    width: 0%;
+  }
+  .macro-bar-cal { background: var(--accent); }
+  .macro-bar-pro { background: var(--green); }
+  .macro-bar-carb { background: var(--amber); }
+  .macro-bar-fat { background: var(--teal); }
+
+  .book-box {
+    background: var(--bg3); border-radius: var(--radius);
+    padding: 16px; border: 1px solid var(--border);
+  }
+  .book-box h3 {
+    font-family: var(--font-display); font-size: 11px; font-weight: 600;
+    margin-bottom: 10px; color: var(--text3);
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .book-title {
+    font-family: var(--font-display); font-size: 15px; font-weight: 700; margin-bottom: 2px;
+  }
+  .book-phase { font-size: 12px; color: var(--text2); margin-bottom: 10px; }
+  .book-bar-track {
+    height: 5px; background: var(--border); border-radius: 3px;
+    overflow: hidden; margin-bottom: 8px;
+  }
+  .book-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 3px; transition: width .5s cubic-bezier(.4,0,.2,1);
+  }
+  .book-pages { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); }
+  .book-pages input {
+    width: 56px; background: var(--bg); border: 1px solid var(--border);
+    color: var(--text); border-radius: 6px; padding: 4px 8px;
+    font-size: 13px; font-family: var(--font-body); text-align: center;
+    outline: none; transition: border-color var(--transition);
+  }
+  .book-pages input:focus { border-color: var(--accent); }
+
+  .main {
+    flex: 1; padding: 32px 40px; overflow-y: auto;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .main-inner { width: 100%; max-width: 720px; }
+
+  .search-wrap { position: relative; margin-bottom: 20px; width: 100%; }
+  .search-icon {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    color: var(--text3); font-size: 15px; pointer-events: none;
+  }
+  .search-input {
+    width: 100%; background: var(--card); border: 1px solid var(--border);
+    color: var(--text); border-radius: 12px; padding: 12px 44px 12px 42px;
+    font-size: 14px; font-family: var(--font-body); outline: none;
+    transition: all var(--transition);
+  }
+  .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+  .search-input::placeholder { color: var(--text3); }
+  .search-clear {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    background: var(--bg3); border: none; color: var(--text2);
+    width: 22px; height: 22px; border-radius: 50%; cursor: pointer;
+    font-size: 11px; display: none; align-items: center; justify-content: center;
+    transition: all var(--transition);
+  }
+  .search-clear:hover { background: var(--border2); color: var(--text); }
+  .search-clear.visible { display: flex; }
+
+  .search-info {
+    font-size: 13px; color: var(--text2); margin-bottom: 16px;
+    padding: 8px 14px; background: var(--accent-dim);
+    border-radius: var(--radius-sm); display: none;
+  }
+  .search-info.visible { display: block; }
+  .search-info strong { color: var(--accent); font-weight: 700; }
+
+  .day-pills {
+    display: flex; gap: 6px; margin-bottom: 20px; justify-content: center;
+  }
+  .day-pill {
+    padding: 8px 16px; border-radius: 24px;
+    font-family: var(--font-display); font-size: 13px; font-weight: 600;
+    cursor: pointer; border: 1px solid var(--border);
+    background: var(--card); color: var(--text2);
+    transition: all var(--transition); user-select: none;
+  }
+  .day-pill:hover { border-color: var(--accent); color: var(--text); background: var(--card-hover); }
+  .day-pill.active {
+    background: var(--accent); color: #fff; border-color: var(--accent);
+    box-shadow: 0 2px 12px rgba(252,95,43,.3);
+  }
+
+  .progress-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 24px; flex-wrap: wrap; gap: 10px;
+  }
+  .progress-date {
+    font-family: var(--font-display); font-size: 22px; font-weight: 700;
+    letter-spacing: -.3px; line-height: 1.2;
+  }
+  .progress-subtitle { font-size: 13px; color: var(--text2); margin-top: 2px; }
+  .progress-right { display: flex; align-items: center; gap: 16px; }
+  .progress-ring-wrap { position: relative; width: 56px; height: 56px; }
+  .progress-ring-wrap svg { transform: rotate(-90deg); }
+  .progress-ring-bg { stroke: var(--border); }
+  .progress-ring-fill {
+    stroke: var(--green);
+    transition: stroke-dashoffset .6s cubic-bezier(.4,0,.2,1);
+  }
+  .progress-ring-text {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 14px; font-weight: 700;
+    color: var(--green);
+  }
+
+  .readonly-banner {
+    background: var(--accent-dim); border: 1px solid var(--accent);
+    color: var(--accent); padding: 12px 20px; border-radius: var(--radius);
+    margin-bottom: 20px; display: flex; align-items: center;
+    justify-content: space-between; font-size: 14px; font-weight: 600;
+  }
+  .readonly-banner button {
+    background: var(--accent); color: #fff; border: none;
+    padding: 6px 16px; border-radius: 8px; font-size: 12px;
+    font-weight: 700; font-family: var(--font-display);
+    cursor: pointer; transition: all var(--transition);
+  }
+  .readonly-banner button:hover { background: var(--accent2); }
+
+  .block {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); margin-bottom: 14px; overflow: hidden;
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+  .block:hover { border-color: var(--border2); }
+  .block.search-highlight { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-dim); }
+  .block-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 20px; background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer; user-select: none;
+    transition: background var(--transition);
+  }
+  .block-header:hover { background: var(--bg3); }
+  .block-icon { font-size: 18px; }
+  .block-title {
+    font-family: var(--font-display); font-size: 15px; font-weight: 700; flex: 1;
+  }
+  .block-time {
+    font-family: var(--font-display); font-weight: 800;
+    color: var(--accent); font-size: 13px; letter-spacing: -.2px;
+  }
+  .block-chevron {
+    font-size: 14px; color: var(--text3);
+    transition: transform .25s ease; margin-left: 4px;
+  }
+  .block-header.collapsed .block-chevron { transform: rotate(-90deg); }
+  .block-body { padding: 4px 0; }
+  .block-body.hidden { display: none; }
+
+  .task {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 20px; font-size: 14px;
+    transition: background var(--transition);
+    cursor: pointer; position: relative;
+  }
+  .task:hover { background: var(--card-hover); }
+  .task.checked { opacity: .5; }
+  .task.checked .task-label { text-decoration: line-through; }
+  .task.search-match { background: var(--accent-dim); }
+  .task.search-match::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: var(--accent); border-radius: 0 2px 2px 0;
+  }
+  .task-check {
+    width: 22px; height: 22px; border: 2px solid var(--border2);
+    border-radius: 7px; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0;
+    transition: all var(--transition); font-size: 12px; color: transparent;
+  }
+  .task.checked .task-check {
+    background: var(--check); border-color: var(--check); color: #fff;
+  }
+  .task.readonly { cursor: default; }
+  .task.readonly .task-check { opacity: .4; }
+  .task-label { flex: 1; font-weight: 400; }
+  .task-time {
+    font-family: var(--font-display); font-weight: 800;
+    color: var(--accent); font-size: 13px; letter-spacing: -.2px; white-space: nowrap;
+  }
+  .tag {
+    font-family: var(--font-display); font-size: 9px; font-weight: 700;
+    padding: 3px 8px; border-radius: 4px;
+    text-transform: uppercase; letter-spacing: .8px;
+  }
+  .tag-supp { background: var(--amber-dim); color: var(--amber); }
+  .tag-sauna { background: var(--teal-dim); color: var(--teal); }
+  .tag-mindset { background: var(--purple-dim); color: var(--purple); }
+
+  .meals-block {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); margin-bottom: 14px; overflow: hidden;
+    transition: border-color var(--transition);
+  }
+  .meals-block:hover { border-color: var(--border2); }
+  .meals-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 20px; background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+  }
+  .meals-header .block-title { flex: 1; }
+  .meal-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 20px; font-size: 14px;
+    transition: background var(--transition); cursor: pointer;
+  }
+  .meal-item:hover { background: var(--card-hover); }
+  .meal-item.checked { opacity: .5; }
+  .meal-item.checked .meal-name { text-decoration: line-through; }
+  .meal-item.readonly { cursor: default; }
+  .meal-name { flex: 1; font-weight: 500; }
+  .meal-macros {
+    display: flex; gap: 6px; font-size: 11px;
+    font-family: var(--font-display); font-weight: 600;
+  }
+  .meal-macro-pill {
+    padding: 2px 6px; border-radius: 4px; white-space: nowrap;
+  }
+  .meal-cal { background: var(--accent-dim); color: var(--accent); }
+  .meal-pro { background: var(--green-dim); color: var(--green); }
+  .meal-carb { background: var(--amber-dim); color: var(--amber); }
+  .meal-fat { background: var(--teal-dim); color: var(--teal); }
+
+  .loading {
+    display: flex; align-items: center; justify-content: center;
+    height: 60vh; font-size: 16px; color: var(--text2); gap: 12px;
+  }
+  .spinner {
+    width: 28px; height: 28px; border: 3px solid var(--border);
+    border-top-color: var(--accent); border-radius: 50%;
+    animation: spin .7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .no-results {
+    text-align: center; padding: 40px 20px; color: var(--text2); font-size: 14px;
+  }
+  .no-results .big { font-size: 32px; margin-bottom: 8px; }
+
+  @media (max-width: 860px) {
+    .shell { flex-direction: column; }
+    .sidebar {
+      width: 100%; min-width: 100%; height: auto; position: relative;
+      border-right: none; border-bottom: 1px solid var(--border);
+      padding: 18px 16px; gap: 14px;
     }
-  ],
-  "schedule": {
-    "Monday": [
-      {
-        "id": "wake",
-        "icon": "\ud83c\udf05",
-        "title": "Wake up",
-        "time": "6:00 \u2013 6:15am",
-        "tasks": [
-          {
-            "l": "Get out of bed",
-            "t": "6:00"
-          },
-          {
-            "l": "Open shades + Make bed",
-            "t": "6:00"
-          },
-          {
-            "l": "Drink 500ml of water",
-            "t": "6:02"
-          },
-          {
-            "l": "Electrolytes",
-            "t": "6:02",
-            "tag": "supp"
-          },
-          {
-            "l": "Wear face mask",
-            "t": "6:05"
-          },
-          {
-            "l": "Wash face (cold water)",
-            "t": "6:08"
-          },
-          {
-            "l": "Upper body stretch",
-            "t": "6:10"
-          },
-          {
-            "l": "Brush teeth",
-            "t": "6:12"
-          },
-          {
-            "l": "Clean nose (saline)",
-            "t": "6:14"
-          },
-          {
-            "l": "NMN",
-            "t": "6:15",
-            "tag": "supp"
-          },
-          {
-            "l": "Trans-Resveratrol",
-            "t": "6:15",
-            "tag": "supp"
-          },
-          {
-            "l": "Shilajit (x2)",
-            "t": "6:15",
-            "tag": "supp"
-          }
-        ]
-      },
-      {
-        "id": "prep",
-        "icon": "\ud83e\uddd8",
-        "title": "Breathwork + Mobility",
-        "time": "6:15 \u2013 6:40am",
-        "tasks": [
-          {
-            "l": "Eat protein bar",
-            "t": "6:15"
-          },
-          {
-            "l": "Wear workout clothes",
-            "t": "6:18"
-          },
-          {
-            "l": "Wim Hof + Box breathing \u2014 5 mins",
-            "t": "6:20",
-            "tag": "mindset"
-          },
-          {
-            "l": "Mike Holland exercises \u2014 5 mins",
-            "t": "6:25",
-            "tag": "mindset"
-          },
-          {
-            "l": "Mobility: full body, hips, shoulders \u2014 15 mins",
-            "t": "6:30",
-            "tag": "mindset"
-          }
-        ]
-      },
-      {
-        "id": "cardio",
-        "icon": "\ud83c\udfc3",
-        "title": "Cardio \u2014 Zone 2 jog to gym",
-        "time": "6:40 \u2013 7:05am",
-        "tasks": [
-          {
-            "l": "Zone 2 jog to gym",
-            "t": "6:40"
-          }
-        ]
-      },
-      {
-        "id": "gymam",
-        "icon": "\ud83c\udfcb\ufe0f",
-        "title": "Morning gym \u2014 Push (Chest + Triceps)",
-        "time": "7:05 \u2013 8:05am",
-        "tasks": [
-          {
-            "l": "50 Push ups",
-            "t": "7:05"
-          },
-          {
-            "l": "Abs",
-            "t": "7:15"
-          },
-          {
-            "l": "Dips till failure then Assisted Dip",
-            "t": "7:25"
-          },
-          {
-            "l": "Sauna",
-            "t": "7:40",
-            "tag": "sauna"
-          }
-        ]
-      },
-      {
-        "id": "postgym",
-        "icon": "\ud83d\udebf",
-        "title": "Post-gym",
-        "time": "8:05 \u2013 8:45am",
-        "tasks": [
-          {
-            "l": "Walk back from gym",
-            "t": "8:05"
-          },
-          {
-            "l": "Drink water",
-            "t": "8:20"
-          },
-          {
-            "l": "Cold shower",
-            "t": "8:22"
-          },
-          {
-            "l": "Skincare",
-            "t": "8:35"
-          },
-          {
-            "l": "Get ready for work / Start work",
-            "t": "8:40"
-          },
-          {
-            "l": "Read News dashboard",
-            "t": "8:45"
-          }
-        ]
-      },
-      {
-        "id": "bsupps",
-        "icon": "\ud83d\udc8a",
-        "title": "Breakfast supplements",
-        "time": "8:45am",
-        "tasks": [
-          {
-            "l": "Vitamin D3",
-            "t": "8:45",
-            "tag": "supp"
-          },
-          {
-            "l": "Omega 3",
-            "t": "8:45",
-            "tag": "supp"
-          },
-          {
-            "l": "Tostero (x2)",
-            "t": "8:45",
-            "tag": "supp"
-          },
-          {
-            "l": "Quercetin & Bromelain (x2)",
-            "t": "8:45",
-            "tag": "supp"
-          }
-        ]
-      },
-      {
-        "id": "work",
-        "icon": "\ud83d\udcbc",
-        "title": "Work",
-        "time": "9:00am \u2013 12:30pm",
-        "tasks": [
-          {
-            "l": "Office",
-            "t": "9:00"
-          },
-          {
-            "l": "Coffee + Ryze + Collagen",
-            "t": "9:15"
-          }
-        ]
-      },
-      {
-        "id": "lunch",
-        "icon": "\ud83c\udf71",
-        "title": "Lunch break",
-        "time": "12:30 \u2013 1:30pm",
-        "tasks": [
-          {
-            "l": "Wordle",
-            "t": "12:30"
-          },
-          {
-            "l": "Pips (all levels)",
-            "t": "12:40"
-          },
-          {
-            "l": "Impulse Training",
-            "t": "12:50"
-          },
-          {
-            "l": "Duolingo",
-            "t": "1:00"
-          },
-          {
-            "l": "1 chapter of Chess learning",
-            "t": "1:10"
-          },
-          {
-            "l": "Lunch + Overnight Oats",
-            "t": "1:20"
-          }
-        ]
-      },
-      {
-        "id": "eve",
-        "icon": "\ud83d\udd31",
-        "title": "Evening \u2014 Push (Chest + Triceps)",
-        "time": "4:30 \u2013 6:30pm",
-        "tasks": [
-          {
-            "l": "Neck exercises",
-            "t": "4:30",
-            "tag": "mindset"
-          },
-          {
-            "l": "Light mobility",
-            "t": "4:45",
-            "tag": "mindset"
-          },
-          {
-            "l": "15 min Incline Cardio",
-            "t": ""
-          },
-          {
-            "l": "Dead Hang",
-            "t": "5:00"
-          },
-          {
-            "l": "Machine Fly's",
-            "t": "5:05"
-          },
-          {
-            "l": "Incline bench DB press",
-            "t": "5:15"
-          },
-          {
-            "l": "Incline Machine Chest Press",
-            "t": "5:25"
-          },
-          {
-            "l": "Dip Machine",
-            "t": "5:35"
-          },
-          {
-            "l": "Tricep push downs",
-            "t": "5:45"
-          },
-          {
-            "l": "Cable skull crushers",
-            "t": "5:52"
-          },
-          {
-            "l": "Single hand tricep pushdown",
-            "t": "6:00"
-          },
-          {
-            "l": "Machine Shoulder Press",
-            "t": "6:10"
-          }
-        ]
-      },
-      {
-        "id": "dinner",
-        "icon": "\ud83c\udf7d\ufe0f",
-        "title": "Dinner + wind down",
-        "time": "6:30 \u2013 7:30pm",
-        "tasks": [
-          {
-            "l": "Shower",
-            "t": "6:30"
-          },
-          {
-            "l": "Dinner + Eggs",
-            "t": "7:00"
-          },
-          {
-            "l": "Creatine (x4)",
-            "t": "7:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Watch something",
-            "t": "7:30"
-          }
-        ]
-      },
-      {
-        "id": "build",
-        "icon": "\ud83e\udde0",
-        "title": "Build / Learn",
-        "time": "7:30 \u2013 10:00pm",
-        "tasks": [
-          {
-            "l": "Build / Learn session",
-            "t": "7:30"
-          }
-        ]
-      },
-      {
-        "id": "night",
-        "icon": "\ud83c\udf19",
-        "title": "Night routine",
-        "time": "10:30 \u2013 11:30pm",
-        "tasks": [
-          {
-            "l": "Make overnight oats + Talk to mum",
-            "t": "10:30"
-          },
-          {
-            "l": "Take meal prep out from freezer",
-            "t": "10:45"
-          },
-          {
-            "l": "Wash face",
-            "t": "10:50"
-          },
-          {
-            "l": "Skincare",
-            "t": "10:55"
-          },
-          {
-            "l": "Magnesium",
-            "t": "11:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Read",
-            "t": "11:00"
-          },
-          {
-            "l": "Nose strip",
-            "t": "11:20"
-          },
-          {
-            "l": "Mouth tape",
-            "t": "11:25"
-          },
-          {
-            "l": "Eye tape",
-            "t": "11:27"
-          },
-          {
-            "l": "Eye mask",
-            "t": "11:28"
-          },
-          {
-            "l": "Sleep",
-            "t": "11:30"
-          }
-        ]
-      }
-    ],
-    "Tuesday": [
-      {
-        "id": "wake",
-        "icon": "\ud83c\udf05",
-        "title": "Wake up",
-        "time": "6:00 \u2013 6:15am",
-        "tasks": [
-          {
-            "l": "Get out of bed",
-            "t": "6:00"
-          },
-          {
-            "l": "Open shades + Make bed",
-            "t": "6:00"
-          },
-          {
-            "l": "Drink 500ml of water",
-            "t": "6:02"
-          },
-          {
-            "l": "Electrolytes",
-            "t": "6:02",
-            "tag": "supp"
-          },
-          {
-            "l": "Wear face mask",
-            "t": "6:05"
-          },
-          {
-            "l": "Wash face (cold water)",
-            "t": "6:08"
-          },
-          {
-            "l": "Upper body stretch",
-            "t": "6:10"
-          },
-          {
-            "l": "Brush teeth",
-            "t": "6:12"
-          },
-          {
-            "l": "Clean nose (saline)",
-            "t": "6:14"
-          },
-          {
-            "l": "NMN",
-            "t": "6:15",
-            "tag": "supp"
-          },
-          {
-            "l": "Trans-Resveratrol",
-            "t": "6:15",
-            "tag": "supp"
-          },
-          {
-            "l": "Shilajit (x2)",
-            "t": "6:15",
-            "tag": "supp"
-          }
-        ]
-      },
-      {
-        "id": "prep",
-        "icon": "\ud83e\uddd8",
-        "title": "Breathwork + Mobility",
-        "time": "6:15 \u2013 6:40am",
-        "tasks": [
-          {
-            "l": "Eat protein bar",
-            "t": "6:15"
-          },
-          {
-            "l": "Wear workout clothes",
-            "t": "6:18"
-          },
-          {
-            "l": "Wim Hof + Box breathing \u2014 5 mins",
-            "t": "6:20",
-            "tag": "mindset"
-          },
-          {
-            "l": "Mike Holland exercises \u2014 5 mins",
-            "t": "6:25",
-            "tag": "mindset"
-          },
-          {
-            "l": "Mobility: full body, hips, shoulders \u2014 15 mins",
-            "t": "6:30",
-            "tag": "mindset"
-          }
-        ]
-      },
-      {
-        "id": "cardio",
-        "icon": "\ud83c\udfc3",
-        "title": "Cardio \u2014 VO2 Max",
-        "time": "6:40 \u2013 7:05am",
-        "tasks": [
-          {
-            "l": "VO2 Max session",
-            "t": "6:40"
-          }
-        ]
-      },
-      {
-        "id": "gymam",
-        "icon": "\ud83c\udfcb\ufe0f",
-        "title": "Morning gym \u2014 Pull (Back + Biceps)",
-        "time": "7:05 \u2013 8:05am",
-        "tasks": [
-          {
-            "l": "Hip Thrusts + Planks",
-            "t": "7:05"
-          },
-          {
-            "l": "Pull ups + Forearms",
-            "t": "7:25"
-          },
-          {
-            "l": "Shrugs",
-            "t": "7:35"
-          },
-          {
-            "l": "Sauna",
-            "t": "7:45",
-            "tag": "sauna"
-          }
-        ]
-      },
-      {
-        "id": "postgym",
-        "icon": "\ud83d\udebf",
-        "title": "Post-gym",
-        "time": "8:05 \u2013 8:45am",
-        "tasks": [
-          {
-            "l": "Walk back from gym",
-            "t": "8:05"
-          },
-          {
-            "l": "Drink water",
-            "t": "8:20"
-          },
-          {
-            "l": "Cold shower",
-            "t": "8:22"
-          },
-          {
-            "l": "Skincare",
-            "t": "8:35"
-          },
-          {
-            "l": "Get ready for work / Start work",
-            "t": "8:40"
-          },
-          {
-            "l": "Read News dashboard",
-            "t": "8:45"
-          }
-        ]
-      },
-      {
-        "id": "bsupps",
-        "icon": "\ud83d\udc8a",
-        "title": "Breakfast supplements",
-        "time": "8:45am",
-        "tasks": [
-          {
-            "l": "Vitamin D3",
-            "t": "8:45",
-            "tag": "supp"
-          },
-          {
-            "l": "Omega 3",
-            "t": "8:45",
-            "tag": "supp"
-          },
-          {
-            "l": "Tostero (x2)",
-            "t": "8:45",
-            "tag": "supp"
-          },
-          {
-            "l": "Quercetin & Bromelain (x2)",
-            "t": "8:45",
-            "tag": "supp"
-          }
-        ]
-      },
-      {
-        "id": "work",
-        "icon": "\ud83d\udcbc",
-        "title": "Work",
-        "time": "9:00am \u2013 12:30pm",
-        "tasks": [
-          {
-            "l": "Office",
-            "t": "9:00"
-          },
-          {
-            "l": "Coffee + Ryze + Collagen",
-            "t": "9:15"
-          }
-        ]
-      },
-      {
-        "id": "lunch",
-        "icon": "\ud83c\udf71",
-        "title": "Lunch break",
-        "time": "12:30 \u2013 1:30pm",
-        "tasks": [
-          {
-            "l": "Wordle",
-            "t": "12:30"
-          },
-          {
-            "l": "Pips (all levels)",
-            "t": "12:40"
-          },
-          {
-            "l": "Impulse Training",
-            "t": "12:50"
-          },
-          {
-            "l": "Duolingo",
-            "t": "1:00"
-          },
-          {
-            "l": "1 chapter of Chess learning",
-            "t": "1:10"
-          },
-          {
-            "l": "Lunch + Overnight Oats",
-            "t": "1:20"
-          }
-        ]
-      },
-      {
-        "id": "eve",
-        "icon": "\ud83d\udd31",
-        "title": "Evening \u2014 Pull (Back + Biceps)",
-        "time": "4:30 \u2013 6:30pm",
-        "tasks": [
-          {
-            "l": "Neck exercises",
-            "t": "4:30",
-            "tag": "mindset"
-          },
-          {
-            "l": "Light mobility",
-            "t": "4:45",
-            "tag": "mindset"
-          },
-          {
-            "l": "15 min Incline Cardio",
-            "t": ""
-          },
-          {
-            "l": "Dead Hang",
-            "t": "5:00"
-          },
-          {
-            "l": "Bicep Pull ups",
-            "t": "5:05"
-          },
-          {
-            "l": "Machine Rows superset with Kelso shrug",
-            "t": "5:15"
-          },
-          {
-            "l": "Lat Pull Down",
-            "t": "5:25"
-          },
-          {
-            "l": "Lat crunch machine",
-            "t": "5:35"
-          },
-          {
-            "l": "Hand supported Bicep Curls",
-            "t": "5:42"
-          },
-          {
-            "l": "Hand supported Hammer Curls",
-            "t": "5:50"
-          },
-          {
-            "l": "Preacher curls",
-            "t": "5:58"
-          },
-          {
-            "l": "Cable Reverse Curls",
-            "t": "6:06"
-          },
-          {
-            "l": "Rear Delt Fly's",
-            "t": "6:14"
-          }
-        ]
-      },
-      {
-        "id": "dinner",
-        "icon": "\ud83c\udf7d\ufe0f",
-        "title": "Dinner + wind down",
-        "time": "6:30 \u2013 7:30pm",
-        "tasks": [
-          {
-            "l": "Shower",
-            "t": "6:30"
-          },
-          {
-            "l": "Dinner + Eggs",
-            "t": "7:00"
-          },
-          {
-            "l": "Creatine (x4)",
-            "t": "7:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Watch something",
-            "t": "7:30"
-          }
-        ]
-      },
-      {
-        "id": "build",
-        "icon": "\ud83e\udde0",
-        "title": "Build / Learn",
-        "time": "7:30 \u2013 10:00pm",
-        "tasks": [
-          {
-            "l": "Build / Learn session",
-            "t": "7:30"
-          }
-        ]
-      },
-      {
-        "id": "night",
-        "icon": "\ud83c\udf19",
-        "title": "Night routine",
-        "time": "10:30 \u2013 11:30pm",
-        "tasks": [
-          {
-            "l": "Make overnight oats + Talk to mum",
-            "t": "10:30"
-          },
-          {
-            "l": "Take meal prep out from freezer",
-            "t": "10:45"
-          },
-          {
-            "l": "Wash face",
-            "t": "10:50"
-          },
-          {
-            "l": "Skincare",
-            "t": "10:55"
-          },
-          {
-            "l": "Magnesium",
-            "t": "11:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Read",
-            "t": "11:00"
-          },
-          {
-            "l": "Nose strip",
-            "t": "11:20"
-          },
-          {
-            "l": "Mouth tape",
-            "t": "11:25"
-          },
-          {
-            "l": "Eye tape",
-            "t": "11:27"
-          },
-          {
-            "l": "Eye mask",
-            "t": "11:28"
-          },
-          {
-            "l": "Sleep",
-            "t": "11:30"
-          }
-        ]
-      }
-    ],
-    "Wednesday": [
-      {
-        "id": "wake",
-        "icon": "\ud83c\udf05",
-        "title": "Wake up",
-        "time": "6:00 \u2013 6:15am",
-        "tasks": [
-          {
-            "l": "Get out of bed",
-            "t": "6:00"
-          },
-          {
-            "l": "Open shades + Make bed",
-            "t": "6:00"
-          },
-          {
-            "l": "Drink 500ml of water",
-            "t": "6:02"
-          },
-          {
-            "l": "Electrolytes",
-            "t": "6:02",
-            "tag": "supp"
-          },
-          {
-            "l": "Wear face mask",
-            "t": "6:05"
-          },
-          {
-            "l": "Wash face (cold water)",
-            "t": "6:08"
-          },
-          {
-            "l": "Upper body stretch",
-            "t": "6:10"
-          },
-          {
-            "l": "Brush teeth",
-            "t": "6:12"
-          },
-          {
-            "l": "Clean nose (saline)",
-            "t": "6:14"
-          },
-          {
-            "l": "NMN",
-            "t": "6:15",
-            "tag": "supp"
-          },
-          {
-            "l": "Trans-Resveratrol",
-            "t": "6:15",
-            "tag": "supp"
-          },
-          {
-            "l": "Shilajit (x2)",
-            "t": "6:15",
-            "tag": "supp"
-          }
-        ]
-      },
-      {
-        "id": "prep",
-        "icon": "\ud83e\uddd8",
-        "title": "Breathwork + Mobility",
-        "time": "6:15 \u2013 6:40am",
-        "tasks": [
-          {
-            "l": "Eat protein bar",
-            "t": "6:15"
-          },
-          {
-            "l": "Wear workout clothes",
-            "t": "6:18"
-          },
-          {
-            "l": "Wim Hof + Box breathing \u2014 5 mins",
-            "t": "6:20",
-            "tag": "mindset"
-          },
-          {
-            "l": "Mike Holland exercises \u2014 5 mins",
-            "t": "6:25",
-            "tag": "mindset"
-          },
-          {
-            "l": "Mobility: full body, hips, shoulders \u2014 15 mins",
-            "t": "6:30",
-            "tag": "mindset"
-          }
-        ]
-      },
-      {
-        "id": "cardio",
-        "icon": "\ud83c\udfc3",
-        "title": "Cardio \u2014 Zone 2 jog to gym",
-        "time": "6:40 \u2013 7:05am",
-        "tasks": [
-          {
-            "l": "Zone 2 jog to gym",
-            "t": "6:40"
-          }
-        ]
-      },
-      {
-        "id": "gymam",
-        "icon": "\ud83c\udfcb\ufe0f",
-        "title": "Morning gym \u2014 Legs + Shoulders",
-        "time": "7:05 \u2013 8:05am",
-        "tasks": [
-          {
-            "l": "Abs",
-            "t": "7:05"
-          },
-          {
-            "l": "50 Push ups",
-            "t": "7:15"
-          },
-          {
-            "l": "Dips till failure then Assisted Dip",
-            "t": "7:25"
-          },
-          {
-            "l": "Sauna",
-            "t": "7:40",
-            "tag": "sauna"
-          }
-        ]
-      },
-      {
-        "id": "postgym",
-        "icon": "\ud83d\udebf",
-        "title": "Post-gym",
-        "time": "8:05 \u2013 8:45am",
-        "tasks": [
-          {
-            "l": "Walk back from gym",
-            "t": "8:05"
-          },
-          {
-            "l": "Drink water",
-            "t": "8:20"
-          },
-          {
-            "l": "Cold shower",
-            "t": "8:22"
-          },
-          {
-            "l": "Skincare",
-            "t": "8:35"
-          },
-          {
-            "l": "Get ready for work / Start work",
-            "t": "8:40"
-          },
-          {
-            "l": "Read News dashboard",
-            "t": "8:45"
-          }
-        ]
-      },
-      {
-        "id": "bsupps",
-        "icon": "\ud83d\udc8a",
-        "title": "Breakfast supplements",
-        "time": "8:45am",
-        "tasks": [
-          {
-            "l": "Vitamin D3",
-            "t": "8:45",
-            "tag": "supp"
-          },
-          {
-            "l": "Omega 3",
-            "t": "8:45",
-            "tag": "supp"
-          },
-          {
-            "l": "Tostero (x2)",
-            "t": "8:45",
-            "tag": "supp"
-          },
-          {
-            "l": "Quercetin & Bromelain (x2)",
-            "t": "8:45",
-            "tag": "supp"
-          }
-        ]
-      },
-      {
-        "id": "work",
-        "icon": "\ud83d\udcbc",
-        "title": "Work",
-        "time": "9:00am \u2013 12:30pm",
-        "tasks": [
-          {
-            "l": "Office",
-            "t": "9:00"
-          },
-          {
-            "l": "Coffee + Ryze + Collagen",
-            "t": "9:15"
-          }
-        ]
-      },
-      {
-        "id": "lunch",
-        "icon": "\ud83c\udf71",
-        "title": "Lunch break",
-        "time": "12:30 \u2013 1:30pm",
-        "tasks": [
-          {
-            "l": "Wordle",
-            "t": "12:30"
-          },
-          {
-            "l": "Pips (all levels)",
-            "t": "12:40"
-          },
-          {
-            "l": "Impulse Training",
-            "t": "12:50"
-          },
-          {
-            "l": "Duolingo",
-            "t": "1:00"
-          },
-          {
-            "l": "1 chapter of Chess learning",
-            "t": "1:10"
-          },
-          {
-            "l": "Lunch + Overnight Oats",
-            "t": "1:20"
-          }
-        ]
-      },
-      {
-        "id": "eve",
-        "icon": "\ud83d\udd31",
-        "title": "Evening \u2014 Legs + Shoulders",
-        "time": "4:30 \u2013 6:30pm",
-        "tasks": [
-          {
-            "l": "Neck exercises",
-            "t": "4:30",
-            "tag": "mindset"
-          },
-          {
-            "l": "Light mobility",
-            "t": "4:45",
-            "tag": "mindset"
-          },
-          {
-            "l": "15 min Incline Cardio",
-            "t": ""
-          },
-          {
-            "l": "Front Squats",
-            "t": "5:00"
-          },
-          {
-            "l": "Leg Curls",
-            "t": "5:10"
-          },
-          {
-            "l": "Leg Extensions",
-            "t": "5:20"
-          },
-          {
-            "l": "Single Leg Curls",
-            "t": "5:30"
-          },
-          {
-            "l": "Calf presses",
-            "t": "5:40"
-          },
-          {
-            "l": "Seated Lateral Raises",
-            "t": "5:50"
-          },
-          {
-            "l": "Lateral Raise Machine",
-            "t": "5:58"
-          },
-          {
-            "l": "Front Lateral Raises",
-            "t": "6:06"
-          },
-          {
-            "l": "Cross Machine Shoulder Press",
-            "t": "6:14"
-          },
-          {
-            "l": "Rear Delt Raises",
-            "t": "6:22"
-          }
-        ]
-      },
-      {
-        "id": "dinner",
-        "icon": "\ud83c\udf7d\ufe0f",
-        "title": "Dinner + wind down",
-        "time": "6:30 \u2013 7:30pm",
-        "tasks": [
-          {
-            "l": "Shower",
-            "t": "6:30"
-          },
-          {
-            "l": "Dinner + Eggs",
-            "t": "7:00"
-          },
-          {
-            "l": "Creatine (x4)",
-            "t": "7:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Watch something",
-            "t": "7:30"
-          }
-        ]
-      },
-      {
-        "id": "build",
-        "icon": "\ud83e\udde0",
-        "title": "Build / Learn",
-        "time": "7:30 \u2013 10:00pm",
-        "tasks": [
-          {
-            "l": "Build / Learn session",
-            "t": "7:30"
-          }
-        ]
-      },
-      {
-        "id": "night",
-        "icon": "\ud83c\udf19",
-        "title": "Night routine",
-        "time": "10:30 \u2013 11:30pm",
-        "tasks": [
-          {
-            "l": "Make overnight oats + Talk to mum",
-            "t": "10:30"
-          },
-          {
-            "l": "Take meal prep out from freezer",
-            "t": "10:45"
-          },
-          {
-            "l": "Wash face",
-            "t": "10:50"
-          },
-          {
-            "l": "Skincare",
-            "t": "10:55"
-          },
-          {
-            "l": "Magnesium",
-            "t": "11:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Read",
-            "t": "11:00"
-          },
-          {
-            "l": "Nose strip",
-            "t": "11:20"
-          },
-          {
-            "l": "Mouth tape",
-            "t": "11:25"
-          },
-          {
-            "l": "Eye tape",
-            "t": "11:27"
-          },
-          {
-            "l": "Eye mask",
-            "t": "11:28"
-          },
-          {
-            "l": "Sleep",
-            "t": "11:30"
-          }
-        ]
-      }
-    ],
-    "Thursday": [
-      {
-        "id": "wake",
-        "icon": "\ud83c\udf05",
-        "title": "Wake up",
-        "time": "6:00 \u2013 6:15am",
-        "tasks": [
-          {
-            "l": "Get out of bed",
-            "t": "6:00"
-          },
-          {
-            "l": "Open shades + Make bed",
-            "t": "6:00"
-          },
-          {
-            "l": "Drink 500ml of water",
-            "t": "6:02"
-          },
-          {
-            "l": "Electrolytes",
-            "t": "6:02",
-            "tag": "supp"
-          },
-          {
-            "l": "Wear face mask",
-            "t": "6:05"
-          },
-          {
-            "l": "Wash face (cold water)",
-            "t": "6:08"
-          },
-          {
-            "l": "Upper body stretch",
-            "t": "6:10"
-          },
-          {
-            "l": "Brush teeth",
-            "t": "6:12"
-          },
-          {
-            "l": "Clean nose (saline)",
-            "t": "6:14"
-          },
-          {
-            "l": "NMN",
-            "t": "6:15",
-            "tag": "supp"
-          },
-          {
-            "l": "Trans-Resveratrol",
-            "t": "6:15",
-            "tag": "supp"
-          },
-          {
-            "l": "Shilajit (x2)",
-            "t": "6:15",
-            "tag": "supp"
-          }
-        ]
-      },
-      {
-        "id": "prep",
-        "icon": "\ud83e\uddd8",
-        "title": "Breathwork + Mobility",
-        "time": "6:15 \u2013 6:40am",
-        "tasks": [
-          {
-            "l": "Eat protein bar",
-            "t": "6:15"
-          },
-          {
-            "l": "Wear workout clothes",
-            "t": "6:18"
-          },
-          {
-            "l": "Wim Hof + Box breathing \u2014 5 mins",
-            "t": "6:20",
-            "tag": "mindset"
-          },
-          {
-            "l": "Mike Holland exercises \u2014 5 mins",
-            "t": "6:25",
-            "tag": "mindset"
-          },
-          {
-            "l": "Mobility: full body, hips, shoulders \u2014 15 mins",
-            "t": "6:30",
-            "tag": "mindset"
-          }
-        ]
-      },
-      {
-        "id": "cardio",
-        "icon": "\ud83c\udfc3",
-        "title": "Cardio \u2014 VO2 Max",
-        "time": "6:40 \u2013 7:05am",
-        "tasks": [
-          {
-            "l": "VO2 Max session",
-            "t": "6:40"
-          }
-        ]
-      },
-      {
-        "id": "postgym",
-        "icon": "\ud83d\udebf",
-        "title": "Post-gym",
-        "time": "8:05 \u2013 8:45am",
-        "tasks": [
-          {
-            "l": "Walk back",
-            "t": "8:05"
-          },
-          {
-            "l": "Drink water",
-            "t": "8:20"
-          },
-          {
-            "l": "Cold shower",
-            "t": "8:22"
-          },
-          {
-            "l": "Skincare",
-            "t": "8:35"
-          },
-          {
-            "l": "Get ready for work / Start work",
-            "t": "8:40"
-          },
-          {
-            "l": "Read News dashboard",
-            "t": "8:45"
-          }
-        ]
-      },
-      {
-        "id": "bsupps",
-        "icon": "\ud83d\udc8a",
-        "title": "Breakfast supplements",
-        "time": "8:45am",
-        "tasks": [
-          {
-            "l": "Vitamin D3",
-            "t": "8:45",
-            "tag": "supp"
-          },
-          {
-            "l": "Omega 3",
-            "t": "8:45",
-            "tag": "supp"
-          },
-          {
-            "l": "Tostero (x2)",
-            "t": "8:45",
-            "tag": "supp"
-          },
-          {
-            "l": "Quercetin & Bromelain (x2)",
-            "t": "8:45",
-            "tag": "supp"
-          }
-        ]
-      },
-      {
-        "id": "work",
-        "icon": "\ud83d\udcbc",
-        "title": "Work",
-        "time": "9:00am \u2013 12:30pm",
-        "tasks": [
-          {
-            "l": "Office",
-            "t": "9:00"
-          },
-          {
-            "l": "Coffee + Ryze + Collagen",
-            "t": "9:15"
-          }
-        ]
-      },
-      {
-        "id": "lunch",
-        "icon": "\ud83c\udf71",
-        "title": "Lunch break",
-        "time": "12:30 \u2013 1:30pm",
-        "tasks": [
-          {
-            "l": "Wordle",
-            "t": "12:30"
-          },
-          {
-            "l": "Pips (all levels)",
-            "t": "12:40"
-          },
-          {
-            "l": "Impulse Training",
-            "t": "12:50"
-          },
-          {
-            "l": "Duolingo",
-            "t": "1:00"
-          },
-          {
-            "l": "1 chapter of Chess learning",
-            "t": "1:10"
-          },
-          {
-            "l": "Lunch + Overnight Oats",
-            "t": "1:20"
-          }
-        ]
-      },
-      {
-        "id": "eve",
-        "icon": "\ud83d\udd31",
-        "title": "Evening \u2014 VO2 Max + Recovery",
-        "time": "4:30 \u2013 6:30pm",
-        "tasks": [
-          {
-            "l": "Neck exercises",
-            "t": "4:30",
-            "tag": "mindset"
-          },
-          {
-            "l": "Light mobility",
-            "t": "4:45",
-            "tag": "mindset"
-          },
-          {
-            "l": "15 min Incline Cardio",
-            "t": ""
-          },
-          {
-            "l": "Foam rolling",
-            "t": "5:00"
-          },
-          {
-            "l": "Stretch session",
-            "t": "5:20"
-          }
-        ]
-      },
-      {
-        "id": "dinner",
-        "icon": "\ud83c\udf7d\ufe0f",
-        "title": "Dinner + wind down",
-        "time": "6:30 \u2013 7:30pm",
-        "tasks": [
-          {
-            "l": "Shower",
-            "t": "6:30"
-          },
-          {
-            "l": "Dinner + Eggs",
-            "t": "7:00"
-          },
-          {
-            "l": "Creatine (x4)",
-            "t": "7:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Watch something",
-            "t": "7:30"
-          }
-        ]
-      },
-      {
-        "id": "build",
-        "icon": "\ud83e\udde0",
-        "title": "Build / Learn",
-        "time": "7:30 \u2013 10:00pm",
-        "tasks": [
-          {
-            "l": "Build / Learn session",
-            "t": "7:30"
-          }
-        ]
-      },
-      {
-        "id": "night",
-        "icon": "\ud83c\udf19",
-        "title": "Night routine",
-        "time": "10:30 \u2013 11:30pm",
-        "tasks": [
-          {
-            "l": "Make overnight oats + Talk to mum",
-            "t": "10:30"
-          },
-          {
-            "l": "Take meal prep out from freezer",
-            "t": "10:45"
-          },
-          {
-            "l": "Wash face",
-            "t": "10:50"
-          },
-          {
-            "l": "Skincare",
-            "t": "10:55"
-          },
-          {
-            "l": "Magnesium",
-            "t": "11:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Read",
-            "t": "11:00"
-          },
-          {
-            "l": "Nose strip",
-            "t": "11:20"
-          },
-          {
-            "l": "Mouth tape",
-            "t": "11:25"
-          },
-          {
-            "l": "Eye tape",
-            "t": "11:27"
-          },
-          {
-            "l": "Eye mask",
-            "t": "11:28"
-          },
-          {
-            "l": "Sleep",
-            "t": "11:30"
-          }
-        ]
-      }
-    ],
-    "Friday": [
-      {
-        "id": "wake",
-        "icon": "\ud83c\udf05",
-        "title": "Wake up",
-        "time": "6:00 \u2013 6:15am",
-        "tasks": [
-          {
-            "l": "Get out of bed",
-            "t": "6:00"
-          },
-          {
-            "l": "Open shades + Make bed",
-            "t": "6:00"
-          },
-          {
-            "l": "Drink 500ml of water",
-            "t": "6:02"
-          },
-          {
-            "l": "Electrolytes",
-            "t": "6:02",
-            "tag": "supp"
-          },
-          {
-            "l": "Wear face mask",
-            "t": "6:05"
-          },
-          {
-            "l": "Wash face (cold water)",
-            "t": "6:08"
-          },
-          {
-            "l": "Upper body stretch",
-            "t": "6:10"
-          },
-          {
-            "l": "Brush teeth",
-            "t": "6:12"
-          },
-          {
-            "l": "Clean nose (saline)",
-            "t": "6:14"
-          },
-          {
-            "l": "NMN",
-            "t": "6:15",
-            "tag": "supp"
-          },
-          {
-            "l": "Trans-Resveratrol",
-            "t": "6:15",
-            "tag": "supp"
-          },
-          {
-            "l": "Shilajit (x2)",
-            "t": "6:15",
-            "tag": "supp"
-          }
-        ]
-      },
-      {
-        "id": "prep",
-        "icon": "\ud83e\uddd8",
-        "title": "Breathwork + Mobility",
-        "time": "6:15 \u2013 6:40am",
-        "tasks": [
-          {
-            "l": "Eat protein bar",
-            "t": "6:15"
-          },
-          {
-            "l": "Wear workout clothes",
-            "t": "6:18"
-          },
-          {
-            "l": "Wim Hof + Box breathing \u2014 5 mins",
-            "t": "6:20",
-            "tag": "mindset"
-          },
-          {
-            "l": "Mike Holland exercises \u2014 5 mins",
-            "t": "6:25",
-            "tag": "mindset"
-          },
-          {
-            "l": "Mobility: full body, hips, shoulders \u2014 15 mins",
-            "t": "6:30",
-            "tag": "mindset"
-          }
-        ]
-      },
-      {
-        "id": "cardio",
-        "icon": "\ud83c\udfc3",
-        "title": "Cardio \u2014 Zone 2 jog to gym",
-        "time": "6:40 \u2013 7:05am",
-        "tasks": [
-          {
-            "l": "Zone 2 jog to gym",
-            "t": "6:40"
-          }
-        ]
-      },
-      {
-        "id": "gymam",
-        "icon": "\ud83c\udfcb\ufe0f",
-        "title": "Morning gym \u2014 Full Upper",
-        "time": "7:05 \u2013 8:05am",
-        "tasks": [
-          {
-            "l": "Hip Thrusts + Planks",
-            "t": "7:05"
-          },
-          {
-            "l": "Pull ups + Forearms",
-            "t": "7:25"
-          },
-          {
-            "l": "Shrugs",
-            "t": "7:35"
-          },
-          {
-            "l": "Sauna",
-            "t": "7:45",
-            "tag": "sauna"
-          }
-        ]
-      },
-      {
-        "id": "postgym",
-        "icon": "\ud83d\udebf",
-        "title": "Post-gym",
-        "time": "8:05 \u2013 8:45am",
-        "tasks": [
-          {
-            "l": "Walk back from gym",
-            "t": "8:05"
-          },
-          {
-            "l": "Drink water",
-            "t": "8:20"
-          },
-          {
-            "l": "Cold shower",
-            "t": "8:22"
-          },
-          {
-            "l": "Skincare",
-            "t": "8:35"
-          },
-          {
-            "l": "Get ready for work / Start work",
-            "t": "8:40"
-          },
-          {
-            "l": "Read News dashboard",
-            "t": "8:45"
-          }
-        ]
-      },
-      {
-        "id": "bsupps",
-        "icon": "\ud83d\udc8a",
-        "title": "Breakfast supplements",
-        "time": "8:45am",
-        "tasks": [
-          {
-            "l": "Vitamin D3",
-            "t": "8:45",
-            "tag": "supp"
-          },
-          {
-            "l": "Omega 3",
-            "t": "8:45",
-            "tag": "supp"
-          },
-          {
-            "l": "Tostero (x2)",
-            "t": "8:45",
-            "tag": "supp"
-          },
-          {
-            "l": "Quercetin & Bromelain (x2)",
-            "t": "8:45",
-            "tag": "supp"
-          }
-        ]
-      },
-      {
-        "id": "work",
-        "icon": "\ud83d\udcbc",
-        "title": "Work",
-        "time": "9:00am \u2013 12:30pm",
-        "tasks": [
-          {
-            "l": "Office",
-            "t": "9:00"
-          },
-          {
-            "l": "Coffee + Ryze + Collagen",
-            "t": "9:15"
-          }
-        ]
-      },
-      {
-        "id": "lunch",
-        "icon": "\ud83c\udf71",
-        "title": "Lunch break",
-        "time": "12:30 \u2013 1:30pm",
-        "tasks": [
-          {
-            "l": "Wordle",
-            "t": "12:30"
-          },
-          {
-            "l": "Pips (all levels)",
-            "t": "12:40"
-          },
-          {
-            "l": "Impulse Training",
-            "t": "12:50"
-          },
-          {
-            "l": "Duolingo",
-            "t": "1:00"
-          },
-          {
-            "l": "1 chapter of Chess learning",
-            "t": "1:10"
-          },
-          {
-            "l": "Lunch + Overnight Oats",
-            "t": "1:20"
-          }
-        ]
-      },
-      {
-        "id": "eve",
-        "icon": "\ud83d\udd31",
-        "title": "Evening \u2014 Full Upper (Chest + Back + Arms + Shoulders)",
-        "time": "4:30 \u2013 6:30pm",
-        "tasks": [
-          {
-            "l": "Neck exercises",
-            "t": "4:30",
-            "tag": "mindset"
-          },
-          {
-            "l": "Light mobility",
-            "t": "4:45",
-            "tag": "mindset"
-          },
-          {
-            "l": "15 min Incline Cardio",
-            "t": ""
-          },
-          {
-            "l": "Deadlifts",
-            "t": "5:00"
-          },
-          {
-            "l": "Barbell Rows",
-            "t": "5:10"
-          },
-          {
-            "l": "Incline Bench Press",
-            "t": "5:20"
-          },
-          {
-            "l": "Cable Fly's \u2014 Up n Down",
-            "t": "5:30"
-          },
-          {
-            "l": "Skull Crushers",
-            "t": "5:40"
-          },
-          {
-            "l": "Superset Tricep Push Down",
-            "t": "5:48"
-          },
-          {
-            "l": "Incline DB Curls",
-            "t": "5:56"
-          },
-          {
-            "l": "Preacher Curls",
-            "t": "6:04"
-          },
-          {
-            "l": "Reverse Curls",
-            "t": "6:12"
-          },
-          {
-            "l": "Machine Shoulder Press",
-            "t": "6:18"
-          },
-          {
-            "l": "DB Lateral Raise",
-            "t": "6:24"
-          },
-          {
-            "l": "Rear Delt Fly's",
-            "t": "6:28"
-          }
-        ]
-      },
-      {
-        "id": "dinner",
-        "icon": "\ud83c\udf7d\ufe0f",
-        "title": "Dinner + wind down",
-        "time": "6:30 \u2013 7:30pm",
-        "tasks": [
-          {
-            "l": "Shower",
-            "t": "6:30"
-          },
-          {
-            "l": "Dinner + Eggs",
-            "t": "7:00"
-          },
-          {
-            "l": "Creatine (x4)",
-            "t": "7:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Watch something",
-            "t": "7:30"
-          }
-        ]
-      },
-      {
-        "id": "build",
-        "icon": "\ud83e\udde0",
-        "title": "Build / Learn",
-        "time": "7:30 \u2013 10:00pm",
-        "tasks": [
-          {
-            "l": "Build / Learn session",
-            "t": "7:30"
-          }
-        ]
-      },
-      {
-        "id": "night",
-        "icon": "\ud83c\udf19",
-        "title": "Night routine",
-        "time": "10:30 \u2013 11:30pm",
-        "tasks": [
-          {
-            "l": "Make overnight oats + Talk to mum",
-            "t": "10:30"
-          },
-          {
-            "l": "Take meal prep out from freezer",
-            "t": "10:45"
-          },
-          {
-            "l": "Wash face",
-            "t": "10:50"
-          },
-          {
-            "l": "Skincare",
-            "t": "10:55"
-          },
-          {
-            "l": "Magnesium",
-            "t": "11:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Read",
-            "t": "11:00"
-          },
-          {
-            "l": "Nose strip",
-            "t": "11:20"
-          },
-          {
-            "l": "Mouth tape",
-            "t": "11:25"
-          },
-          {
-            "l": "Eye tape",
-            "t": "11:27"
-          },
-          {
-            "l": "Eye mask",
-            "t": "11:28"
-          },
-          {
-            "l": "Sleep",
-            "t": "11:30"
-          }
-        ]
-      }
-    ],
-    "Saturday": [
-      {
-        "id": "wake",
-        "icon": "\ud83c\udf05",
-        "title": "Wake up",
-        "time": "6:00 \u2013 6:15am",
-        "tasks": [
-          {
-            "l": "Get out of bed",
-            "t": "6:00"
-          },
-          {
-            "l": "Open shades + Make bed",
-            "t": "6:00"
-          },
-          {
-            "l": "Drink 500ml of water",
-            "t": "6:02"
-          },
-          {
-            "l": "Electrolytes",
-            "t": "6:02",
-            "tag": "supp"
-          },
-          {
-            "l": "Wear face mask",
-            "t": "6:05"
-          },
-          {
-            "l": "Wash face (cold water)",
-            "t": "6:08"
-          },
-          {
-            "l": "Upper body stretch",
-            "t": "6:10"
-          },
-          {
-            "l": "Brush teeth",
-            "t": "6:12"
-          },
-          {
-            "l": "Clean nose (saline)",
-            "t": "6:14"
-          },
-          {
-            "l": "NMN",
-            "t": "6:15",
-            "tag": "supp"
-          },
-          {
-            "l": "Trans-Resveratrol",
-            "t": "6:15",
-            "tag": "supp"
-          },
-          {
-            "l": "Shilajit (x2)",
-            "t": "6:15",
-            "tag": "supp"
-          }
-        ]
-      },
-      {
-        "id": "cardio",
-        "icon": "\ud83c\udfc3",
-        "title": "Cardio \u2014 Long Run",
-        "time": "6:15 \u2013 7:15am",
-        "tasks": [
-          {
-            "l": "Long Run",
-            "t": "6:15"
-          }
-        ]
-      },
-      {
-        "id": "gymam",
-        "icon": "\ud83c\udfcb\ufe0f",
-        "title": "Morning gym \u2014 Legs + Big Saturday",
-        "time": "7:15 \u2013 8:30am",
-        "tasks": [
-          {
-            "l": "Bicep Pull Ups + Dips + Pull Ups",
-            "t": "7:15"
-          },
-          {
-            "l": "Leg Accessories \u2014 For Running",
-            "t": "7:30"
-          },
-          {
-            "l": "Calves",
-            "t": "7:45"
-          },
-          {
-            "l": "Hip Outward",
-            "t": "7:52"
-          },
-          {
-            "l": "Hip Inward",
-            "t": "8:00"
-          },
-          {
-            "l": "Abs",
-            "t": "8:08"
-          },
-          {
-            "l": "Sauna \u2014 30 mins",
-            "t": "8:15",
-            "tag": "sauna"
-          }
-        ]
-      },
-      {
-        "id": "postgym",
-        "icon": "\ud83d\udebf",
-        "title": "Post-gym",
-        "time": "8:30 \u2013 9:00am",
-        "tasks": [
-          {
-            "l": "Drink water",
-            "t": "8:30"
-          },
-          {
-            "l": "Cold shower",
-            "t": "8:35"
-          },
-          {
-            "l": "Skincare",
-            "t": "8:50"
-          },
-          {
-            "l": "Get ready",
-            "t": "8:55"
-          }
-        ]
-      },
-      {
-        "id": "bsupps",
-        "icon": "\ud83d\udc8a",
-        "title": "Breakfast supplements",
-        "time": "9:00am",
-        "tasks": [
-          {
-            "l": "Vitamin D3",
-            "t": "9:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Omega 3",
-            "t": "9:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Tostero (x2)",
-            "t": "9:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Quercetin & Bromelain (x2)",
-            "t": "9:00",
-            "tag": "supp"
-          }
-        ]
-      },
-      {
-        "id": "dinner",
-        "icon": "\ud83c\udf7d\ufe0f",
-        "title": "Dinner + wind down",
-        "time": "6:30 \u2013 7:30pm",
-        "tasks": [
-          {
-            "l": "Shower",
-            "t": "6:30"
-          },
-          {
-            "l": "Dinner + Eggs",
-            "t": "7:00"
-          },
-          {
-            "l": "Creatine (x4)",
-            "t": "7:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Watch something",
-            "t": "7:30"
-          }
-        ]
-      },
-      {
-        "id": "build",
-        "icon": "\ud83e\udde0",
-        "title": "Build / Learn",
-        "time": "7:30 \u2013 10:00pm",
-        "tasks": [
-          {
-            "l": "Build / Learn session",
-            "t": "7:30"
-          }
-        ]
-      },
-      {
-        "id": "night",
-        "icon": "\ud83c\udf19",
-        "title": "Night routine",
-        "time": "10:30 \u2013 11:30pm",
-        "tasks": [
-          {
-            "l": "Make overnight oats + Talk to mum",
-            "t": "10:30"
-          },
-          {
-            "l": "Take meal prep out from freezer",
-            "t": "10:45"
-          },
-          {
-            "l": "Wash face",
-            "t": "10:50"
-          },
-          {
-            "l": "Skincare",
-            "t": "10:55"
-          },
-          {
-            "l": "Magnesium",
-            "t": "11:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Read",
-            "t": "11:00"
-          },
-          {
-            "l": "Nose strip",
-            "t": "11:20"
-          },
-          {
-            "l": "Mouth tape",
-            "t": "11:25"
-          },
-          {
-            "l": "Eye tape",
-            "t": "11:27"
-          },
-          {
-            "l": "Eye mask",
-            "t": "11:28"
-          },
-          {
-            "l": "Sleep",
-            "t": "11:30"
-          }
-        ]
-      }
-    ],
-    "Sunday": [
-      {
-        "id": "wake",
-        "icon": "\ud83c\udf05",
-        "title": "Wake up",
-        "time": "6:00 \u2013 6:15am",
-        "tasks": [
-          {
-            "l": "Get out of bed",
-            "t": "6:00"
-          },
-          {
-            "l": "Open shades + Make bed",
-            "t": "6:00"
-          },
-          {
-            "l": "Drink 500ml of water",
-            "t": "6:02"
-          },
-          {
-            "l": "Electrolytes",
-            "t": "6:02",
-            "tag": "supp"
-          },
-          {
-            "l": "Wear face mask",
-            "t": "6:05"
-          },
-          {
-            "l": "Wash face (cold water)",
-            "t": "6:08"
-          },
-          {
-            "l": "Upper body stretch",
-            "t": "6:10"
-          },
-          {
-            "l": "Brush teeth",
-            "t": "6:12"
-          },
-          {
-            "l": "Clean nose (saline)",
-            "t": "6:14"
-          },
-          {
-            "l": "NMN",
-            "t": "6:15",
-            "tag": "supp"
-          },
-          {
-            "l": "Trans-Resveratrol",
-            "t": "6:15",
-            "tag": "supp"
-          },
-          {
-            "l": "Shilajit (x2)",
-            "t": "6:15",
-            "tag": "supp"
-          }
-        ]
-      },
-      {
-        "id": "recovery",
-        "icon": "\u26f3",
-        "title": "Golf + Recovery",
-        "time": "9:00am \u2013 12:00pm",
-        "tasks": [
-          {
-            "l": "Golf or active recovery",
-            "t": "9:00"
-          },
-          {
-            "l": "Foam rolling",
-            "t": "11:30"
-          },
-          {
-            "l": "Stretching",
-            "t": "11:45",
-            "tag": "mindset"
-          }
-        ]
-      },
-      {
-        "id": "personal",
-        "icon": "\ud83d\udccb",
-        "title": "Personal time",
-        "time": "12:00 \u2013 4:00pm",
-        "tasks": [
-          {
-            "l": "Personal admin",
-            "t": "12:00"
-          },
-          {
-            "l": "Meal prep review",
-            "t": "1:00"
-          },
-          {
-            "l": "Plan the week ahead",
-            "t": "2:00"
-          }
-        ]
-      },
-      {
-        "id": "bsupps",
-        "icon": "\ud83d\udc8a",
-        "title": "Breakfast supplements",
-        "time": "9:00am",
-        "tasks": [
-          {
-            "l": "Vitamin D3",
-            "t": "9:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Omega 3",
-            "t": "9:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Tostero (x2)",
-            "t": "9:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Quercetin & Bromelain (x2)",
-            "t": "9:00",
-            "tag": "supp"
-          }
-        ]
-      },
-      {
-        "id": "dinner",
-        "icon": "\ud83c\udf7d\ufe0f",
-        "title": "Dinner + wind down",
-        "time": "6:30 \u2013 7:30pm",
-        "tasks": [
-          {
-            "l": "Shower",
-            "t": "6:30"
-          },
-          {
-            "l": "Dinner + Eggs",
-            "t": "7:00"
-          },
-          {
-            "l": "Creatine (x4)",
-            "t": "7:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Watch something",
-            "t": "7:30"
-          }
-        ]
-      },
-      {
-        "id": "build",
-        "icon": "\ud83e\udde0",
-        "title": "Build / Learn",
-        "time": "7:30 \u2013 10:00pm",
-        "tasks": [
-          {
-            "l": "Build / Learn session",
-            "t": "7:30"
-          }
-        ]
-      },
-      {
-        "id": "night",
-        "icon": "\ud83c\udf19",
-        "title": "Night routine",
-        "time": "10:30 \u2013 11:30pm",
-        "tasks": [
-          {
-            "l": "Make overnight oats + Talk to mum",
-            "t": "10:30"
-          },
-          {
-            "l": "Take meal prep out from freezer",
-            "t": "10:45"
-          },
-          {
-            "l": "Wash face",
-            "t": "10:50"
-          },
-          {
-            "l": "Skincare",
-            "t": "10:55"
-          },
-          {
-            "l": "Magnesium",
-            "t": "11:00",
-            "tag": "supp"
-          },
-          {
-            "l": "Read",
-            "t": "11:00"
-          },
-          {
-            "l": "Nose strip",
-            "t": "11:20"
-          },
-          {
-            "l": "Mouth tape",
-            "t": "11:25"
-          },
-          {
-            "l": "Eye tape",
-            "t": "11:27"
-          },
-          {
-            "l": "Eye mask",
-            "t": "11:28"
-          },
-          {
-            "l": "Sleep",
-            "t": "11:30"
-          }
-        ]
-      }
-    ]
+    .sidebar-brand { width: 100%; }
+    .cal-section { width: 100%; }
+    .streak-box, .book-box, .date-picker-section { width: 100%; }
+    .theme-toggle { width: 100%; }
+    .main { padding: 20px 16px; }
+    .main-inner { max-width: 100%; }
+    .day-pills { flex-wrap: wrap; }
+    .progress-date { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo">D</div>
+      <h1>Daily</h1>
+      <div class="sync-indicator" id="sync-indicator">
+        <div class="sync-dot" id="sync-dot"></div>
+        <span id="sync-label">Connecting…</span>
+      </div>
+    </div>
+
+    <div class="theme-toggle" onclick="toggleTheme()">
+      <div class="toggle-track"></div>
+      <span id="theme-label">Dark</span>
+    </div>
+
+    <div class="cal-section">
+      <div class="cal-header">
+        <button class="cal-nav" onclick="calNav(-1)">&#8249;</button>
+        <span id="cal-month-label"></span>
+        <button class="cal-nav" onclick="calNav(1)">&#8250;</button>
+      </div>
+      <div class="cal-grid" id="cal-grid"></div>
+    </div>
+
+    <div class="date-picker-section">
+      <label>Jump to date</label>
+      <input type="date" class="date-picker-input" id="date-picker" />
+    </div>
+
+    <div class="streak-box">
+      <div class="streak-num" id="streak-num">0</div>
+      <div class="streak-label">day streak</div>
+    </div>
+
+    <div class="macro-box" id="macro-box">
+      <h3>Nutrition</h3>
+      <div class="macro-row">
+        <div class="macro-label"><span class="macro-icon">🔥</span> Calories</div>
+        <div class="macro-values"><span id="macro-cal-cur">0</span> / <span id="macro-cal-target">0</span></div>
+        <div class="macro-bar-track"><div class="macro-bar-fill macro-bar-cal" id="macro-bar-cal"></div></div>
+      </div>
+      <div class="macro-row">
+        <div class="macro-label"><span class="macro-icon">🥩</span> Protein</div>
+        <div class="macro-values"><span id="macro-pro-cur">0</span>g / <span id="macro-pro-target">0</span>g</div>
+        <div class="macro-bar-track"><div class="macro-bar-fill macro-bar-pro" id="macro-bar-pro"></div></div>
+      </div>
+      <div class="macro-row">
+        <div class="macro-label"><span class="macro-icon">🌾</span> Carbs</div>
+        <div class="macro-values"><span id="macro-carb-cur">0</span>g / <span id="macro-carb-target">0</span>g</div>
+        <div class="macro-bar-track"><div class="macro-bar-fill macro-bar-carb" id="macro-bar-carb"></div></div>
+      </div>
+      <div class="macro-row">
+        <div class="macro-label"><span class="macro-icon">🥑</span> Fat</div>
+        <div class="macro-values"><span id="macro-fat-cur">0</span>g / <span id="macro-fat-target">0</span>g</div>
+        <div class="macro-bar-track"><div class="macro-bar-fill macro-bar-fat" id="macro-bar-fat"></div></div>
+      </div>
+    </div>
+
+    <div class="book-box" id="book-box">
+      <h3>Currently Reading</h3>
+      <div class="book-title" id="book-title">&mdash;</div>
+      <div class="book-phase" id="book-phase"></div>
+      <div class="book-bar-track"><div class="book-bar-fill" id="book-bar"></div></div>
+      <div class="book-pages">
+        <span id="book-pct">0%</span>
+        <span>&middot;</span>
+        <input type="number" id="book-input" min="0" placeholder="pg" />
+        <span id="book-total-label">/ 0 pages</span>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="main-inner" id="main-content">
+      <div class="loading"><div class="spinner"></div>Loading dashboard&hellip;</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://xclkjrnkpejjgeoktihb.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhjbGtqcm5rcGVqamdlb2t0aWhiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU1MzE4MTUsImV4cCI6MjA5MTEwNzgxNX0.7MK6KERxfVySzKTzN1H4wV4yGhRkfTpkr1zWunwznco';
+const CONFIG_URL = 'config.json';
+const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const DAY_SHORT = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+let config = null, viewDate = '', todayStr = '', dayState = {}, isReadonly = false;
+let saveTimer = null, calYear = 0, calMonth = 0, calData = {};
+let bookData = { idx: 0, pages_read: 0 }, books = [], searchQuery = '';
+let meals = [], macroTargets = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+
+function localDateStr(d) {
+  d = d || new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function parseLocalDate(s) { const [y,m,d] = s.split('-').map(Number); return new Date(y,m-1,d); }
+function dayOfWeekName(ds) { return DAY_NAMES[parseLocalDate(ds).getDay()]; }
+function formatDateNice(ds) { const d = parseLocalDate(ds); return `${DAY_NAMES[d.getDay()]}, ${MONTHS_SHORT[d.getMonth()]} ${d.getDate()}`; }
+function formatDateFull(ds) { const d = parseLocalDate(ds); return `${DAY_NAMES[d.getDay()]}, ${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`; }
+
+function dateForWeekday(targetDay) {
+  const now = new Date(), today = now.getDay();
+  let diff = today - targetDay; if (diff < 0) diff += 7;
+  return localDateStr(new Date(now.getFullYear(), now.getMonth(), now.getDate() - diff));
+}
+
+function setSyncStatus(status, label) {
+  const el = document.getElementById('sync-indicator');
+  const lbl = document.getElementById('sync-label');
+  if (!el) return;
+  el.className = 'sync-indicator ' + status;
+  if (lbl) lbl.textContent = label;
+}
+
+function sbHeaders() {
+  return { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' };
+}
+async function sbGet(table, query) {
+  try {
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${query}`, { headers: sbHeaders() });
+    if (!r.ok) { console.error('sbGet error', r.status); setSyncStatus('error', 'Sync error'); return []; }
+    setSyncStatus('synced', 'Synced');
+    return r.json();
+  } catch(e) { console.error('sbGet network error', e); setSyncStatus('error', 'Offline'); return []; }
+}
+async function sbUpsert(table, data) {
+  setSyncStatus('syncing', 'Saving…');
+  try {
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+      method: 'POST', headers: { ...sbHeaders(), 'Prefer': 'resolution=merge-duplicates,return=representation' },
+      body: JSON.stringify(data)
+    });
+    if (!r.ok) { console.error('sbUpsert error', r.status, await r.text()); setSyncStatus('error', 'Save failed'); return; }
+    setSyncStatus('synced', 'Synced');
+  } catch(e) { console.error('sbUpsert network error', e); setSyncStatus('error', 'Offline'); }
+}
+
+async function loadConfig() {
+  const r = await fetch(`${CONFIG_URL}?v=${Date.now()}`);
+  config = await r.json();
+  books = config.books || [];
+  meals = config.meals || [];
+  macroTargets = config.macroTargets || { calories: 0, protein: 0, carbs: 0, fat: 0 };
+}
+
+async function loadDay(dateStr) {
+  const rows = await sbGet('daily_logs', `date=eq.${dateStr}`);
+  dayState = rows.length > 0 ? (rows[0].state || {}) : {};
+  viewDate = dateStr; todayStr = localDateStr(); isReadonly = (viewDate !== todayStr);
+  document.getElementById('date-picker').value = viewDate;
+  render();
+}
+
+function scheduleSave() { if (isReadonly) return; clearTimeout(saveTimer); saveTimer = setTimeout(saveNow, 300); }
+async function saveNow() {
+  if (isReadonly) return;
+  const { done, total } = countTasks();
+  await sbUpsert('daily_logs', { date: viewDate, state: dayState, done, total, updated_at: new Date().toISOString() });
+  calData[viewDate] = { done, total }; renderCalendar();
+}
+
+function countTasks() {
+  const blocks = (config.schedule && config.schedule[dayOfWeekName(viewDate)]) || [];
+  let total = 0, done = 0;
+  blocks.forEach(b => { b.tasks.forEach(t => { total++; if (dayState[b.id+'::'+t.l]) done++; }); });
+  return { done, total };
+}
+
+async function loadBook() {
+  const rows = await sbGet('book_progress', 'id=eq.singleton');
+  if (rows.length > 0) bookData = { idx: rows[0].idx || 0, pages_read: rows[0].pages_read || 0 };
+  renderBook();
+}
+async function saveBook() {
+  await sbUpsert('book_progress', { id: 'singleton', idx: bookData.idx, pages_read: bookData.pages_read, updated_at: new Date().toISOString() });
+}
+function renderBook() {
+  if (!books.length) return;
+  if (bookData.idx >= books.length) bookData.idx = books.length - 1;
+  const bk = books[bookData.idx];
+  document.getElementById('book-title').textContent = bk.title;
+  document.getElementById('book-phase').textContent = `Phase ${bk.phase} \u00b7 Book ${bk.num} of ${bk.total}`;
+  const pct = bk.pages > 0 ? Math.min(100, Math.round((bookData.pages_read / bk.pages) * 100)) : 0;
+  document.getElementById('book-bar').style.width = pct + '%';
+  document.getElementById('book-pct').textContent = pct + '%';
+  document.getElementById('book-total-label').textContent = `/ ${bk.pages} pages`;
+  const inp = document.getElementById('book-input'); inp.value = bookData.pages_read || ''; inp.max = bk.pages;
+}
+function onBookInput(val) {
+  const bk = books[bookData.idx]; let pg = parseInt(val) || 0;
+  if (pg < 0) pg = 0; if (pg > bk.pages) pg = bk.pages;
+  bookData.pages_read = pg;
+  if (pg >= bk.pages && bookData.idx < books.length - 1) { bookData.idx++; bookData.pages_read = 0; }
+  renderBook(); saveBook();
+}
+
+async function loadCalMonth() {
+  const prefix = `${calYear}-${String(calMonth+1).padStart(2,'0')}`;
+  const rows = await sbGet('daily_logs', `date=like.${prefix}*&select=date,done,total`);
+  rows.forEach(r => { calData[r.date] = { done: r.done, total: r.total }; });
+  renderCalendar();
+}
+
+function renderCalendar() {
+  document.getElementById('cal-month-label').textContent = `${MONTHS[calMonth]} ${calYear}`;
+  const grid = document.getElementById('cal-grid'); grid.innerHTML = '';
+  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d => {
+    const el = document.createElement('div'); el.className = 'cal-dow'; el.textContent = d; grid.appendChild(el);
+  });
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
+  const todayLocal = localDateStr();
+  for (let i = 0; i < firstDay; i++) { const el = document.createElement('div'); el.className = 'cal-day'; grid.appendChild(el); }
+  for (let d = 1; d <= daysInMonth; d++) {
+    const ds = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const el = document.createElement('div'); el.className = 'cal-day cur-month';
+    if (ds === todayLocal) el.classList.add('today');
+    if (ds === viewDate && ds !== todayLocal) el.classList.add('selected');
+    el.textContent = d;
+    const clickDate = parseLocalDate(ds), todayDate = parseLocalDate(todayLocal);
+    if (clickDate <= todayDate) { el.classList.add('has-data'); el.onclick = () => loadDay(ds); }
+    const cd = calData[ds];
+    if (cd && cd.total > 0) {
+      const pct = cd.done / cd.total, dot = document.createElement('div'); dot.className = 'cal-dot';
+      if (pct >= 1) dot.classList.add('perfect'); else if (pct >= .7) dot.classList.add('green');
+      else if (pct >= .4) dot.classList.add('amber'); else dot.classList.add('red');
+      el.appendChild(dot);
+    }
+    grid.appendChild(el);
   }
 }
+function calNav(dir) {
+  calMonth += dir;
+  if (calMonth < 0) { calMonth = 11; calYear--; } if (calMonth > 11) { calMonth = 0; calYear++; }
+  loadCalMonth();
+}
+
+async function loadStreak() {
+  const end = new Date(), start = new Date(end.getFullYear(), end.getMonth(), end.getDate()-60);
+  const rows = await sbGet('daily_logs', `date=gte.${localDateStr(start)}&select=date,done,total&order=date.desc`);
+  let streak = 0; const d = new Date();
+  for (let i = 0; i < 61; i++) {
+    const ds = localDateStr(new Date(d.getFullYear(), d.getMonth(), d.getDate()-i));
+    const row = rows.find(r => r.date === ds);
+    if (row && row.done > 0) streak++; else if (i === 0) continue; else break;
+  }
+  document.getElementById('streak-num').textContent = streak;
+}
+
+function onSearch(q) {
+  searchQuery = q.toLowerCase().trim();
+  const cb = document.querySelector('.search-clear');
+  if (cb) cb.classList.toggle('visible', searchQuery.length > 0);
+  applySearch();
+}
+function clearSearch() {
+  const inp = document.querySelector('.search-input'); if (inp) inp.value = '';
+  searchQuery = ''; document.querySelector('.search-clear').classList.remove('visible');
+  applySearch();
+}
+function applySearch() {
+  const blocks = document.querySelectorAll('.block'), info = document.querySelector('.search-info');
+  let matchCount = 0;
+  if (!searchQuery) {
+    blocks.forEach(b => { b.style.display = ''; b.classList.remove('search-highlight'); b.querySelectorAll('.task').forEach(t => t.classList.remove('search-match')); });
+    if (info) info.classList.remove('visible'); return;
+  }
+  blocks.forEach(b => {
+    const tasks = b.querySelectorAll('.task'); let blockMatch = false;
+    const titleEl = b.querySelector('.block-title');
+    const titleMatch = titleEl && titleEl.textContent.toLowerCase().includes(searchQuery);
+    tasks.forEach(t => {
+      const label = t.querySelector('.task-label');
+      const matches = (label && label.textContent.toLowerCase().includes(searchQuery)) || titleMatch;
+      t.classList.toggle('search-match', matches); if (matches) { blockMatch = true; matchCount++; }
+    });
+    b.style.display = blockMatch ? '' : 'none'; b.classList.toggle('search-highlight', blockMatch);
+    if (blockMatch) { const h = b.querySelector('.block-header'), bd = b.querySelector('.block-body');
+      if (h && bd) { h.classList.remove('collapsed'); bd.classList.remove('hidden'); } }
+  });
+  if (info) {
+    info.classList.add('visible');
+    info.innerHTML = matchCount > 0 ? `Found <strong>${matchCount}</strong> task${matchCount!==1?'s':''} matching "<strong>${escHtml(searchQuery)}</strong>"` : `No tasks matching "<strong>${escHtml(searchQuery)}</strong>"`;
+  }
+}
+
+function render() {
+  const main = document.getElementById('main-content');
+  const dayName = dayOfWeekName(viewDate);
+  const blocks = (config.schedule && config.schedule[dayName]) || [];
+  let html = '';
+
+  html += `<div class="search-wrap"><span class="search-icon">\u{1F50D}</span><input class="search-input" type="text" placeholder="Search tasks\u2026" oninput="onSearch(this.value)" value="${escHtml(searchQuery)}" /><button class="search-clear${searchQuery?' visible':''}" onclick="clearSearch()">\u2715</button></div>`;
+  html += `<div class="search-info" id="search-info"></div>`;
+
+  html += '<div class="day-pills">';
+  for (let i = 0; i < 7; i++) { const ds = dateForWeekday(i); html += `<div class="day-pill${ds===viewDate?' active':''}" onclick="loadDay('${ds}')">${DAY_SHORT[i]}</div>`; }
+  html += '</div>';
+
+  if (isReadonly) {
+    html += `<div class="readonly-banner"><span>Viewing ${formatDateNice(viewDate)} \u2014 read only</span><button onclick="loadDay('${todayStr}')">Back to today</button></div>`;
+  }
+
+  const { done, total } = countTasks();
+  const pct = total > 0 ? Math.round((done/total)*100) : 0;
+  const circ = 2 * Math.PI * 22, offset = circ - (pct/100)*circ;
+  html += `<div class="progress-header"><div><div class="progress-date">${formatDateFull(viewDate)}</div><div class="progress-subtitle">${done} of ${total} tasks completed</div></div><div class="progress-right"><div class="progress-ring-wrap"><svg width="56" height="56"><circle class="progress-ring-bg" cx="28" cy="28" r="22" fill="none" stroke-width="4"/><circle class="progress-ring-fill" cx="28" cy="28" r="22" fill="none" stroke-width="4" stroke-dasharray="${circ}" stroke-dashoffset="${offset}" stroke-linecap="round"/></svg><div class="progress-ring-text">${pct}%</div></div></div></div>`;
+
+  blocks.forEach(block => {
+    html += `<div class="block"><div class="block-header" onclick="toggleBlock(this)"><span class="block-icon">${block.icon||'\u25AA'}</span><span class="block-title">${escHtml(block.title)}</span><span class="block-time">${escHtml(block.time||'')}</span><span class="block-chevron">\u25BE</span></div><div class="block-body">`;
+    block.tasks.forEach(t => {
+      const taskId = block.id+'::'+t.l, checked = dayState[taskId]?' checked':'', ro = isReadonly?' readonly':'';
+      const click = isReadonly ? '' : `onclick="toggleTask('${escapeAttr(taskId)}', this)"`;
+      let tagH = t.tag ? `<span class="tag tag-${t.tag}">${t.tag}</span>` : '';
+      html += `<div class="task${checked}${ro}" ${click}><div class="task-check">${dayState[taskId]?'\u2713':''}</div><span class="task-label">${escHtml(t.l)}</span>${t.t?`<span class="task-time">${escHtml(t.t)}</span>`:''}${tagH}</div>`;
+    });
+    html += '</div></div>';
+  });
+
+  // Meals block (Mon-Fri only)
+  const dayIdx = parseLocalDate(viewDate).getDay();
+  if (meals.length > 0 && dayIdx >= 1 && dayIdx <= 5) {
+    html += `<div class="meals-block"><div class="meals-header"><span class="block-icon">\u{1F37D}\uFE0F</span><span class="block-title">Meals</span></div><div class="block-body">`;
+    meals.forEach((m, i) => {
+      const mealId = 'meal::' + m.name;
+      const checked = dayState[mealId] ? ' checked' : '';
+      const ro = isReadonly ? ' readonly' : '';
+      const click = isReadonly ? '' : `onclick="toggleMeal('${escapeAttr(mealId)}', ${i}, this)"`;
+      html += `<div class="meal-item${checked}${ro}" ${click}>
+        <div class="task-check">${dayState[mealId]?'\u2713':''}</div>
+        <span class="meal-name">${escHtml(m.name)}</span>
+        <div class="meal-macros">
+          <span class="meal-macro-pill meal-cal">${m.calories}</span>
+          <span class="meal-macro-pill meal-pro">${m.protein}p</span>
+          <span class="meal-macro-pill meal-carb">${m.carbs}c</span>
+          <span class="meal-macro-pill meal-fat">${m.fat}f</span>
+        </div>
+      </div>`;
+    });
+    html += '</div></div>';
+  }
+
+  if (!blocks.length) html += '<div class="no-results"><div class="big">\u{1F4ED}</div>No schedule found for this day.</div>';
+  main.innerHTML = html;
+  if (searchQuery) setTimeout(applySearch, 10);
+  renderMacros();
+}
+
+function escapeAttr(s) { return s.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;'); }
+function escHtml(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function toggleBlock(header) { header.classList.toggle('collapsed'); header.nextElementSibling.classList.toggle('hidden'); }
+
+function toggleTask(taskId, el) {
+  if (isReadonly) return;
+  dayState[taskId] = !dayState[taskId];
+  el.classList.toggle('checked');
+  el.querySelector('.task-check').textContent = dayState[taskId] ? '\u2713' : '';
+  const { done, total } = countTasks(), pct = total>0?Math.round((done/total)*100):0;
+  const circ = 2*Math.PI*22, offset = circ-(pct/100)*circ;
+  const sub = document.querySelector('.progress-subtitle'); if (sub) sub.textContent = `${done} of ${total} tasks completed`;
+  const rf = document.querySelector('.progress-ring-fill'); if (rf) rf.setAttribute('stroke-dashoffset', offset);
+  const rt = document.querySelector('.progress-ring-text'); if (rt) rt.textContent = pct+'%';
+  scheduleSave();
+}
+
+function toggleMeal(mealId, idx, el) {
+  if (isReadonly) return;
+  dayState[mealId] = !dayState[mealId];
+  el.classList.toggle('checked');
+  el.querySelector('.task-check').textContent = dayState[mealId] ? '\u2713' : '';
+  renderMacros();
+  scheduleSave();
+}
+
+function renderMacros() {
+  const dayIdx = parseLocalDate(viewDate).getDay();
+  const isWeekday = dayIdx >= 1 && dayIdx <= 5;
+
+  let cal = 0, pro = 0, carb = 0, fat = 0;
+  if (isWeekday) {
+    meals.forEach(m => {
+      const mealId = 'meal::' + m.name;
+      if (dayState[mealId]) {
+        cal += m.calories;
+        pro += m.protein;
+        carb += m.carbs;
+        fat += m.fat;
+      }
+    });
+  }
+
+  const t = macroTargets;
+  document.getElementById('macro-cal-cur').textContent = cal;
+  document.getElementById('macro-cal-target').textContent = t.calories;
+  document.getElementById('macro-pro-cur').textContent = pro;
+  document.getElementById('macro-pro-target').textContent = t.protein;
+  document.getElementById('macro-carb-cur').textContent = carb;
+  document.getElementById('macro-carb-target').textContent = t.carbs;
+  document.getElementById('macro-fat-cur').textContent = Math.round(fat * 10) / 10;
+  document.getElementById('macro-fat-target').textContent = t.fat;
+
+  const pctCal = t.calories > 0 ? Math.min(100, Math.round((cal / t.calories) * 100)) : 0;
+  const pctPro = t.protein > 0 ? Math.min(100, Math.round((pro / t.protein) * 100)) : 0;
+  const pctCarb = t.carbs > 0 ? Math.min(100, Math.round((carb / t.carbs) * 100)) : 0;
+  const pctFat = t.fat > 0 ? Math.min(100, Math.round((fat / t.fat) * 100)) : 0;
+
+  document.getElementById('macro-bar-cal').style.width = pctCal + '%';
+  document.getElementById('macro-bar-pro').style.width = pctPro + '%';
+  document.getElementById('macro-bar-carb').style.width = pctCarb + '%';
+  document.getElementById('macro-bar-fat').style.width = pctFat + '%';
+}
+
+function toggleTheme() {
+  const isLight = document.body.classList.toggle('light');
+  localStorage.setItem('theme', isLight?'light':'dark');
+  document.getElementById('theme-label').textContent = isLight?'Light':'Dark';
+}
+function applyTheme() {
+  if (localStorage.getItem('theme')==='light') { document.body.classList.add('light'); document.getElementById('theme-label').textContent = 'Light'; }
+}
+
+function setupDatePicker() {
+  const picker = document.getElementById('date-picker');
+  picker.value = todayStr; picker.max = todayStr;
+  picker.addEventListener('change', e => {
+    const val = e.target.value; if (!val) return;
+    loadDay(val);
+    const d = parseLocalDate(val); calYear = d.getFullYear(); calMonth = d.getMonth(); loadCalMonth();
+  });
+}
+
+async function init() {
+  applyTheme();
+  try { await loadConfig(); } catch(e) {
+    document.getElementById('main-content').innerHTML = '<div class="loading" style="color:var(--red)">Failed to load config.json.</div>'; return;
+  }
+  todayStr = localDateStr(); viewDate = todayStr;
+  const now = new Date(); calYear = now.getFullYear(); calMonth = now.getMonth();
+  setupDatePicker();
+  await Promise.all([loadDay(todayStr), loadBook(), loadCalMonth(), loadStreak()]);
+  document.getElementById('book-input').addEventListener('change', e => onBookInput(e.target.value));
+}
+init();
+</script>
+</body>
+</html>
