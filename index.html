@@ -213,6 +213,39 @@
   }
   .streak-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
 
+  .macro-box {
+    background: var(--bg3); border-radius: var(--radius);
+    padding: 16px; border: 1px solid var(--border);
+  }
+  .macro-box h3 {
+    font-family: var(--font-display); font-size: 11px; font-weight: 600;
+    margin-bottom: 12px; color: var(--text3);
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .macro-row { margin-bottom: 10px; }
+  .macro-row:last-child { margin-bottom: 0; }
+  .macro-label {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 12px; font-weight: 600; color: var(--text2); margin-bottom: 2px;
+  }
+  .macro-icon { font-size: 11px; }
+  .macro-values {
+    font-family: var(--font-display); font-size: 12px;
+    font-weight: 700; color: var(--text); margin-bottom: 4px;
+  }
+  .macro-bar-track {
+    height: 5px; background: var(--border); border-radius: 3px; overflow: hidden;
+  }
+  .macro-bar-fill {
+    height: 100%; border-radius: 3px;
+    transition: width .5s cubic-bezier(.4,0,.2,1);
+    width: 0%;
+  }
+  .macro-bar-cal { background: var(--accent); }
+  .macro-bar-pro { background: var(--green); }
+  .macro-bar-carb { background: var(--amber); }
+  .macro-bar-fat { background: var(--teal); }
+
   .book-box {
     background: var(--bg3); border-radius: var(--radius);
     padding: 16px; border: 1px solid var(--border);
@@ -405,6 +438,40 @@
   .tag-sauna { background: var(--teal-dim); color: var(--teal); }
   .tag-mindset { background: var(--purple-dim); color: var(--purple); }
 
+  .meals-block {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); margin-bottom: 14px; overflow: hidden;
+    transition: border-color var(--transition);
+  }
+  .meals-block:hover { border-color: var(--border2); }
+  .meals-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 20px; background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+  }
+  .meals-header .block-title { flex: 1; }
+  .meal-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 20px; font-size: 14px;
+    transition: background var(--transition); cursor: pointer;
+  }
+  .meal-item:hover { background: var(--card-hover); }
+  .meal-item.checked { opacity: .5; }
+  .meal-item.checked .meal-name { text-decoration: line-through; }
+  .meal-item.readonly { cursor: default; }
+  .meal-name { flex: 1; font-weight: 500; }
+  .meal-macros {
+    display: flex; gap: 6px; font-size: 11px;
+    font-family: var(--font-display); font-weight: 600;
+  }
+  .meal-macro-pill {
+    padding: 2px 6px; border-radius: 4px; white-space: nowrap;
+  }
+  .meal-cal { background: var(--accent-dim); color: var(--accent); }
+  .meal-pro { background: var(--green-dim); color: var(--green); }
+  .meal-carb { background: var(--amber-dim); color: var(--amber); }
+  .meal-fat { background: var(--teal-dim); color: var(--teal); }
+
   .loading {
     display: flex; align-items: center; justify-content: center;
     height: 60vh; font-size: 16px; color: var(--text2); gap: 12px;
@@ -475,6 +542,30 @@
       <div class="streak-label">day streak</div>
     </div>
 
+    <div class="macro-box" id="macro-box">
+      <h3>Nutrition</h3>
+      <div class="macro-row">
+        <div class="macro-label"><span class="macro-icon">🔥</span> Calories</div>
+        <div class="macro-values"><span id="macro-cal-cur">0</span> / <span id="macro-cal-target">0</span></div>
+        <div class="macro-bar-track"><div class="macro-bar-fill macro-bar-cal" id="macro-bar-cal"></div></div>
+      </div>
+      <div class="macro-row">
+        <div class="macro-label"><span class="macro-icon">🥩</span> Protein</div>
+        <div class="macro-values"><span id="macro-pro-cur">0</span>g / <span id="macro-pro-target">0</span>g</div>
+        <div class="macro-bar-track"><div class="macro-bar-fill macro-bar-pro" id="macro-bar-pro"></div></div>
+      </div>
+      <div class="macro-row">
+        <div class="macro-label"><span class="macro-icon">🌾</span> Carbs</div>
+        <div class="macro-values"><span id="macro-carb-cur">0</span>g / <span id="macro-carb-target">0</span>g</div>
+        <div class="macro-bar-track"><div class="macro-bar-fill macro-bar-carb" id="macro-bar-carb"></div></div>
+      </div>
+      <div class="macro-row">
+        <div class="macro-label"><span class="macro-icon">🥑</span> Fat</div>
+        <div class="macro-values"><span id="macro-fat-cur">0</span>g / <span id="macro-fat-target">0</span>g</div>
+        <div class="macro-bar-track"><div class="macro-bar-fill macro-bar-fat" id="macro-bar-fat"></div></div>
+      </div>
+    </div>
+
     <div class="book-box" id="book-box">
       <h3>Currently Reading</h3>
       <div class="book-title" id="book-title">&mdash;</div>
@@ -508,6 +599,7 @@ const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct
 let config = null, viewDate = '', todayStr = '', dayState = {}, isReadonly = false;
 let saveTimer = null, calYear = 0, calMonth = 0, calData = {};
 let bookData = { idx: 0, pages_read: 0 }, books = [], searchQuery = '';
+let meals = [], macroTargets = { calories: 0, protein: 0, carbs: 0, fat: 0 };
 
 function localDateStr(d) {
   d = d || new Date();
@@ -555,7 +647,13 @@ async function sbUpsert(table, data) {
   } catch(e) { console.error('sbUpsert network error', e); setSyncStatus('error', 'Offline'); }
 }
 
-async function loadConfig() { const r = await fetch(`${CONFIG_URL}?v=${Date.now()}`); config = await r.json(); books = config.books || []; }
+async function loadConfig() {
+  const r = await fetch(`${CONFIG_URL}?v=${Date.now()}`);
+  config = await r.json();
+  books = config.books || [];
+  meals = config.meals || [];
+  macroTargets = config.macroTargets || { calories: 0, protein: 0, carbs: 0, fat: 0 };
+}
 
 async function loadDay(dateStr) {
   const rows = await sbGet('daily_logs', `date=eq.${dateStr}`);
@@ -731,9 +829,33 @@ function render() {
     html += '</div></div>';
   });
 
+  // Meals block (Mon-Fri only)
+  const dayIdx = parseLocalDate(viewDate).getDay();
+  if (meals.length > 0 && dayIdx >= 1 && dayIdx <= 5) {
+    html += `<div class="meals-block"><div class="meals-header"><span class="block-icon">\u{1F37D}\uFE0F</span><span class="block-title">Meals</span></div><div class="block-body">`;
+    meals.forEach((m, i) => {
+      const mealId = 'meal::' + m.name;
+      const checked = dayState[mealId] ? ' checked' : '';
+      const ro = isReadonly ? ' readonly' : '';
+      const click = isReadonly ? '' : `onclick="toggleMeal('${escapeAttr(mealId)}', ${i}, this)"`;
+      html += `<div class="meal-item${checked}${ro}" ${click}>
+        <div class="task-check">${dayState[mealId]?'\u2713':''}</div>
+        <span class="meal-name">${escHtml(m.name)}</span>
+        <div class="meal-macros">
+          <span class="meal-macro-pill meal-cal">${m.calories}</span>
+          <span class="meal-macro-pill meal-pro">${m.protein}p</span>
+          <span class="meal-macro-pill meal-carb">${m.carbs}c</span>
+          <span class="meal-macro-pill meal-fat">${m.fat}f</span>
+        </div>
+      </div>`;
+    });
+    html += '</div></div>';
+  }
+
   if (!blocks.length) html += '<div class="no-results"><div class="big">\u{1F4ED}</div>No schedule found for this day.</div>';
   main.innerHTML = html;
   if (searchQuery) setTimeout(applySearch, 10);
+  renderMacros();
 }
 
 function escapeAttr(s) { return s.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;'); }
@@ -752,6 +874,53 @@ function toggleTask(taskId, el) {
   const rf = document.querySelector('.progress-ring-fill'); if (rf) rf.setAttribute('stroke-dashoffset', offset);
   const rt = document.querySelector('.progress-ring-text'); if (rt) rt.textContent = pct+'%';
   scheduleSave();
+}
+
+function toggleMeal(mealId, idx, el) {
+  if (isReadonly) return;
+  dayState[mealId] = !dayState[mealId];
+  el.classList.toggle('checked');
+  el.querySelector('.task-check').textContent = dayState[mealId] ? '\u2713' : '';
+  renderMacros();
+  scheduleSave();
+}
+
+function renderMacros() {
+  const dayIdx = parseLocalDate(viewDate).getDay();
+  const isWeekday = dayIdx >= 1 && dayIdx <= 5;
+
+  let cal = 0, pro = 0, carb = 0, fat = 0;
+  if (isWeekday) {
+    meals.forEach(m => {
+      const mealId = 'meal::' + m.name;
+      if (dayState[mealId]) {
+        cal += m.calories;
+        pro += m.protein;
+        carb += m.carbs;
+        fat += m.fat;
+      }
+    });
+  }
+
+  const t = macroTargets;
+  document.getElementById('macro-cal-cur').textContent = cal;
+  document.getElementById('macro-cal-target').textContent = t.calories;
+  document.getElementById('macro-pro-cur').textContent = pro;
+  document.getElementById('macro-pro-target').textContent = t.protein;
+  document.getElementById('macro-carb-cur').textContent = carb;
+  document.getElementById('macro-carb-target').textContent = t.carbs;
+  document.getElementById('macro-fat-cur').textContent = Math.round(fat * 10) / 10;
+  document.getElementById('macro-fat-target').textContent = t.fat;
+
+  const pctCal = t.calories > 0 ? Math.min(100, Math.round((cal / t.calories) * 100)) : 0;
+  const pctPro = t.protein > 0 ? Math.min(100, Math.round((pro / t.protein) * 100)) : 0;
+  const pctCarb = t.carbs > 0 ? Math.min(100, Math.round((carb / t.carbs) * 100)) : 0;
+  const pctFat = t.fat > 0 ? Math.min(100, Math.round((fat / t.fat) * 100)) : 0;
+
+  document.getElementById('macro-bar-cal').style.width = pctCal + '%';
+  document.getElementById('macro-bar-pro').style.width = pctPro + '%';
+  document.getElementById('macro-bar-carb').style.width = pctCarb + '%';
+  document.getElementById('macro-bar-fat').style.width = pctFat + '%';
 }
 
 function toggleTheme() {
