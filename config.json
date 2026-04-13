@@ -225,6 +225,49 @@
       "pages": 254
     }
   ],
+  "macroTargets": {
+    "calories": 1675,
+    "protein": 227,
+    "carbs": 109,
+    "fat": 42
+  },
+  "meals": [
+    {
+      "name": "Beef & Cucumber Bowl",
+      "calories": 310,
+      "protein": 50,
+      "carbs": 8,
+      "fat": 7
+    },
+    {
+      "name": "Overnight Oats",
+      "calories": 382,
+      "protein": 52,
+      "carbs": 33,
+      "fat": 4
+    },
+    {
+      "name": "David Protein Bar",
+      "calories": 150,
+      "protein": 28,
+      "carbs": 14,
+      "fat": 4
+    },
+    {
+      "name": "Beef & Sweet Potato Bowl",
+      "calories": 388,
+      "protein": 59,
+      "carbs": 31,
+      "fat": 5.5
+    },
+    {
+      "name": "Egg Scramble",
+      "calories": 445,
+      "protein": 38,
+      "carbs": 23,
+      "fat": 21.5
+    }
+  ],
   "schedule": {
     "Monday": [
       {
@@ -242,7 +285,7 @@
             "t": "6:00"
           },
           {
-            "l": "Drink 500ml of water",
+            "l": "Drink Cucumber water",
             "t": "6:02"
           },
           {
@@ -628,7 +671,7 @@
             "t": "6:00"
           },
           {
-            "l": "Drink 500ml of water",
+            "l": "Drink Cucumber water",
             "t": "6:02"
           },
           {
@@ -1018,7 +1061,7 @@
             "t": "6:00"
           },
           {
-            "l": "Drink 500ml of water",
+            "l": "Drink Cucumber water",
             "t": "6:02"
           },
           {
@@ -1408,7 +1451,7 @@
             "t": "6:00"
           },
           {
-            "l": "Drink 500ml of water",
+            "l": "Drink Cucumber water",
             "t": "6:02"
           },
           {
@@ -1616,21 +1659,9 @@
             "tag": "mindset"
           },
           {
-            "l": "Light mobility",
+            "l": "Proper Mobility",
             "t": "4:45",
             "tag": "mindset"
-          },
-          {
-            "l": "15 min Incline Cardio",
-            "t": ""
-          },
-          {
-            "l": "Foam rolling",
-            "t": "5:00"
-          },
-          {
-            "l": "Stretch session",
-            "t": "5:20"
           }
         ]
       },
@@ -1741,7 +1772,7 @@
             "t": "6:00"
           },
           {
-            "l": "Drink 500ml of water",
+            "l": "Drink Cucumber water",
             "t": "6:02"
           },
           {
@@ -2139,7 +2170,7 @@
             "t": "6:00"
           },
           {
-            "l": "Drink 500ml of water",
+            "l": "Drink Cucumber water",
             "t": "6:02"
           },
           {
@@ -2392,7 +2423,7 @@
             "t": "6:00"
           },
           {
-            "l": "Drink 500ml of water",
+            "l": "Drink Cucumber water",
             "t": "6:02"
           },
           {
@@ -2597,48 +2628,5 @@
         ]
       }
     ]
-  },
-  "macroTargets": {
-    "calories": 1675,
-    "protein": 227,
-    "carbs": 109,
-    "fat": 42
-  },
-  "meals": [
-    {
-      "name": "Beef & Cucumber Bowl",
-      "calories": 310,
-      "protein": 50,
-      "carbs": 8,
-      "fat": 7
-    },
-    {
-      "name": "Overnight Oats",
-      "calories": 382,
-      "protein": 52,
-      "carbs": 33,
-      "fat": 4
-    },
-    {
-      "name": "David Protein Bar",
-      "calories": 150,
-      "protein": 28,
-      "carbs": 14,
-      "fat": 4
-    },
-    {
-      "name": "Beef & Sweet Potato Bowl",
-      "calories": 388,
-      "protein": 59,
-      "carbs": 31,
-      "fat": 5.5
-    },
-    {
-      "name": "Egg Scramble",
-      "calories": 445,
-      "protein": 38,
-      "carbs": 23,
-      "fat": 21.5
-    }
-  ]
+  }
 }
