@@ -655,6 +655,24 @@ async function loadConfig() {
   macroTargets = config.macroTargets || { calories: 0, protein: 0, carbs: 0, fat: 0 };
 }
 
+function assembleDay(dayName) {
+  const assembly = config.dayAssembly && config.dayAssembly[dayName];
+  if (!assembly) return [];
+  const blocks = [];
+  assembly.forEach(ref => {
+    if (ref.startsWith('gym:')) {
+      const part = ref.split(':')[1];
+      const gymDay = config.gym && config.gym[dayName];
+      if (gymDay && gymDay[part]) blocks.push(JSON.parse(JSON.stringify(gymDay[part])));
+    } else if (config.sundayBlocks && config.sundayBlocks[ref]) {
+      blocks.push(JSON.parse(JSON.stringify(config.sundayBlocks[ref])));
+    } else if (config.sharedBlocks && config.sharedBlocks[ref]) {
+      blocks.push(JSON.parse(JSON.stringify(config.sharedBlocks[ref])));
+    }
+  });
+  return blocks;
+}
+
 async function loadDay(dateStr) {
   const rows = await sbGet('daily_logs', `date=eq.${dateStr}`);
   dayState = rows.length > 0 ? (rows[0].state || {}) : {};
@@ -672,9 +690,14 @@ async function saveNow() {
 }
 
 function countTasks() {
-  const blocks = (config.schedule && config.schedule[dayOfWeekName(viewDate)]) || [];
+  const blocks = assembleDay(dayOfWeekName(viewDate));
   let total = 0, done = 0;
   blocks.forEach(b => { b.tasks.forEach(t => { total++; if (dayState[b.id+'::'+t.l]) done++; }); });
+  // Count meals on weekdays
+  const dayIdx = parseLocalDate(viewDate).getDay();
+  if (meals.length > 0 && dayIdx >= 1 && dayIdx <= 5) {
+    meals.forEach(m => { total++; if (dayState['meal::'+m.name]) done++; });
+  }
   return { done, total };
 }
 
@@ -799,7 +822,7 @@ function applySearch() {
 function render() {
   const main = document.getElementById('main-content');
   const dayName = dayOfWeekName(viewDate);
-  const blocks = (config.schedule && config.schedule[dayName]) || [];
+  const blocks = assembleDay(dayName);
   let html = '';
 
   html += `<div class="search-wrap"><span class="search-icon">\u{1F50D}</span><input class="search-input" type="text" placeholder="Search tasks\u2026" oninput="onSearch(this.value)" value="${escHtml(searchQuery)}" /><button class="search-clear${searchQuery?' visible':''}" onclick="clearSearch()">\u2715</button></div>`;
