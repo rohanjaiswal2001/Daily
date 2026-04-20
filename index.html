@@ -318,17 +318,22 @@
     display: flex; gap: 6px; margin-bottom: 20px; justify-content: center;
   }
   .day-pill {
-    padding: 8px 16px; border-radius: 24px;
+    padding: 6px 12px; border-radius: 24px;
     font-family: var(--font-display); font-size: 13px; font-weight: 600;
     cursor: pointer; border: 1px solid var(--border);
     background: var(--card); color: var(--text2);
     transition: all var(--transition); user-select: none;
+    display: flex; flex-direction: column; align-items: center; gap: 1px;
+    min-width: 44px;
   }
+  .day-pill .pill-date { font-size: 11px; font-weight: 400; opacity: .6; }
   .day-pill:hover { border-color: var(--accent); color: var(--text); background: var(--card-hover); }
+  .day-pill.today:not(.active) { border-color: var(--accent); color: var(--accent); }
   .day-pill.active {
     background: var(--accent); color: #fff; border-color: var(--accent);
     box-shadow: 0 2px 12px rgba(252,95,43,.3);
   }
+  .day-pill.active .pill-date { opacity: .8; }
 
   .progress-header {
     display: flex; align-items: center; justify-content: space-between;
@@ -488,6 +493,26 @@
   }
   .no-results .big { font-size: 32px; margin-bottom: 8px; }
 
+  .food-log-input {
+    width: 100%;
+    min-height: 80px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 10px 12px;
+    resize: vertical;
+    line-height: 1.6;
+    transition: border-color var(--transition);
+  }
+  .food-log-input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .food-log-input::placeholder { color: var(--text3); }
+
   @media (max-width: 860px) {
     .shell { flex-direction: column; }
     .sidebar {
@@ -612,8 +637,13 @@ function formatDateFull(ds) { const d = parseLocalDate(ds); return `${DAY_NAMES[
 
 function dateForWeekday(targetDay) {
   const now = new Date(), today = now.getDay();
-  let diff = today - targetDay; if (diff < 0) diff += 7;
-  return localDateStr(new Date(now.getFullYear(), now.getMonth(), now.getDate() - diff));
+  // Show current week: Mon-Sun. Days before today = past, days after = future preview.
+  // Calculate offset from today to target day within the current Mon-Sun week.
+  // Week starts Monday (1), ends Sunday (0 mapped to 7).
+  const todayMon = today === 0 ? 7 : today;
+  const targetMon = targetDay === 0 ? 7 : targetDay;
+  const diff = targetMon - todayMon;
+  return localDateStr(new Date(now.getFullYear(), now.getMonth(), now.getDate() + diff));
 }
 
 function setSyncStatus(status, label) {
@@ -676,14 +706,13 @@ function assembleDay(dayName) {
 async function loadDay(dateStr) {
   const rows = await sbGet('daily_logs', `date=eq.${dateStr}`);
   dayState = rows.length > 0 ? (rows[0].state || {}) : {};
-  viewDate = dateStr; todayStr = localDateStr(); isReadonly = (viewDate !== todayStr);
+  viewDate = dateStr; todayStr = localDateStr(); isReadonly = false;
   document.getElementById('date-picker').value = viewDate;
   render();
 }
 
-function scheduleSave() { if (isReadonly) return; clearTimeout(saveTimer); saveTimer = setTimeout(saveNow, 300); }
+function scheduleSave() { clearTimeout(saveTimer); saveTimer = setTimeout(saveNow, 300); }
 async function saveNow() {
-  if (isReadonly) return;
   const { done, total } = countTasks();
   await sbUpsert('daily_logs', { date: viewDate, state: dayState, done, total, updated_at: new Date().toISOString() });
   calData[viewDate] = { done, total }; renderCalendar();
@@ -829,11 +858,12 @@ function render() {
   html += `<div class="search-info" id="search-info"></div>`;
 
   html += '<div class="day-pills">';
-  for (let i = 0; i < 7; i++) { const ds = dateForWeekday(i); html += `<div class="day-pill${ds===viewDate?' active':''}" onclick="loadDay('${ds}')">${DAY_SHORT[i]}</div>`; }
+  const pillOrder = [1,2,3,4,5,6,0]; // Mon-Sun
+  for (const i of pillOrder) { const ds = dateForWeekday(i); const d = parseLocalDate(ds); html += `<div class="day-pill${ds===viewDate?' active':''}${ds===todayStr?' today':''}" onclick="loadDay('${ds}')">${DAY_SHORT[i]}<span class="pill-date">${d.getDate()}</span></div>`; }
   html += '</div>';
 
-  if (isReadonly) {
-    html += `<div class="readonly-banner"><span>Viewing ${formatDateNice(viewDate)} \u2014 read only</span><button onclick="loadDay('${todayStr}')">Back to today</button></div>`;
+  if (viewDate !== todayStr) {
+    html += `<div class="readonly-banner"><span>Viewing ${formatDateNice(viewDate)}</span><button onclick="loadDay('${todayStr}')">Back to today</button></div>`;
   }
 
   const { done, total } = countTasks();
@@ -844,24 +874,23 @@ function render() {
   blocks.forEach(block => {
     html += `<div class="block"><div class="block-header" onclick="toggleBlock(this)"><span class="block-icon">${block.icon||'\u25AA'}</span><span class="block-title">${escHtml(block.title)}</span><span class="block-time">${escHtml(block.time||'')}</span><span class="block-chevron">\u25BE</span></div><div class="block-body">`;
     block.tasks.forEach(t => {
-      const taskId = block.id+'::'+t.l, checked = dayState[taskId]?' checked':'', ro = isReadonly?' readonly':'';
-      const click = isReadonly ? '' : `onclick="toggleTask('${escapeAttr(taskId)}', this)"`;
+      const taskId = block.id+'::'+t.l, checked = dayState[taskId]?' checked':'';
+      const click = `onclick="toggleTask('${escapeAttr(taskId)}', this)"`;
       let tagH = t.tag ? `<span class="tag tag-${t.tag}">${t.tag}</span>` : '';
-      html += `<div class="task${checked}${ro}" ${click}><div class="task-check">${dayState[taskId]?'\u2713':''}</div><span class="task-label">${escHtml(t.l)}</span>${t.t?`<span class="task-time">${escHtml(t.t)}</span>`:''}${tagH}</div>`;
+      html += `<div class="task${checked}" ${click}><div class="task-check">${dayState[taskId]?'\u2713':''}</div><span class="task-label">${escHtml(t.l)}</span>${t.t?`<span class="task-time">${escHtml(t.t)}</span>`:''}${tagH}</div>`;
     });
     html += '</div></div>';
   });
 
-  // Meals block (Mon-Fri only)
+  // Meals block (Mon-Fri: checkbox meals, Sat-Sun: free-text food log)
   const dayIdx = parseLocalDate(viewDate).getDay();
   if (meals.length > 0 && dayIdx >= 1 && dayIdx <= 5) {
     html += `<div class="meals-block"><div class="meals-header"><span class="block-icon">\u{1F37D}\uFE0F</span><span class="block-title">Meals</span></div><div class="block-body">`;
     meals.forEach((m, i) => {
       const mealId = 'meal::' + m.name;
       const checked = dayState[mealId] ? ' checked' : '';
-      const ro = isReadonly ? ' readonly' : '';
-      const click = isReadonly ? '' : `onclick="toggleMeal('${escapeAttr(mealId)}', ${i}, this)"`;
-      html += `<div class="meal-item${checked}${ro}" ${click}>
+      const click = `onclick="toggleMeal('${escapeAttr(mealId)}', ${i}, this)"`;
+      html += `<div class="meal-item${checked}" ${click}>
         <div class="task-check">${dayState[mealId]?'\u2713':''}</div>
         <span class="meal-name">${escHtml(m.name)}</span>
         <div class="meal-macros">
@@ -873,6 +902,14 @@ function render() {
       </div>`;
     });
     html += '</div></div>';
+  }
+
+  // Weekend food log (free-text)
+  if (dayIdx === 0 || dayIdx === 6) {
+    const foodLog = dayState['_weekendFoodLog'] || '';
+    html += `<div class="meals-block"><div class="meals-header"><span class="block-icon">\u{1F37D}\uFE0F</span><span class="block-title">Food log</span></div><div class="block-body" style="padding:12px 16px;">`;
+    html += `<textarea class="food-log-input" id="food-log-input" placeholder="What did you eat today? (e.g. eggs + toast for breakfast, chicken salad for lunch\u2026)" oninput="onFoodLog(this.value)">${escHtml(foodLog)}</textarea>`;
+    html += `</div></div>`;
   }
 
   if (!blocks.length) html += '<div class="no-results"><div class="big">\u{1F4ED}</div>No schedule found for this day.</div>';
@@ -887,7 +924,6 @@ function escHtml(s) { const d = document.createElement('div'); d.textContent = s
 function toggleBlock(header) { header.classList.toggle('collapsed'); header.nextElementSibling.classList.toggle('hidden'); }
 
 function toggleTask(taskId, el) {
-  if (isReadonly) return;
   dayState[taskId] = !dayState[taskId];
   el.classList.toggle('checked');
   el.querySelector('.task-check').textContent = dayState[taskId] ? '\u2713' : '';
@@ -900,12 +936,18 @@ function toggleTask(taskId, el) {
 }
 
 function toggleMeal(mealId, idx, el) {
-  if (isReadonly) return;
   dayState[mealId] = !dayState[mealId];
   el.classList.toggle('checked');
   el.querySelector('.task-check').textContent = dayState[mealId] ? '\u2713' : '';
   renderMacros();
   scheduleSave();
+}
+
+let foodLogTimer = null;
+function onFoodLog(val) {
+  dayState['_weekendFoodLog'] = val;
+  clearTimeout(foodLogTimer);
+  foodLogTimer = setTimeout(saveNow, 800);
 }
 
 function renderMacros() {
