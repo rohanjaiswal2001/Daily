@@ -619,6 +619,52 @@
           "t": "11:30"
         }
       ]
+    },
+    "bsupps_wake": {
+      "id": "wake",
+      "icon": "💊",
+      "title": "Morning supplements",
+      "time": "Wake up",
+      "tasks": [
+        {
+          "l": "NMN",
+          "t": "",
+          "tag": "supp"
+        },
+        {
+          "l": "Trans-Resveratrol",
+          "t": "",
+          "tag": "supp"
+        },
+        {
+          "l": "Shilajit (x2)",
+          "t": "",
+          "tag": "supp"
+        },
+        {
+          "l": "Electrolytes",
+          "t": "",
+          "tag": "supp"
+        }
+      ]
+    },
+    "dinner_supps_only": {
+      "id": "dinner",
+      "icon": "💊",
+      "title": "Evening supplements",
+      "time": "With dinner",
+      "tasks": [
+        {
+          "l": "Creatine (x4)",
+          "t": "",
+          "tag": "supp"
+        },
+        {
+          "l": "Magnesium",
+          "t": "",
+          "tag": "supp"
+        }
+      ]
     }
   },
   "gym": {
@@ -1191,23 +1237,17 @@
       "night"
     ],
     "Saturday": [
-      "wake",
+      "bsupps_wake",
       "gym:cardio",
       "gym:morning",
-      "postgym_saturday",
       "bsupps_weekend",
-      "dinner",
-      "build",
-      "night"
+      "dinner_supps_only"
     ],
     "Sunday": [
-      "wake",
+      "bsupps_wake",
       "recovery",
-      "personal",
       "bsupps_weekend",
-      "dinner",
-      "build",
-      "night"
+      "dinner_supps_only"
     ]
   },
   "sundayBlocks": {
