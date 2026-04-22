@@ -336,6 +336,26 @@
           "l": "Shilajit (x2)",
           "t": "6:15",
           "tag": "supp"
+        },
+        {
+          "l": "Vitamin D3",
+          "t": "8:45",
+          "tag": "supp"
+        },
+        {
+          "l": "Omega 3",
+          "t": "8:45",
+          "tag": "supp"
+        },
+        {
+          "l": "Tostero (x2)",
+          "t": "8:45",
+          "tag": "supp"
+        },
+        {
+          "l": "Quercetin & Bromelain (x2)",
+          "t": "8:45",
+          "tag": "supp"
         }
       ]
     },
@@ -343,7 +363,7 @@
       "id": "prep",
       "icon": "🧘",
       "title": "Breathwork + Mobility",
-      "time": "6:15 – 6:40am",
+      "time": "6:15 – 7:05am",
       "tasks": [
         {
           "l": "Eat protein bar",
@@ -374,7 +394,7 @@
       "id": "postgym",
       "icon": "🚿",
       "title": "Post-gym",
-      "time": "8:05 – 8:45am",
+      "time": "8:45 – 9:15am",
       "tasks": [
         {
           "l": "Walk back from gym",
@@ -426,67 +446,11 @@
         }
       ]
     },
-    "bsupps_weekday": {
-      "id": "bsupps",
-      "icon": "💊",
-      "title": "Breakfast supplements",
-      "time": "8:45am",
-      "tasks": [
-        {
-          "l": "Vitamin D3",
-          "t": "8:45",
-          "tag": "supp"
-        },
-        {
-          "l": "Omega 3",
-          "t": "8:45",
-          "tag": "supp"
-        },
-        {
-          "l": "Tostero (x2)",
-          "t": "8:45",
-          "tag": "supp"
-        },
-        {
-          "l": "Quercetin & Bromelain (x2)",
-          "t": "8:45",
-          "tag": "supp"
-        }
-      ]
-    },
-    "bsupps_weekend": {
-      "id": "bsupps",
-      "icon": "💊",
-      "title": "Breakfast supplements",
-      "time": "9:00am",
-      "tasks": [
-        {
-          "l": "Vitamin D3",
-          "t": "9:00",
-          "tag": "supp"
-        },
-        {
-          "l": "Omega 3",
-          "t": "9:00",
-          "tag": "supp"
-        },
-        {
-          "l": "Tostero (x2)",
-          "t": "9:00",
-          "tag": "supp"
-        },
-        {
-          "l": "Quercetin & Bromelain (x2)",
-          "t": "9:00",
-          "tag": "supp"
-        }
-      ]
-    },
     "work": {
       "id": "work",
       "icon": "💼",
       "title": "Work",
-      "time": "9:00am – 12:30pm",
+      "time": "9:15am – 12:30pm",
       "tasks": [
         {
           "l": "Office",
@@ -645,15 +609,27 @@
           "l": "Electrolytes",
           "t": "",
           "tag": "supp"
-        }
-      ]
-    },
-    "dinner_supps_only": {
-      "id": "dinner",
-      "icon": "💊",
-      "title": "Evening supplements",
-      "time": "With dinner",
-      "tasks": [
+        },
+        {
+          "l": "Vitamin D3",
+          "t": "",
+          "tag": "supp"
+        },
+        {
+          "l": "Omega 3",
+          "t": "",
+          "tag": "supp"
+        },
+        {
+          "l": "Tostero (x2)",
+          "t": "",
+          "tag": "supp"
+        },
+        {
+          "l": "Quercetin & Bromelain (x2)",
+          "t": "",
+          "tag": "supp"
+        },
         {
           "l": "Creatine (x4)",
           "t": "",
@@ -665,6 +641,34 @@
           "tag": "supp"
         }
       ]
+    },
+    "postrun_thursday": {
+      "id": "postgym",
+      "icon": "🚿",
+      "title": "Post-run",
+      "time": "8:15 – 9:00am",
+      "tasks": [
+        {
+          "l": "Drink water",
+          "t": "8:15"
+        },
+        {
+          "l": "Cold shower",
+          "t": "8:20"
+        },
+        {
+          "l": "Skincare",
+          "t": "8:35"
+        },
+        {
+          "l": "Get ready for work / Start work",
+          "t": "8:45"
+        },
+        {
+          "l": "Read News dashboard",
+          "t": "8:50"
+        }
+      ]
     }
   },
   "gym": {
@@ -674,7 +678,7 @@
         "id": "cardio",
         "icon": "🏃",
         "title": "Cardio — Zone 2 jog to gym",
-        "time": "6:40 – 7:05am",
+        "time": "7:05 – 7:30am",
         "tasks": [
           {
             "l": "Zone 2 jog to gym",
@@ -686,7 +690,7 @@
         "id": "gymam",
         "icon": "🏋️",
         "title": "Morning gym — Push (Chest + Triceps)",
-        "time": "7:05 – 8:05am",
+        "time": "7:30 – 8:30am",
         "tasks": [
           {
             "l": "50 Push ups",
@@ -775,12 +779,12 @@
       "cardio": {
         "id": "cardio",
         "icon": "🏃",
-        "title": "Cardio — VO2 Max",
-        "time": "6:40 – 7:05am",
+        "title": "Cardio — Zone 2 jog to gym",
+        "time": "7:05 – 7:30am",
         "tasks": [
           {
-            "l": "VO2 Max session",
-            "t": "6:40"
+            "l": "Zone 2 jog to gym",
+            "t": "7:05"
           }
         ]
       },
@@ -788,7 +792,7 @@
         "id": "gymam",
         "icon": "🏋️",
         "title": "Morning gym — Pull (Back + Biceps)",
-        "time": "7:05 – 8:05am",
+        "time": "7:30 – 8:30am",
         "tasks": [
           {
             "l": "Hip Thrusts + Planks",
@@ -882,7 +886,7 @@
         "id": "cardio",
         "icon": "🏃",
         "title": "Cardio — Zone 2 jog to gym",
-        "time": "6:40 – 7:05am",
+        "time": "7:05 – 7:30am",
         "tasks": [
           {
             "l": "Zone 2 jog to gym",
@@ -894,7 +898,7 @@
         "id": "gymam",
         "icon": "🏋️",
         "title": "Morning gym — Legs + Shoulders",
-        "time": "7:05 – 8:05am",
+        "time": "7:30 – 8:30am",
         "tasks": [
           {
             "l": "Abs",
@@ -979,12 +983,20 @@
       "cardio": {
         "id": "cardio",
         "icon": "🏃",
-        "title": "Cardio — VO2 Max",
-        "time": "6:40 – 7:05am",
+        "title": "Cardio — VO2 Max Session",
+        "time": "7:05 – 8:15am",
         "tasks": [
           {
-            "l": "VO2 Max session",
-            "t": "6:40"
+            "l": "Bike to Lake Shore Track",
+            "t": "7:05"
+          },
+          {
+            "l": "VO2 Max Session",
+            "t": "7:20"
+          },
+          {
+            "l": "Walk back from Lake Shore Track",
+            "t": "7:45"
           }
         ]
       },
@@ -992,7 +1004,7 @@
       "evening": {
         "id": "eve",
         "icon": "🔱",
-        "title": "Evening — VO2 Max + Recovery",
+        "title": "Evening — Recovery",
         "time": "4:30 – 6:30pm",
         "tasks": [
           {
@@ -1001,13 +1013,41 @@
             "tag": "mindset"
           },
           {
-            "l": "Proper Mobility",
+            "l": "Mobility",
             "t": "4:45",
             "tag": "mindset"
           },
           {
-            "l": "15 mins Incline treadmill walk",
-            "t": ""
+            "l": "1 hour Incline walk (30 mins warmup, 30 mins hard)",
+            "t": "5:00"
+          }
+        ]
+      },
+      "postrun": {
+        "id": "postgym",
+        "icon": "🚿",
+        "title": "Post Run",
+        "time": "8:15 – 9:00am",
+        "tasks": [
+          {
+            "l": "Drink water",
+            "t": "8:15"
+          },
+          {
+            "l": "Cold shower",
+            "t": "8:20"
+          },
+          {
+            "l": "Skincare",
+            "t": "8:35"
+          },
+          {
+            "l": "Get ready for work / Start work",
+            "t": "8:45"
+          },
+          {
+            "l": "Read News dashboard",
+            "t": "8:50"
           }
         ]
       }
@@ -1018,7 +1058,7 @@
         "id": "cardio",
         "icon": "🏃",
         "title": "Cardio — Zone 2 jog to gym",
-        "time": "6:40 – 7:05am",
+        "time": "7:05 – 7:30am",
         "tasks": [
           {
             "l": "Zone 2 jog to gym",
@@ -1030,7 +1070,7 @@
         "id": "gymam",
         "icon": "🏋️",
         "title": "Morning gym — Full Upper",
-        "time": "7:05 – 8:05am",
+        "time": "7:30 – 8:30am",
         "tasks": [
           {
             "l": "Hip Thrusts + Planks",
@@ -1193,7 +1233,6 @@
       "gym:cardio",
       "gym:morning",
       "postgym_weekday",
-      "bsupps_weekday",
       "work",
       "lunch",
       "gym:evening",
@@ -1207,7 +1246,6 @@
       "gym:cardio",
       "gym:morning",
       "postgym_weekday",
-      "bsupps_weekday",
       "work",
       "lunch",
       "gym:evening",
@@ -1221,7 +1259,6 @@
       "gym:cardio",
       "gym:morning",
       "postgym_weekday",
-      "bsupps_weekday",
       "work",
       "lunch",
       "gym:evening",
@@ -1233,8 +1270,7 @@
       "wake",
       "prep",
       "gym:cardio",
-      "postgym_weekday",
-      "bsupps_weekday",
+      "gym:postrun",
       "work",
       "lunch",
       "gym:evening",
@@ -1248,7 +1284,6 @@
       "gym:cardio",
       "gym:morning",
       "postgym_weekday",
-      "bsupps_weekday",
       "work",
       "lunch",
       "gym:evening",
@@ -1259,15 +1294,11 @@
     "Saturday": [
       "bsupps_wake",
       "gym:cardio",
-      "gym:morning",
-      "bsupps_weekend",
-      "dinner_supps_only"
+      "gym:morning"
     ],
     "Sunday": [
       "bsupps_wake",
-      "recovery",
-      "bsupps_weekend",
-      "dinner_supps_only"
+      "recovery"
     ]
   },
   "sundayBlocks": {
@@ -1278,16 +1309,16 @@
       "time": "9:00am – 12:00pm",
       "tasks": [
         {
-          "l": "Golf or active recovery",
+          "l": "Mobility for Golf",
           "t": "9:00"
         },
         {
-          "l": "Foam rolling",
-          "t": "11:30"
+          "l": "Golf Range",
+          "t": "9:30"
         },
         {
-          "l": "Stretching",
-          "t": "11:45",
+          "l": "Long Mobility",
+          "t": "11:00",
           "tag": "mindset"
         }
       ]
