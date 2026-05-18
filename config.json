@@ -17,7 +17,7 @@
   },
   "meals": [
     {
-      "name": "David Protein Bar",
+      "name": "Eat Protein Bar",
       "calories": 150,
       "protein": 28,
       "carbs": 14,
@@ -376,8 +376,9 @@
       "time": "6:15 – 7:05am",
       "tasks": [
         {
-          "l": "Eat protein bar",
-          "t": "6:15"
+          "l": "Eat Protein Bar",
+          "t": "6:15",
+          "tag": "meal"
         },
         {
           "l": "Wear workout clothes",
@@ -720,7 +721,7 @@
         "time": "7:30 – 8:30am",
         "tasks": [
           {
-            "l": "100 Push ups",
+            "l": "50 Push ups",
             "t": "7:05"
           },
           {
@@ -922,7 +923,7 @@
             "t": "7:05"
           },
           {
-            "l": "100 Push ups",
+            "l": "50 Push ups",
             "t": "7:15"
           },
           {
