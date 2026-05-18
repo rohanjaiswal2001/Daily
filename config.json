@@ -372,7 +372,7 @@
     "prep": {
       "id": "prep",
       "icon": "🧘",
-      "title": "Breathwork + Mobility",
+      "title": "Mobility",
       "time": "6:15 – 7:05am",
       "tasks": [
         {
@@ -383,11 +383,6 @@
         {
           "l": "Wear workout clothes",
           "t": "6:18"
-        },
-        {
-          "l": "FivepointFive Breathing class — 5 mins",
-          "t": "6:20",
-          "tag": "mindset"
         },
         {
           "l": "Mike Holland exercises — 5 mins",
@@ -697,6 +692,118 @@
           "t": "8:50"
         }
       ]
+    },
+    "wake_thursday": {
+      "id": "wake",
+      "icon": "🌅",
+      "title": "Wake up + Supplements",
+      "time": "7:00 – 7:15am",
+      "tasks": [
+        {
+          "l": "Get out of bed",
+          "t": "6:00"
+        },
+        {
+          "l": "Open shades + Make bed",
+          "t": "6:00"
+        },
+        {
+          "l": "Drink Cucumber water",
+          "t": "6:02"
+        },
+        {
+          "l": "Electrolytes",
+          "t": "6:02",
+          "tag": "supp"
+        },
+        {
+          "l": "Wear face mask",
+          "t": "6:05"
+        },
+        {
+          "l": "Wash face (cold water)",
+          "t": "6:08"
+        },
+        {
+          "l": "Upper body stretch",
+          "t": "6:10"
+        },
+        {
+          "l": "Brush teeth",
+          "t": "6:12"
+        },
+        {
+          "l": "Clean nose (saline)",
+          "t": "6:14"
+        },
+        {
+          "l": "NMN",
+          "t": "6:15",
+          "tag": "supp"
+        },
+        {
+          "l": "Trans-Resveratrol",
+          "t": "6:15",
+          "tag": "supp"
+        },
+        {
+          "l": "Shilajit (x2)",
+          "t": "6:15",
+          "tag": "supp"
+        },
+        {
+          "l": "Vitamin D3",
+          "t": "8:45",
+          "tag": "supp"
+        },
+        {
+          "l": "Omega 3",
+          "t": "8:45",
+          "tag": "supp"
+        },
+        {
+          "l": "Tostero (x2)",
+          "t": "8:45",
+          "tag": "supp"
+        },
+        {
+          "l": "Quercetin & Bromelain (x2)",
+          "t": "8:45",
+          "tag": "supp"
+        },
+        {
+          "l": "Zinc",
+          "t": "6:15",
+          "tag": "supp"
+        }
+      ]
+    },
+    "prep_thursday": {
+      "id": "prep",
+      "icon": "🧘",
+      "title": "Mobility",
+      "time": "7:15 – 8:15am",
+      "tasks": [
+        {
+          "l": "Eat Protein Bar",
+          "t": "6:15",
+          "tag": "meal"
+        },
+        {
+          "l": "Wear workout clothes",
+          "t": "6:18"
+        },
+        {
+          "l": "Mike Holland exercises — 5 mins",
+          "t": "6:25",
+          "tag": "mindset"
+        },
+        {
+          "l": "Mobility: full body, hips, shoulders — 20 mins",
+          "t": "6:30",
+          "tag": "mindset"
+        }
+      ]
     }
   },
   "gym": {
@@ -748,6 +855,11 @@
           {
             "l": "Light mobility",
             "t": "4:45",
+            "tag": "mindset"
+          },
+          {
+            "l": "FivepointFive Breathing class — 5 mins",
+            "t": "",
             "tag": "mindset"
           },
           {
@@ -824,10 +936,6 @@
           {
             "l": "Pull ups + Forearms",
             "t": "7:25"
-          },
-          {
-            "l": "Shrugs",
-            "t": "7:35"
           }
         ]
       },
@@ -845,6 +953,11 @@
           {
             "l": "Light mobility",
             "t": "4:45",
+            "tag": "mindset"
+          },
+          {
+            "l": "FivepointFive Breathing class — 5 mins",
+            "t": "",
             "tag": "mindset"
           },
           {
@@ -949,6 +1062,11 @@
             "tag": "mindset"
           },
           {
+            "l": "FivepointFive Breathing class — 5 mins",
+            "t": "",
+            "tag": "mindset"
+          },
+          {
             "l": "1 Mile Zone 2 run",
             "t": "4:45"
           },
@@ -993,26 +1111,7 @@
     },
     "Thursday": {
       "split": "VO2 Max + Recovery",
-      "cardio": {
-        "id": "cardio",
-        "icon": "🏃",
-        "title": "Cardio — VO2 Max Session",
-        "time": "7:05 – 8:15am",
-        "tasks": [
-          {
-            "l": "Bike to Lake Shore Track",
-            "t": "7:05"
-          },
-          {
-            "l": "VO2 Max Session",
-            "t": "7:20"
-          },
-          {
-            "l": "Walk back from Lake Shore Track",
-            "t": "7:45"
-          }
-        ]
-      },
+      "cardio": null,
       "morning": null,
       "evening": {
         "id": "eve",
@@ -1031,40 +1130,57 @@
             "tag": "mindset"
           },
           {
-            "l": "1 Mile Zone 2 run",
-            "t": "4:45"
+            "l": "FivepointFive Breathing class — 5 mins",
+            "t": "4:55",
+            "tag": "mindset"
           },
           {
-            "l": "1 hour Incline walk (30 mins warmup, 30 mins hard)",
+            "l": "Bike to Lake Shore Track",
             "t": "5:00"
+          },
+          {
+            "l": "VO2 Max Session",
+            "t": "5:15"
+          },
+          {
+            "l": "Zone 2 Run from Lake Shore Track",
+            "t": "5:35"
+          },
+          {
+            "l": "Shrugs",
+            "t": "5:55"
+          },
+          {
+            "l": "Rowing (30 Mins)",
+            "t": "6:00"
           }
         ]
       },
       "postrun": {
         "id": "postgym",
         "icon": "🚿",
-        "title": "Post Run",
-        "time": "8:15 – 9:00am",
+        "title": "Morning Routine",
+        "time": "8:30 – 9:00am",
         "tasks": [
           {
             "l": "Drink water",
-            "t": "8:15"
+            "t": "8:30"
           },
           {
             "l": "Cold shower",
-            "t": "8:20"
-          },
-          {
-            "l": "Skincare",
             "t": "8:35"
           },
           {
-            "l": "Get ready for work / Start work",
+            "l": "Skincare",
             "t": "8:45"
           },
           {
-            "l": "Read News dashboard",
+            "l": "Get ready for work / Start work",
             "t": "8:50"
+          },
+          {
+            "l": "Read News dashboard",
+            "t": "8:55"
           }
         ]
       }
@@ -1096,10 +1212,6 @@
           {
             "l": "Pull ups + Forearms",
             "t": "7:25"
-          },
-          {
-            "l": "Shrugs",
-            "t": "7:35"
           }
         ]
       },
@@ -1117,6 +1229,11 @@
           {
             "l": "Light mobility",
             "t": "4:45",
+            "tag": "mindset"
+          },
+          {
+            "l": "FivepointFive Breathing class — 5 mins",
+            "t": "",
             "tag": "mindset"
           },
           {
@@ -1221,6 +1338,10 @@
           {
             "l": "Calves",
             "t": "8:05"
+          },
+          {
+            "l": "Shrugs",
+            "t": "8:15"
           }
         ]
       },
@@ -1274,9 +1395,8 @@
       "night"
     ],
     "Thursday": [
-      "wake",
-      "prep",
-      "gym:cardio",
+      "wake_thursday",
+      "prep_thursday",
       "gym:postrun",
       "work",
       "lunch",
