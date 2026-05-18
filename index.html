@@ -442,6 +442,7 @@
   .tag-supp { background: var(--amber-dim); color: var(--amber); }
   .tag-sauna { background: var(--teal-dim); color: var(--teal); }
   .tag-mindset { background: var(--purple-dim); color: var(--purple); }
+  .tag-meal { background: var(--green-dim); color: var(--green); }
 
   .meals-block {
     background: var(--card); border: 1px solid var(--border);
@@ -722,11 +723,6 @@ function countTasks() {
   const blocks = assembleDay(dayOfWeekName(viewDate));
   let total = 0, done = 0;
   blocks.forEach(b => { b.tasks.forEach(t => { total++; if (dayState[b.id+'::'+t.l]) done++; }); });
-  // Count meals on weekdays
-  const dayIdx = parseLocalDate(viewDate).getDay();
-  if (meals.length > 0 && dayIdx >= 1 && dayIdx <= 5) {
-    meals.forEach(m => { total++; if (dayState['meal::'+m.name]) done++; });
-  }
   return { done, total };
 }
 
@@ -876,35 +872,20 @@ function render() {
     block.tasks.forEach(t => {
       const taskId = block.id+'::'+t.l, checked = dayState[taskId]?' checked':'';
       const click = `onclick="toggleTask('${escapeAttr(taskId)}', this)"`;
-      let tagH = t.tag ? `<span class="tag tag-${t.tag}">${t.tag}</span>` : '';
-      html += `<div class="task${checked}" ${click}><div class="task-check">${dayState[taskId]?'\u2713':''}</div><span class="task-label">${escHtml(t.l)}</span>${t.t?`<span class="task-time">${escHtml(t.t)}</span>`:''}${tagH}</div>`;
+      let tagH = t.tag && t.tag !== 'meal' ? `<span class="tag tag-${t.tag}">${t.tag}</span>` : '';
+      // Add macro pills for meal-tagged tasks
+      let macroH = '';
+      if (t.tag === 'meal') {
+        const m = meals.find(ml => ml.name === t.l);
+        if (m) macroH = `<div class="meal-macros"><span class="meal-macro-pill meal-cal">${m.calories}</span><span class="meal-macro-pill meal-pro">${m.protein}p</span><span class="meal-macro-pill meal-carb">${m.carbs}c</span><span class="meal-macro-pill meal-fat">${m.fat}f</span></div>`;
+      }
+      html += `<div class="task${checked}" ${click}><div class="task-check">${dayState[taskId]?'\u2713':''}</div><span class="task-label">${escHtml(t.l)}</span>${t.t?`<span class="task-time">${escHtml(t.t)}</span>`:''}${tagH}${macroH}</div>`;
     });
     html += '</div></div>';
   });
 
-  // Meals block (Mon-Fri: checkbox meals, Sat-Sun: free-text food log)
-  const dayIdx = parseLocalDate(viewDate).getDay();
-  if (meals.length > 0 && dayIdx >= 1 && dayIdx <= 5) {
-    html += `<div class="meals-block"><div class="meals-header"><span class="block-icon">\u{1F37D}\uFE0F</span><span class="block-title">Meals</span></div><div class="block-body">`;
-    meals.forEach((m, i) => {
-      const mealId = 'meal::' + m.name;
-      const checked = dayState[mealId] ? ' checked' : '';
-      const click = `onclick="toggleMeal('${escapeAttr(mealId)}', ${i}, this)"`;
-      html += `<div class="meal-item${checked}" ${click}>
-        <div class="task-check">${dayState[mealId]?'\u2713':''}</div>
-        <span class="meal-name">${escHtml(m.name)}</span>
-        <div class="meal-macros">
-          <span class="meal-macro-pill meal-cal">${m.calories}</span>
-          <span class="meal-macro-pill meal-pro">${m.protein}p</span>
-          <span class="meal-macro-pill meal-carb">${m.carbs}c</span>
-          <span class="meal-macro-pill meal-fat">${m.fat}f</span>
-        </div>
-      </div>`;
-    });
-    html += '</div></div>';
-  }
-
   // Weekend food log (free-text)
+  const dayIdx = parseLocalDate(viewDate).getDay();
   if (dayIdx === 0 || dayIdx === 6) {
     const foodLog = dayState['_weekendFoodLog'] || '';
     html += `<div class="meals-block"><div class="meals-header"><span class="block-icon">\u{1F37D}\uFE0F</span><span class="block-title">Food log</span></div><div class="block-body" style="padding:12px 16px;">`;
@@ -932,6 +913,7 @@ function toggleTask(taskId, el) {
   const sub = document.querySelector('.progress-subtitle'); if (sub) sub.textContent = `${done} of ${total} tasks completed`;
   const rf = document.querySelector('.progress-ring-fill'); if (rf) rf.setAttribute('stroke-dashoffset', offset);
   const rt = document.querySelector('.progress-ring-text'); if (rt) rt.textContent = pct+'%';
+  renderMacros();
   scheduleSave();
 }
 
@@ -951,21 +933,22 @@ function onFoodLog(val) {
 }
 
 function renderMacros() {
-  const dayIdx = parseLocalDate(viewDate).getDay();
-  const isWeekday = dayIdx >= 1 && dayIdx <= 5;
-
   let cal = 0, pro = 0, carb = 0, fat = 0;
-  if (isWeekday) {
-    meals.forEach(m => {
-      const mealId = 'meal::' + m.name;
-      if (dayState[mealId]) {
+  // Scan all blocks for checked meal tasks
+  const blocks = assembleDay(dayOfWeekName(viewDate));
+  meals.forEach(m => {
+    // Find which block contains this meal by checking dayState
+    for (const b of blocks) {
+      const taskId = b.id + '::' + m.name;
+      if (dayState[taskId]) {
         cal += m.calories;
         pro += m.protein;
         carb += m.carbs;
         fat += m.fat;
+        break;
       }
-    });
-  }
+    }
+  });
 
   const t = macroTargets;
   document.getElementById('macro-cal-cur').textContent = cal;
