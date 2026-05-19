@@ -10,10 +10,10 @@
     "weekStarted": "2026-04-07"
   },
   "macroTargets": {
-    "calories": 1630,
-    "protein": 210,
-    "carbs": 87,
-    "fat": 49
+    "calories": 1888,
+    "protein": 222,
+    "carbs": 114,
+    "fat": 62
   },
   "meals": [
     {
@@ -26,22 +26,22 @@
     },
     {
       "name": "Overnight Oats",
-      "calories": 382,
-      "protein": 52,
-      "carbs": 33,
-      "fat": 4,
+      "calories": 520,
+      "protein": 58,
+      "carbs": 58,
+      "fat": 5,
       "time": "10:00am"
     },
     {
-      "name": "Beef + Potato Bowl with Yogurt and Guac",
-      "calories": 418,
-      "protein": 51,
-      "carbs": 25,
-      "fat": 17,
+      "name": "Beef & Butternut Squash Bowl",
+      "calories": 538,
+      "protein": 57,
+      "carbs": 27,
+      "fat": 29,
       "time": "12:30pm"
     },
     {
-      "name": "Chicken thigh with Yogurt Sauce",
+      "name": "Greek Herb Chicken + Yogurt Sauce",
       "calories": 404,
       "protein": 44,
       "carbs": 8,
@@ -472,7 +472,7 @@
           "tag": "meal"
         },
         {
-          "l": "Beef + Potato Bowl with Yogurt and Guac",
+          "l": "Beef & Butternut Squash Bowl",
           "t": "12:30",
           "tag": "meal"
         }
@@ -485,7 +485,7 @@
       "time": "12:30 – 4:00pm",
       "tasks": [
         {
-          "l": "Chicken thigh with Yogurt Sauce",
+          "l": "Greek Herb Chicken + Yogurt Sauce",
           "t": "3:30",
           "tag": "meal"
         },
